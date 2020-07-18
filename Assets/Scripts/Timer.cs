@@ -22,6 +22,6 @@ public class Timer : MonoBehaviour
 
     public void ResetTimer()
     {
-        timer = 60;
+        timer = defaultTimer;
     }
 }

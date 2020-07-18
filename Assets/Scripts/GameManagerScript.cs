@@ -8,6 +8,8 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField]
     GameObject gameTimer;
 
+    List<ScriptableObject> levels;
+
     private Timer timer;
     private void Start()
     {

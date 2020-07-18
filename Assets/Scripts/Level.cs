@@ -6,7 +6,7 @@ using UnityEngine;
 public class Level : ScriptableObject
 {
     [SerializeField]
-    public List<GameObject> objects;
+    public List<GameObject> modules;
     [SerializeField]
-    public Mesh planet;
+    public GameObject planet;
 }
