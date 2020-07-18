@@ -4,12 +4,8 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
+    [SerializeField]
     public float timer;
-
-    void Start()
-    {
-        timer = 60;
-    }
 
     void Update()
     {
