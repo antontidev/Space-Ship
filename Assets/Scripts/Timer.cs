@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public float timer;
-
-    void Start()
-    {
-        timer = 60;
-    }
+    [SerializeField]
+    public float timer = 60;
+    [SerializeField]
 
     void Update()
     {
         timer -= Time.deltaTime;
     }
 
-    void ResetTimer()
+    public void ResetTimer()
     {
         timer = 60;
     }
