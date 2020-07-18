@@ -12,4 +12,9 @@ public class Timer : MonoBehaviour
     {
         timer -= Time.deltaTime;
     }
+
+    public void ResetTimer()
+    {
+        timer = 60;
+    }
 }

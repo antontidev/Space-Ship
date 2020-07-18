@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 
@@ -7,11 +8,12 @@ using UnityEngine;
 public class GameManagerScript : MonoBehaviour
 {
 
-    GameObject gameTimer = GameObject.Find("Timer");
-    Timer theTimer = gameTimer.GetComponent<Timer>();
+    
 
     void Update()
     {
+        GameObject gameTimer = GameObject.FindGameObjectWithTag("Timer");
+        Timer theTimer = gameTimer.GetComponent<Timer>();
         if (theTimer.timer <= 0)
         {
             theTimer.ResetTimer();
