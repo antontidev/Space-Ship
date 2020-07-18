@@ -14,4 +14,9 @@ public class PartsSpawner : MonoBehaviour
             Instantiate(obj, Random.onUnitSphere * 1, transform.rotation);
         });
     }
+
+    public void SubmitList(List<GameObject> list)
+    {
+        shipPrefab = list;
+    }
 }
