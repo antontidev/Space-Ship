@@ -9,14 +9,14 @@ public class GameManagerScript : MonoBehaviour
     GameObject gameTimer;
 
     private Timer timer;
-
-
+    private void Start()
+    {
+        timer = gameTimer.GetComponent<Timer>();  
+    }
 
     void Update()
     {
-        GameObject gameTimer = GameObject.FindGameObjectWithTag("Timer");
-        Timer theTimer = gameTimer.GetComponent<Timer>();
-        if (theTimer.timer <= 0)
+        if (timer.timer <= 0)
         {
             timer.ResetTimer();
             goToLevelOne();
