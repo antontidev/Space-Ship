@@ -15,7 +15,7 @@ public class PartsSpawner : MonoBehaviour
         //{
             for(int i = 0; i < 3; i++)
         {
-            Instantiate(shipPrefab, Random.onUnitSphere * 10, transform.rotation);
+            Instantiate(shipPrefab, Random.onUnitSphere, transform.rotation);
         }
             
        // });
