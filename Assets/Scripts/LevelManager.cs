@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [SerializeField]
-    public Queue<ScriptableObject> levels;
+    public List<ScriptableObject> levels;
     void Start()
     {
         
