@@ -5,13 +5,15 @@ using UnityEngine;
 public class PartsSpawner : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> shipPrefab;
+        private GameObject shipPrefab;
+    [SerializeField]
 
     void Start()
     {
-        shipPrefab.ForEach((GameObject obj) =>
+        
+        for (int i = 1; i < 10; i++)
         {
-            Instantiate(obj, Random.onUnitSphere * 10, transform.rotation);
-        });    
+        Instantiate(shipPrefab, Random.onUnitSphere * 10, transform.rotation);
+        }       
     }
 }

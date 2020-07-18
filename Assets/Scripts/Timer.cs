@@ -5,12 +5,8 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     [SerializeField]
-<<<<<<< HEAD
     public float timer = 60;
     [SerializeField]
-=======
-    public float timer;
->>>>>>> spawner
 
     void Update()
     {
