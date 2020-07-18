@@ -6,18 +6,8 @@ using UnityEngine;
 
 public class ShipPart : MonoBehaviour
 {
-
-    void Start()
-    { 
-    }
-
-    void Update()
+  void OnMouseDown()
     {
-        
-    }
-
-    void OnMouseClick()
-    {
-        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+        Destroy(gameObject);
     }
 }
