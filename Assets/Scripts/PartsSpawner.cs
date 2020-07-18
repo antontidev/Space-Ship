@@ -11,7 +11,7 @@ public class PartsSpawner : MonoBehaviour
     {
         shipPrefab.ForEach((GameObject obj) =>
         {
-            Instantiate(obj, Random.onUnitSphere * 1, transform.rotation);
+            Instantiate(obj, Random.onUnitSphere * 10, transform.rotation);
         });
     }
 }
