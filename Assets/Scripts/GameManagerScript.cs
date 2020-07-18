@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
-
-
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+    [SerializeField]
+    GameObject gameTimer;
 
-    
+    private Timer timer;
+
+
 
     void Update()
     {
@@ -16,7 +18,7 @@ public class GameManagerScript : MonoBehaviour
         Timer theTimer = gameTimer.GetComponent<Timer>();
         if (theTimer.timer <= 0)
         {
-            theTimer.ResetTimer();
+            timer.ResetTimer();
             goToLevelOne();
         }
     }
