@@ -1,20 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+    [SerializeField]
+    GameObject gameTimer;
 
-    GameObject gameTimer = GameObject.Find("Timer");
-    Timer theTimer = gameTimer.GetComponent<Timer>();
+    private Timer timer;
+
+    private void Start()
+    {
+        timer = gameTimer.GetComponent<Timer>();
+    }
 
     void Update()
     {
-        if (theTimer.timer <= 0)
+        if (timer.timer <= 0)
         {
-            theTimer.ResetTimer();
+            timer.ResetTimer();
             goToLevelOne();
         }
     }
