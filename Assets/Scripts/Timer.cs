@@ -8,6 +8,11 @@ public class Timer : MonoBehaviour
     public float timer = 60;
     [SerializeField]
 
+    void Start()
+    {
+        timer = 60;
+    }
+
     void Update()
     {
         timer -= Time.deltaTime;
