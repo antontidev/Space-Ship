@@ -11,7 +11,7 @@ public class PartsSpawner : MonoBehaviour
     {
         foreach (var el in list)
         {
-            var part = Instantiate(el, Random.onUnitSphere * 1, transform.rotation);
+            var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
             //part.GetComponent<ShipPart>().onClick += PartClicked;
             yield return null;
         }
@@ -23,7 +23,7 @@ public class PartsSpawner : MonoBehaviour
     {
         foreach (var el in parts)
         {
-            var part = Instantiate(el, Random.onUnitSphere * 1, transform.rotation);
+            var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
             //part.GetComponent<ShipPart>().onClick += PartClicked;
             yield return null;
         }
