@@ -10,7 +10,7 @@ public class GameManagerScript : MonoBehaviour
         get; private set;
     }
 
-    public enum GameState { Ready, Running, Lose, Win }
+    public enum GameState { Ready, Running, Loose, Win }
 
     public delegate void OnStateChangeHandler();
     public event OnStateChangeHandler OnStateChange;
@@ -60,7 +60,7 @@ public class GameManagerScript : MonoBehaviour
         }
         else
         {
-            gameState = GameState.Lose;
+            gameState = GameState.Loose;
         }
 
         GoToEndScene(rocket.IsReady);

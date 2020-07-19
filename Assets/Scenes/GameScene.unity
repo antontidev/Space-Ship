@@ -732,6 +732,7 @@ MonoBehaviour:
   - {fileID: 6718861492892244079, guid: 1c4badce228fab04e87ee554eda98b63, type: 3}
   - {fileID: 6718861492892244079, guid: 1c4badce228fab04e87ee554eda98b63, type: 3}
   - {fileID: 6718861492892244079, guid: 1c4badce228fab04e87ee554eda98b63, type: 3}
+  trueModules: []
 --- !u!1 &971128948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1525,6 +1526,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpaceShipPrefab: {fileID: 317412584}
+--- !u!114 &1919700529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919700527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b6499ac2813b774fa4b328314d36aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: 0
+  oxygen: 0
+  temperature: 0
 --- !u!114 &1919700532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1800,7 +1816,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f71f2b1d40ed824fb4d453f61cfeab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parts: []
+  parts:
+  - {fileID: 1919700527}
+  - {fileID: 1919700527}
+  trueModules:
+  - {fileID: 1919700527}
+  - {fileID: 1919700527}
+  - {fileID: 1919700527}
 --- !u!4 &2147475050
 Transform:
   m_ObjectHideFlags: 0

@@ -17,9 +17,17 @@ public class PartsSpawner : MonoBehaviour
         }
     }
 
+
+
     public IEnumerator Spawn()
     {
         foreach (var el in parts)
+        {
+            var part = Instantiate(el, Random.onUnitSphere * 1, transform.rotation);
+            //part.GetComponent<ShipPart>().onClick += PartClicked;
+            yield return null;
+        }
+        foreach (var el in trueModules)
         {
             var part = Instantiate(el, Random.onUnitSphere * 1, transform.rotation);
             //part.GetComponent<ShipPart>().onClick += PartClicked;
