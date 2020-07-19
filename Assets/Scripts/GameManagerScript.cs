@@ -42,7 +42,7 @@ public class GameManagerScript : MonoBehaviour
     void NotifyManagers(Level level)
     {
         spawner.SubmitList(level.modules);
-        trashManager.Spawn();
+        StartCoroutine(trashManager.Spawn());
         var newRocket = Instantiate(level.rocket);
 
         rocket = newRocket.GetComponent<Rocket>();
@@ -55,6 +55,7 @@ public class GameManagerScript : MonoBehaviour
         if (rocket.IsReady)
         {
             gameState = GameState.Win;
+            ChangeLevel();
         }
         else
         {

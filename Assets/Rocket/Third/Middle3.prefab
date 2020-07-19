@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5082097549018752756}
   - component: {fileID: 8853528743552487225}
   m_Layer: 0
-  m_Name: Cylinder.006
-  m_TagString: Untagged
+  m_Name: Middle3
+  m_TagString: Middle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

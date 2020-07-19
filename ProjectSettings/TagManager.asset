@@ -10,6 +10,9 @@ TagManager:
   - SpaceShip
   - ModuleThree
   - ModuleTwo
+  - Middle
+  - Bottom
+  - Top
   layers:
   - Default
   - TransparentFX
