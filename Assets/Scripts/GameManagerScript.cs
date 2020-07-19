@@ -27,7 +27,7 @@ public class GameManagerScript : MonoBehaviour
     PartsSpawner spawner;
 
     [SerializeField]
-    PartsSpawner trashManager;
+    TrashSpawner trashManager;
 
     private Rocket rocket;
 
