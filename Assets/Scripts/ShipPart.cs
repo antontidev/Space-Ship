@@ -3,9 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ShipPart : MonoBehaviour
-{
-  void OnMouseDown()
+{   
+        [SerializeField]
+        private GameObject SpaceShip;
+        [SerializeField]
+
+
+
+    void OnMouseDown()
     {
-        Destroy(gameObject);
+        this.transform.position = GameObject.FindGameObjectWithTag("ModuleOne").transform.position;
+        this.transform.parent = SpaceShip.transform;
     }
 }
