@@ -34,12 +34,12 @@ public class PartsSpawner : MonoBehaviour
 
     public GameObject SpawnPlanet(GameObject planet)
     {
-        return Instantiate(planet);
+        return Instantiate(planet, Vector3.zero, transform.rotation);
     }
 
     public void SpawnRocket(GameObject rocket, Transform position)
     {
-        var rocketObj = Instantiate(rocket, position.position, position.rotation);
+        var rocketObj = Instantiate(rocket, position.position, transform.rotation);
         this.rocket = rocketObj.GetComponent<Rocket>();
     }
 

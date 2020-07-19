@@ -21,5 +21,5 @@ MonoBehaviour:
   - {fileID: 8051973121782401125, guid: b38e18963bddb3248a5ed12cd8932818, type: 3}
   - {fileID: 7036996436494026424, guid: 041167e5e7b1dc543ab59b3ea5d6a9ff, type: 3}
   planet: {fileID: 2537168048001583167, guid: b24fcf93c91dc5f4cb4ac74bef61c4d4, type: 3}
-  rocket: {fileID: 2108432651104426459, guid: efa0385672bb8d449b793682dfcbc11e, type: 3}
+  rocket: {fileID: 812678465926681651, guid: efa0385672bb8d449b793682dfcbc11e, type: 3}
   levelTime: 30
