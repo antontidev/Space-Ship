@@ -17,8 +17,6 @@ public class PartsSpawner : MonoBehaviour
         }
     }
 
-
-
     public IEnumerator Spawn()
     {
         foreach (var el in parts)
