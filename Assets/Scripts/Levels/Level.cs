@@ -11,4 +11,6 @@ public class Level : ScriptableObject
     public GameObject planet;
     [SerializeField]
     public GameObject rocket;
+    [SerializeField]
+    public float levelTime;
 }
