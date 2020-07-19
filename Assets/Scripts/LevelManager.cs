@@ -7,7 +7,6 @@ public class LevelManager : MonoBehaviour
     public delegate void LevelLoaded(Level level);
     public LevelLoaded NextLevelLoaded;
 
-    [SerializeField]
     public List<Level> levels;
 
     public int CurrentLevel

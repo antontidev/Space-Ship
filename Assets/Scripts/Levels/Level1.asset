@@ -22,4 +22,4 @@ MonoBehaviour:
   - {fileID: 7279566945723813867, guid: 3fe61b7058f85be47bd09c0fb5186811, type: 3}
   planet: {fileID: 3078006376644690614, guid: 5c53ef41f1c01fb4b8fa7c374cea0d64, type: 3}
   rocket: {fileID: 2315045081873706374, guid: 2e9b2e1bb90933740a7c44a191d84adf, type: 3}
-  levelTime: 60
+  levelTime: 5

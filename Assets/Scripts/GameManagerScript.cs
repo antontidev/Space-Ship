@@ -39,15 +39,18 @@ public class GameManagerScript : MonoBehaviour
 
     private void Start()
     {
-        var levelMangerObj = GameObject.FindGameObjectsWithTag("LevelManager");
+        var levelManagerObj = GameObject.FindGameObjectsWithTag("LevelManager");
 
-        if (levelMangerObj.Length == 0)
+        if (levelManagerObj.Length == 0)
         {
-            var manager = Instantiate(levelManagerObject);
+            var obj = Instantiate(levelManagerObject);
 
-            levelManager = manager.GetComponent<LevelManager>();
+            levelManager = obj.GetComponent<LevelManager>();
         }
-
+        else
+        {
+            levelManager = levelManagerObj[0].GetComponent<LevelManager>();
+        }
 
         Instance = this;
         gameState = GameState.Ready;
@@ -82,9 +85,9 @@ public class GameManagerScript : MonoBehaviour
         else
         {
             gameState = GameState.Loose;
+            ChangeLevel();
         }
-
-        GoToEndScene(rocket.IsReady);
+//        GoToEndScene(rocket.IsReady);
     }
 
     public KeyValuePair<GameObject, bool> CheckPart(GameObject part)
@@ -94,7 +97,7 @@ public class GameManagerScript : MonoBehaviour
 
     void ChangeLevel()
     {
-        var level = levelManager.NextLevel();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     void GoToLevelOne()
