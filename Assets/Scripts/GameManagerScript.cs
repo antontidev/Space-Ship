@@ -58,7 +58,7 @@ public class GameManagerScript : MonoBehaviour
         var planet = spawner.SpawnPlanet(level.planet);
         var planetComponent = planet.GetComponent<Planet>();
 
-        spawner.SpawnRocket(level.rocket, planetComponent.spawnRocketPostition);
+        rocket = spawner.SpawnRocket(level.rocket, planetComponent.spawnRocketPostition);
         spawner.SubmitList(level.modules);
         rocket.SubmitTrueParts(level.trueModules);
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Rocket : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Rocket : MonoBehaviour
     private Dictionary<GameObject, bool> ready;
 
     public Quaternion defaultRotation;
+
+    public ClickManager manager;
 
     private void Start()
     {
@@ -34,11 +37,12 @@ public class Rocket : MonoBehaviour
 
     public bool CheckPart(GameObject part)
     {
+        var namePart = part.name.Substring(0, part.name.IndexOf('('));
         foreach (var el in trueParts)
         {
-            if (el == part)
+            if (el.name == namePart)
             {
-                ready.Add(part, true);
+                ready[part] = true;
                 return true;
             }
         }
@@ -62,7 +66,7 @@ public class Rocket : MonoBehaviour
                 part.transform.position = positions[2].position;
                 break;
         }
-        part.transform.rotation = transform.rotation;
+        part.transform.rotation = Quaternion.Euler(-90, 0, 0);
 
         part.GetComponent<Rigidbody>().useGravity = false;
         part.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;

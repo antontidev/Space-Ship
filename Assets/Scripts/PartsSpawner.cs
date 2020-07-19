@@ -18,6 +18,8 @@ public class PartsSpawner : MonoBehaviour
         {
             var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
             var shippart = part.GetComponent<ShipPart>();
+
+            shippart.onClick += manager.HandleClick;
             shippart.onClick += rocket.Handle;
             yield return null;
         }
@@ -48,6 +50,7 @@ public class PartsSpawner : MonoBehaviour
         DeactivateChildrens(rocketObj);
         this.rocket = rocketObj.GetComponent<Rocket>();
 
+        this.rocket.manager = manager;
         return this.rocket;
     }
 
