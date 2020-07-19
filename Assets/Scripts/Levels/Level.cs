@@ -8,6 +8,8 @@ public class Level : ScriptableObject
     [SerializeField]
     public List<GameObject> modules;
     [SerializeField]
+    public List<GameObject> trueModules;
+    [SerializeField]
     public GameObject planet;
     [SerializeField]
     public GameObject rocket;
