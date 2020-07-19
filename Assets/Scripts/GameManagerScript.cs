@@ -48,12 +48,13 @@ public class GameManagerScript : MonoBehaviour
             levelManager = manager.GetComponent<LevelManager>();
         }
 
-        levelManager.NextLevel();
 
         Instance = this;
         gameState = GameState.Ready;
         timer.Up += MakeDecision;
         levelManager.NextLevelLoaded += NotifyManagers;
+
+        levelManager.NextLevel();
     }
 
     void NotifyManagers(Level level)

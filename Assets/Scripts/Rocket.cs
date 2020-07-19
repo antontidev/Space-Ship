@@ -27,6 +27,7 @@ public class Rocket : MonoBehaviour
         {
             ready[el.tag] = false;
         }
+
     }
 
     public void SubmitTrueParts(List<GameObject> list)
