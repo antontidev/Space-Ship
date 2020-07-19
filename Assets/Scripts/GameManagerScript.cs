@@ -26,6 +26,9 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField]
     PartsSpawner spawner;
 
+    [SerializeField]
+    PartsSpawner trashManager;
+
     private Rocket rocket;
 
     private void Start()
@@ -39,6 +42,7 @@ public class GameManagerScript : MonoBehaviour
     void NotifyManagers(Level level)
     {
         spawner.SubmitList(level.modules);
+        trashManager.Spawn();
         var newRocket = Instantiate(level.rocket);
 
         rocket = newRocket.GetComponent<Rocket>();
