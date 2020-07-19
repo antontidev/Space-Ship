@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 7463863510319718457}
   - component: {fileID: 8832647724970156235}
   - component: {fileID: 141220886295512541}
+  - component: {fileID: -1406465805002288357}
+  - component: {fileID: 5312322798715649401}
+  - component: {fileID: -4006522320175094611}
+  - component: {fileID: -3571636564123864835}
   m_Layer: 0
   m_Name: Bottom2
   m_TagString: Bottom
@@ -94,3 +98,59 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -6564495154122040233, guid: 071e191814469ec498d0076f49f5df58, type: 3}
+--- !u!54 &-1406465805002288357
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402862499722514726}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &5312322798715649401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402862499722514726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb9bbaac595735448db8caa40ade5b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpaceShipPrefab: {fileID: 0}
+--- !u!114 &-4006522320175094611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402862499722514726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01ced9bb80cfd8f40a0289afa91600f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gravity: 0
+  oxygen: 0
+  temperature: 0
+--- !u!114 &-3571636564123864835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8402862499722514726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ba460920fd9c8479a22f962327279b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
