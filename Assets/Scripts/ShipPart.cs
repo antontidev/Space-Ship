@@ -9,17 +9,21 @@ public class ShipPart : MonoBehaviour
 {   
     public delegate void OnClick(GameObject obj);
     public OnClick onClick;
-
  
     [SerializeField]
     GameObject SpaceShipPrefab;
-
 
     private SpaceShip ship;
 
     private void Start()
     {
         ship = SpaceShipPrefab.GetComponent<SpaceShip>();
+
+
+        string type;
+
+
+
     }
 
     void OnMouseDown()
