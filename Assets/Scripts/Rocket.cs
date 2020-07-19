@@ -24,7 +24,6 @@ public class Rocket : MonoBehaviour
 
     public bool CheckPart(GameObject part)
     {
-        Debug.Log("I'm in checkpart");
         foreach (var el in trueParts)
         {
             if (el == part)

@@ -14,6 +14,11 @@ public class ShipPart : MonoBehaviour
     {
     }
 
+    private void OnMouseEnter()
+    {
+        
+    }
+
     void OnMouseDown()
     {
         onClick?.Invoke(gameObject);
