@@ -9,6 +9,8 @@ public class ClickManager : MonoBehaviour
 
     public Dictionary<string, GameObject> activeObjects;
 
+    public GameObject particleSystem; 
+
     void Start ()
     {
         activeObjects = new Dictionary<string, GameObject>();
@@ -27,14 +29,23 @@ public class ClickManager : MonoBehaviour
             obj.transform.position = Random.onUnitSphere * 1;
 
             AddRigidBody(obj);
+            if (tagString == "Bottom")
+            {
+                foreach (Transform child in obj.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+        }
+
+        if (tagString == "Bottom")
+        {
+            Instantiate(particleSystem, gameO.transform, false);
         }
 
         DeleteRigidBody(gameO);
 
         activeObjects[tagString] = gameO;
-        
-   
-       
     }
 
     private void AddRigidBody(GameObject go)
