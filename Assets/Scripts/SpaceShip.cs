@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpaceShip : MonoBehaviour
 {
-    public Vector3 modules;
+    public int modules = 0;
 
     void Update()
     {

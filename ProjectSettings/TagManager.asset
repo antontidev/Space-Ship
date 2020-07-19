@@ -7,6 +7,8 @@ TagManager:
   - Planet
   - ModuleOne
   - SpaceShip
+  - ModuleThree
+  - ModuleTwo
   layers:
   - Default
   - TransparentFX

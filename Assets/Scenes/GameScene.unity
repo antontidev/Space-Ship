@@ -121,6 +121,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &317412584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4346665112984612231, guid: 431dd276b72b6d04fa49e0be38d22002,
+    type: 3}
+  m_PrefabInstance: {fileID: 4346665113301596527}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &317412585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317412584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abafa57bec886f04ba686dfd14840557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modules: 0
 --- !u!1 &377687301
 GameObject:
   m_ObjectHideFlags: 3
@@ -481,7 +500,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452201034}
-  m_LocalRotation: {x: -0.124986626, y: -0.3825557, z: -0.052316528, w: 0.9139434}
+  m_LocalRotation: {x: -0.124986656, y: -0.3825557, z: -0.05231654, w: 0.9139434}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -757,7 +776,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803480788}
-  m_LocalRotation: {x: -0.039099656, y: 0.000000017193228, z: 6.7276373e-10, w: 0.99923533}
+  m_LocalRotation: {x: -0.039099656, y: -0.000000017193221, z: -6.7276346e-10, w: 0.99923533}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1524,6 +1543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9bbaac595735448db8caa40ade5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpaceShipPrefab: {fileID: 317412584}
 --- !u!114 &1919700532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1954,6 +1974,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: SpaceShip
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346665113720551813, guid: 431dd276b72b6d04fa49e0be38d22002,
+        type: 3}
+      propertyPath: m_TagString
+      value: ModuleTwo
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346665113738828199, guid: 431dd276b72b6d04fa49e0be38d22002,
+        type: 3}
+      propertyPath: m_TagString
+      value: ModuleThree
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346665113738828199, guid: 431dd276b72b6d04fa49e0be38d22002,
+        type: 3}
+      propertyPath: m_Name
+      value: partThree
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346665114392506653, guid: 431dd276b72b6d04fa49e0be38d22002,
+        type: 3}
+      propertyPath: m_TagString
+      value: ModuleOne
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346665114392506653, guid: 431dd276b72b6d04fa49e0be38d22002,
+        type: 3}
+      propertyPath: m_Name
+      value: partOne
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 431dd276b72b6d04fa49e0be38d22002, type: 3}
