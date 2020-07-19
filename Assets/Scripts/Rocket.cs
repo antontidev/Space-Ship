@@ -40,7 +40,7 @@ public class Rocket : MonoBehaviour
 
     public void Handle(GameObject part)
     {
-        if (CheckPart(part) == true)
+        if (CheckPart(part) == false)
         {
             part.transform.parent = gameObject.transform;
 
