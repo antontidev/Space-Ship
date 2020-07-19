@@ -28,8 +28,8 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void ResetTimer(float timer)
+    public void ResetTimer(float t)
     {
-        this.timer = timer;
+        this.timer = t;
     }
 }
