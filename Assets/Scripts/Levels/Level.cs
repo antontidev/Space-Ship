@@ -9,4 +9,8 @@ public class Level : ScriptableObject
     public List<GameObject> modules;
     [SerializeField]
     public GameObject planet;
+    [SerializeField]
+    public GameObject rocket;
+    [SerializeField]
+    public float levelTime;
 }

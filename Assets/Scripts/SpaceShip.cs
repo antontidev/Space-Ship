@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class SpaceShip : MonoBehaviour
 {
-  private List<GameObject> shipPrefab;
+  public int modules = 0;
 
+  private List<GameObject> shipPrefab;
+  
   void Update()
   {
-        
-  }
-
-  void OnMouseDown()
-  { 
-
+      
   }
 }

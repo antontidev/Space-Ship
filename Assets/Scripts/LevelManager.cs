@@ -4,16 +4,27 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    public delegate void LevelLoaded(Level level);
+    public LevelLoaded NextLevelLoaded;
+
     [SerializeField]
-    public Queue<ScriptableObject> levels;
-    void Start()
+    public List<Level> levels;
+
+    public int CurrentLevel
     {
-        
+        get; set;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        NextLevelLoaded?.Invoke(levels[0]);
+        CurrentLevel = 0;
+    }
+
+    public Level NextLevel()
+    {
+        var level = levels[CurrentLevel + 1];
+        NextLevelLoaded?.Invoke(level);
+        return level;
     }
 }

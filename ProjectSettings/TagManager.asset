@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Planet
   - Timer
+  - ModuleOne
+  - SpaceShip
+  - ModuleThree
+  - ModuleTwo
   layers:
   - Default
   - TransparentFX

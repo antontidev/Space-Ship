@@ -10,14 +10,24 @@ public class Timer : MonoBehaviour
 
     private float defaultTimer;
 
+    public delegate void TimerUp();
+
+    public TimerUp Up;
+
     private void Start()
     {
         defaultTimer = timer;
+        ResetTimer();
     }
 
     void Update()
     {
         timer -= Time.deltaTime;
+        if (timer < 0.0f)
+        {
+            Up?.Invoke();
+            ResetTimer();
+        }
     }
 
     public void ResetTimer()
