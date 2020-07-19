@@ -6,7 +6,7 @@ using System;
 public class Rocket : MonoBehaviour
 {
     public delegate void OnReadyChange();
-    public OnReadyChange onReadyModuleChange;
+    public OnReadyChange OnReadyModuleChange;
 
     [SerializeField]
     public List<GameObject> trueParts;
@@ -27,7 +27,6 @@ public class Rocket : MonoBehaviour
         {
             ready[el.tag] = false;
         }
-
     }
 
     public void SubmitTrueParts(List<GameObject> list)
@@ -51,15 +50,18 @@ public class Rocket : MonoBehaviour
             if (el.name == namePart)
             {
                 ready[part.tag] = true;
+
+                OnReadyModuleChange?.Invoke();
                 return true;
             }
             else
             {
                 ready[part.tag] = false;
+
+                OnReadyModuleChange?.Invoke();
                 return false;
             }
         }
-        onReadyModuleChange?.Invoke();
         return false;
     }
 

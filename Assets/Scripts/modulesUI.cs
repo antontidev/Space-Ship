@@ -16,27 +16,35 @@ public class modulesUI : MonoBehaviour
 
     void Start()
     {
-        
+        rocket = gameManager.rocket;
+        rocket.OnReadyModuleChange += UpdateCanvas;
     }
 
-    void Update()
+    public void UpdateCanvas()
     {
         rocket = gameManager.rocket;
         foreach (KeyValuePair<string, bool> entry in rocket.ready)
-        {   if (entry.Value == true)
+        {
+            Color color;
+            if (entry.Value == true)
             {
-                switch (entry.Key)
-                {
-                    case "Top":
-                        GameObject.Find("Canvas/Image1/Bottom").GetComponent<TextMeshProUGUI>().color = new Color32(10, 50, 10, 255);
-                        break;
-                    case "Middle":
-                        GameObject.Find("Canvas/Image1/Middle").GetComponent<TextMeshProUGUI>().color = new Color32(10, 50, 10, 255);
-                        break;
-                    case "Bottom":
-                        GameObject.Find("Canvas/Image1/Top").GetComponent<TextMeshProUGUI>().color = new Color32(10, 50, 10, 255);
-                        break;
-                }
+                color = Color.green;
+            }
+            else
+            {
+                color = Color.red;
+            }
+            switch (entry.Key)
+            {
+                case "Top":
+                    GameObject.Find("Canvas/Image1/Bottom").GetComponent<TextMeshProUGUI>().color = color; 
+                    break;
+                case "Middle":
+                    GameObject.Find("Canvas/Image1/Middle").GetComponent<TextMeshProUGUI>().color = color;
+                    break;
+                case "Bottom":
+                    GameObject.Find("Canvas/Image1/Top").GetComponent<TextMeshProUGUI>().color = color;
+                    break;
             }
         }
     }
