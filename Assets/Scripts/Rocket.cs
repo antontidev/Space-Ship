@@ -22,6 +22,11 @@ public class Rocket : MonoBehaviour
         }
     }
 
+    public void Handle(GameObject gameObject)
+    {
+
+    }
+
     public bool CheckPart(GameObject part)
     {
         foreach (var el in trueParts)
