@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4346665112984612230}
+  - component: {fileID: 317412585}
+  - component: {fileID: 317412586}
   m_Layer: 0
   m_Name: SpaceShip
-  m_TagString: Untagged
+  m_TagString: SpaceShip
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,6 +35,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &317412585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346665112984612231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abafa57bec886f04ba686dfd14840557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modules: 0
+--- !u!114 &317412586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346665112984612231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c56cf4a78316c149853640df212da3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trueParts: []
+  positions:
+  - {fileID: 4346665114392506652}
+  - {fileID: 4346665113720551812}
+  - {fileID: 4346665113738828198}
 --- !u!1 &4346665113720551813
 GameObject:
   m_ObjectHideFlags: 0
@@ -47,7 +79,7 @@ GameObject:
   - component: {fileID: 4346665113720551811}
   m_Layer: 0
   m_Name: partTwo
-  m_TagString: Untagged
+  m_TagString: ModuleTwo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -139,8 +171,8 @@ GameObject:
   - component: {fileID: 4346665113738828196}
   - component: {fileID: 4346665113738828197}
   m_Layer: 0
-  m_Name: partOne
-  m_TagString: ModuleOne
+  m_Name: partThree
+  m_TagString: ModuleThree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,8 +264,8 @@ GameObject:
   - component: {fileID: 4346665114392506650}
   - component: {fileID: 4346665114392506651}
   m_Layer: 0
-  m_Name: partThree
-  m_TagString: Untagged
+  m_Name: partOne
+  m_TagString: ModuleOne
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

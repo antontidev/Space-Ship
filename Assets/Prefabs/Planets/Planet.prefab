@@ -9,8 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2448998122898790412}
+  - component: {fileID: 2493059743160805826}
   m_Layer: 0
-  m_Name: Planet 1
+  m_Name: Planet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,6 +33,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2493059743160805826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078006376644690614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8460283e171e064abe4a337b3c3ec93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnRocketPostition: {fileID: 3009871340779720485}
 --- !u!1 &4247587939300802313
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,7 +107,7 @@ MeshRenderer:
   - {fileID: 4874126678125670354, guid: 99a57697f93c0b942b3295ba81b884e6, type: 3}
   - {fileID: 4874126678125670354, guid: cc3211cb0970bbf45bc5154f6e4918da, type: 3}
   - {fileID: 4874126678125670354, guid: cc3211cb0970bbf45bc5154f6e4918da, type: 3}
-  - {fileID: 4874126678125670354, guid: 35536ae56137663419b024436e274701, type: 3}
+  - {fileID: 2100000, guid: 5b9b095d87e062c41a1a9a09efc2b505, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,9 +140,10 @@ GameObject:
   - component: {fileID: 674352649109160996}
   - component: {fileID: 7638129334615453526}
   - component: {fileID: 2771455037485252581}
+  - component: {fileID: 1485177364}
   m_Layer: 0
   m_Name: Icosphere.002
-  m_TagString: Untagged
+  m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,3 +227,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4444728127320036556, guid: 2d61d0f370fe7064ba0e1514d8bcf00c, type: 3}
+--- !u!114 &1485177364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9158921825379437530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b202d342ec7f6c4d9b0565784a216f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grav: -10
+  temperature: 0
+  oxygen: 0
