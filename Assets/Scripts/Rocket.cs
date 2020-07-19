@@ -17,6 +17,11 @@ public class Rocket : MonoBehaviour
         ready = new Dictionary<GameObject, bool>();
     }
 
+    public void SubmitTrueParts(List<GameObject> list)
+    {
+        trueParts = list;
+    }
+
     public bool IsReady
     {
         get
@@ -40,31 +45,25 @@ public class Rocket : MonoBehaviour
 
     public void Handle(GameObject part)
     {
-        if (CheckPart(part) == false)
+        CheckPart(part);
+        part.transform.parent = gameObject.transform;
+
+        switch (part.tag)
         {
-            part.transform.parent = gameObject.transform;
-
-            switch (part.tag)
-            {
-                case "Bottom":
-                    part.transform.position = GameObject.FindGameObjectWithTag("ModuleOne").transform.position;
-                    part.transform.rotation = GameObject.FindGameObjectWithTag("ModuleOne").transform.rotation;
-                    break;
-                case "Middle":
-                    part.transform.position = GameObject.FindGameObjectWithTag("ModuleTwo").transform.position;
-                    part.transform.rotation = GameObject.FindGameObjectWithTag("ModuleTwo").transform.rotation;
-                    break;
-                case "Top":
-                    part.transform.position = GameObject.FindGameObjectWithTag("ModuleThree").transform.position;
-                    part.transform.rotation = GameObject.FindGameObjectWithTag("ModuleThree").transform.rotation;
-                    break;
-            }
-
-            part.GetComponent<Rigidbody>().useGravity = false;
-            part.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
-
-            part.GetComponent<PhysObj>().enabled = false;
-
+            case "Bottom":
+                part.transform.position = GameObject.FindGameObjectWithTag("ModuleOne").transform.position;
+                break;
+            case "Middle":
+                part.transform.position = GameObject.FindGameObjectWithTag("ModuleTwo").transform.position;
+                break;
+            case "Top":
+                part.transform.position = GameObject.FindGameObjectWithTag("ModuleThree").transform.position;
+                break;
         }
+
+        part.GetComponent<Rigidbody>().useGravity = false;
+        part.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+
+        part.GetComponent<PhysObj>().enabled = false;
     }
 }

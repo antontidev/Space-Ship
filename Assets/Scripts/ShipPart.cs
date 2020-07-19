@@ -6,12 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 
 public class ShipPart : MonoBehaviour
-{   
+{
+    private Transform defaultPosition;
     public delegate void OnClick(GameObject obj);
     public OnClick onClick;
 
-    private void Start()
+    public void Awake()
     {
+        defaultPosition = gameObject.transform;
     }
 
     private void OnMouseEnter()

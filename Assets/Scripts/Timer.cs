@@ -17,7 +17,6 @@ public class Timer : MonoBehaviour
     private void Start()
     {
         defaultTimer = timer;
-        ResetTimer();
     }
 
     void Update()
@@ -26,12 +25,11 @@ public class Timer : MonoBehaviour
         if (timer < 0.0f)
         {
             Up?.Invoke();
-            ResetTimer();
         }
     }
 
-    public void ResetTimer()
+    public void ResetTimer(float timer)
     {
-        timer = defaultTimer;
+        this.timer = timer;
     }
 }
