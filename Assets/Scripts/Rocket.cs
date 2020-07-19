@@ -11,7 +11,7 @@ public class Rocket : MonoBehaviour
     [SerializeField]
     private List<Transform> positions;
 
-    private Dictionary<GameObject, bool> ready;
+    private Dictionary<string, bool> ready;
 
     public Quaternion defaultRotation;
 
@@ -19,7 +19,11 @@ public class Rocket : MonoBehaviour
 
     private void Start()
     {
-        ready = new Dictionary<GameObject, bool>();
+        ready = new Dictionary<string, bool>();
+        foreach(var el in trueParts)
+        {
+            ready[el.tag] = false;
+        }
     }
 
     public void SubmitTrueParts(List<GameObject> list)
@@ -42,7 +46,7 @@ public class Rocket : MonoBehaviour
         {
             if (el.name == namePart)
             {
-                ready[part] = true;
+                ready[part.tag] = true;
                 return true;
             }
         }
