@@ -27,12 +27,6 @@ public class PartsSpawner : MonoBehaviour
             //part.GetComponent<ShipPart>().onClick += PartClicked;
             yield return null;
         }
-        foreach (var el in trueModules)
-        {
-            var part = Instantiate(el, Random.onUnitSphere * 1, transform.rotation);
-            //part.GetComponent<ShipPart>().onClick += PartClicked;
-            yield return null;
-        }
     }
 
     public void SubmitList(List<GameObject> list)

@@ -500,7 +500,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452201034}
-  m_LocalRotation: {x: -0, y: 1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -669,7 +669,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 803480788}
-  m_LocalRotation: {x: -0.039099656, y: -0.000000017193221, z: -6.7276346e-10, w: 0.99923533}
+  m_LocalRotation: {x: -0.03909966, y: 0.000000017193228, z: 6.727638e-10, w: 0.99923533}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -727,12 +727,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parts:
-  - {fileID: 6718861492892244079, guid: 1c4badce228fab04e87ee554eda98b63, type: 3}
-  - {fileID: 6718861492892244079, guid: 1c4badce228fab04e87ee554eda98b63, type: 3}
-  - {fileID: 6718861492892244079, guid: 1c4badce228fab04e87ee554eda98b63, type: 3}
-  - {fileID: 6718861492892244079, guid: 1c4badce228fab04e87ee554eda98b63, type: 3}
-  - {fileID: 6718861492892244079, guid: 1c4badce228fab04e87ee554eda98b63, type: 3}
-  trueModules: []
+  - {fileID: 7504500674138586896, guid: eae560c47aa9c2a48b82ee0e855556ae, type: 3}
+  - {fileID: 4710313217320542931, guid: 22c19444aaf17664da71468aafcba207, type: 3}
+  - {fileID: 7714276830686208863, guid: 235c65717ca0b354d818499dd72a6d96, type: 3}
+  - {fileID: 2010235100685108766, guid: 67492097a1bd4d947993ebfd1d344c53, type: 3}
 --- !u!1 &971128948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,7 +1306,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456377988}
-  m_LocalRotation: {x: -0.019583527, y: -0.000000017236648, z: -3.3761907e-10, w: 0.99980825}
+  m_LocalRotation: {x: -0.019583527, y: -0.000000017236644, z: -3.3761902e-10, w: 0.99980825}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1435,8 +1433,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: -0.019583527, y: -0.00000003462387, z: -6.781875e-10, w: 0.99980825}
-  m_LocalPosition: {x: -0.000000035263586, y: 0.5603803, z: -2.5227287}
+  m_LocalRotation: {x: -0.019583527, y: -0.000000034623866, z: -6.7818745e-10, w: 0.99980825}
+  m_LocalPosition: {x: -0.000000035263593, y: 0.5603803, z: -2.5227287}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1525,7 +1523,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9bbaac595735448db8caa40ade5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpaceShipPrefab: {fileID: 317412584}
 --- !u!114 &1919700529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1538,9 +1535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b6499ac2813b774fa4b328314d36aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gravity: 0
-  oxygen: 0
-  temperature: 0
 --- !u!114 &1919700532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1817,10 +1811,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parts:
-  - {fileID: 1919700527}
-  - {fileID: 1919700527}
-  trueModules:
-  - {fileID: 1919700527}
   - {fileID: 1919700527}
   - {fileID: 1919700527}
 --- !u!4 &2147475050
