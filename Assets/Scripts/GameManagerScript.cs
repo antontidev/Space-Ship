@@ -24,15 +24,29 @@ public class GameManagerScript : MonoBehaviour
     LevelManager levelManager;
 
     [SerializeField]
+    public GameObject levelManagerObject;
+
+    [SerializeField]
     PartsSpawner spawner;
 
     [SerializeField]
     TrashSpawner trashManager;
 
-    private Rocket rocket;
+    //For testing
+    [SerializeField]
+    Rocket rocket;
+
 
     private void Start()
     {
+        var levelMangerObj = GameObject.FindGameObjectsWithTag("LevelManager");
+
+        if (levelMangerObj.Length == 0)
+        {
+            var manager = Instantiate(levelManagerObject);
+
+            levelManager = manager.GetComponent<LevelManager>();
+        }
         Instance = this;
         gameState = GameState.Ready;
         timer.Up += MakeDecision;
@@ -42,13 +56,16 @@ public class GameManagerScript : MonoBehaviour
     void NotifyManagers(Level level)
     {
         spawner.SubmitList(level.modules);
+        rocket.SubmitTrueParts(level.trueModules);
+
         StartCoroutine(trashManager.Spawn());
         StartCoroutine(spawner.Spawn(level.trueModules));
-        var newRocket = Instantiate(level.rocket);
 
-        rocket = newRocket.GetComponent<Rocket>();
+        timer.ResetTimer(level.levelTime);
 
-        var planet = Instantiate(level.planet);
+        var planet = spawner.SpawnPlanet(level.planet);
+        var planetComponent = planet.GetComponent<Planet>();
+        spawner.SpawnRocket(level.rocket, planetComponent.spawnRocketPostition);
     }
 
     void MakeDecision()
@@ -73,7 +90,7 @@ public class GameManagerScript : MonoBehaviour
 
     void ChangeLevel()
     {
-        levelManager.NextLevel();
+        var level = levelManager.NextLevel();
     }
 
     void GoToLevelOne()

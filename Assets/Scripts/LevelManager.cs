@@ -17,13 +17,14 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        NextLevelLoaded?.Invoke(levels[0]);
+        DontDestroyOnLoad(gameObject);
         CurrentLevel = 0;
+        NextLevelLoaded?.Invoke(levels[0]);
     }
 
     public Level NextLevel()
     {
-        var level = levels[CurrentLevel + 1];
+        var level = levels[CurrentLevel++];
         NextLevelLoaded?.Invoke(level);
         return level;
     }

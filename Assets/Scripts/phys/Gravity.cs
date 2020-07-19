@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class Gravity : MonoBehaviour
 {
-
+    [SerializeField]
     public float grav = -10f;
+
+    [SerializeField]
+    public float temperature;
+
+    [SerializeField]
+    public float oxygen;
     
     public void Attract(Transform body)
     {
