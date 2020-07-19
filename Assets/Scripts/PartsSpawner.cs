@@ -7,8 +7,10 @@ public class PartsSpawner : MonoBehaviour
     [SerializeField]
     private List<GameObject> parts;
 
+    private Rocket rocket;
+
     [SerializeField]
-    public Rocket rocket;
+    public ClickManager manager;
 
     public IEnumerator Spawn(List<GameObject> list)
     {
@@ -26,7 +28,10 @@ public class PartsSpawner : MonoBehaviour
         foreach (var el in parts)
         {
             var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
-            part.GetComponent<ShipPart>().onClick += rocket.Handle;
+            var shipPart = part.GetComponent<ShipPart>();
+            shipPart.onClick += rocket.Handle;
+            shipPart.onClick += manager.HandleClick;
+
             yield return null;
         }
     }
@@ -34,13 +39,24 @@ public class PartsSpawner : MonoBehaviour
 
     public GameObject SpawnPlanet(GameObject planet)
     {
-        return Instantiate(planet);
+        return Instantiate(planet, Vector3.zero, transform.rotation);
     }
 
-    public void SpawnRocket(GameObject rocket, Transform position)
+    public Rocket SpawnRocket(GameObject rocket, Transform position)
     {
-        var rocketObj = Instantiate(rocket, position.position, position.rotation);
+        var rocketObj = Instantiate(rocket, position.position, transform.rotation);
+        DeactivateChildrens(rocketObj);
         this.rocket = rocketObj.GetComponent<Rocket>();
+
+        return this.rocket;
+    }
+
+    private void DeactivateChildrens(GameObject go)
+    {
+        for (int j = 0; j < go.transform.childCount; j++)
+        {
+            go.transform.GetChild(j).gameObject.SetActive(false);
+        }
     }
 
     public void SubmitList(List<GameObject> list)

@@ -239,6 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b202d342ec7f6c4d9b0565784a216f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grav: -10
+  grav: -1
   temperature: 0
-  oxygen: 0
+  oxygen: 1

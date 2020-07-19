@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(Rigidbody))]
-
 public class ShipPart : MonoBehaviour
 {
     private Transform defaultPosition;

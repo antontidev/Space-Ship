@@ -12,6 +12,8 @@ public class Rocket : MonoBehaviour
 
     private Dictionary<GameObject, bool> ready;
 
+    public Quaternion defaultRotation;
+
     private void Start()
     {
         ready = new Dictionary<GameObject, bool>();
@@ -50,20 +52,26 @@ public class Rocket : MonoBehaviour
 
         switch (part.tag)
         {
-            case "Bottom":
-                part.transform.position = GameObject.FindGameObjectWithTag("ModuleOne").transform.position;
+            case "Top":
+                part.transform.position = positions[0].position;
                 break;
             case "Middle":
-                part.transform.position = GameObject.FindGameObjectWithTag("ModuleTwo").transform.position;
+                part.transform.position = positions[1].position;
                 break;
-            case "Top":
-                part.transform.position = GameObject.FindGameObjectWithTag("ModuleThree").transform.position;
+            case "Bottom":
+                part.transform.position = positions[2].position;
                 break;
         }
+        part.transform.rotation = transform.rotation;
 
         part.GetComponent<Rigidbody>().useGravity = false;
         part.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
         part.GetComponent<PhysObj>().enabled = false;
     }
+
+    public void ExchangeTransform(Transform trans)
+    {
+
+    } 
 }

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Level2
   m_EditorClassIdentifier: 
   modules:
-  - {fileID: 4582870118841170932, guid: 18c851b33988531429a664074335e57a, type: 3}
-  - {fileID: 8051973121782401125, guid: b38e18963bddb3248a5ed12cd8932818, type: 3}
-  - {fileID: 8080256635594350194, guid: 3fe61b7058f85be47bd09c0fb5186811, type: 3}
+  - {fileID: 6050157337320655169, guid: 18c851b33988531429a664074335e57a, type: 3}
+  - {fileID: 9128092559727949211, guid: b38e18963bddb3248a5ed12cd8932818, type: 3}
+  - {fileID: 6050157337320655169, guid: 18c851b33988531429a664074335e57a, type: 3}
   trueModules:
-  - {fileID: 3676066896144257589, guid: bb52acbadd8ceed4ab7e3410c68e29ec, type: 3}
-  - {fileID: 817442375824001469, guid: 2083aaab05453024c8af59cc51f92e60, type: 3}
+  - {fileID: 1733660090443362901, guid: bb52acbadd8ceed4ab7e3410c68e29ec, type: 3}
+  - {fileID: 7795734767763650916, guid: 2083aaab05453024c8af59cc51f92e60, type: 3}
   - {fileID: 8966587318496573772, guid: 441c167dc63d9294ba63c588be27fcc4, type: 3}
-  planet: {fileID: 2537168048001583167, guid: b24fcf93c91dc5f4cb4ac74bef61c4d4, type: 3}
-  rocket: {fileID: 303692093706270752, guid: ac24454b21abba64b986e71fd64197ba, type: 3}
+  planet: {fileID: 71276477441399801, guid: c3d4005474528d046a1dbab06032e3c5, type: 3}
+  rocket: {fileID: 484214016019507887, guid: 7345ee7d74ce20e4ca1bba493450e44f, type: 3}
   levelTime: 40
