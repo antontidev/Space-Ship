@@ -43,6 +43,7 @@ public class GameManagerScript : MonoBehaviour
     {
         spawner.SubmitList(level.modules);
         StartCoroutine(trashManager.Spawn());
+        StartCoroutine(spawner.Spawn(level.trueModules));
         var newRocket = Instantiate(level.rocket);
 
         rocket = newRocket.GetComponent<Rocket>();

@@ -7,8 +7,15 @@ public class PartsSpawner : MonoBehaviour
     [SerializeField]
     private List<GameObject> parts;
 
-    [SerializeField]
-    private List<GameObject> trueModules;
+    public IEnumerator Spawn(List<GameObject> list)
+    {
+        foreach (var el in list)
+        {
+            var part = Instantiate(el, Random.onUnitSphere * 1, transform.rotation);
+            //part.GetComponent<ShipPart>().onClick += PartClicked;
+            yield return null;
+        }
+    }
 
     public IEnumerator Spawn()
     {
@@ -23,6 +30,7 @@ public class PartsSpawner : MonoBehaviour
     public void SubmitList(List<GameObject> list)
     {
         parts = list;
+
         StartCoroutine(Spawn());
     }
 
