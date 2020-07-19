@@ -42,6 +42,6 @@ public class PartsSpawner : MonoBehaviour
 
     private void PartClicked(GameObject obj)
     {
-        
+
     }
 }
