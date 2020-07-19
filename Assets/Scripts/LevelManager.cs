@@ -19,7 +19,6 @@ public class LevelManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         CurrentLevel = 0;
-        NextLevelLoaded?.Invoke(levels[0]);
     }
 
     public Level NextLevel()
