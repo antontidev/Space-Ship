@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3bdfaee155bf154ab12d797c52248f8, type: 3}
   m_Name: Level2
   m_EditorClassIdentifier: 
-  modules: []
-  trueModules: []
-  planet: {fileID: 0}
+  modules:
+  - {fileID: 2721280747979881767, guid: 3fe61b7058f85be47bd09c0fb5186811, type: 3}
+  - {fileID: 7770814550639813261, guid: b38e18963bddb3248a5ed12cd8932818, type: 3}
+  - {fileID: 7509800083991721454, guid: f503878abd386e2459c0d094e4f2392c, type: 3}
+  trueModules:
+  - {fileID: 8402862499722514726, guid: 441c167dc63d9294ba63c588be27fcc4, type: 3}
+  - {fileID: 8166432789756629098, guid: 2083aaab05453024c8af59cc51f92e60, type: 3}
+  - {fileID: 8483524858763089213, guid: bb52acbadd8ceed4ab7e3410c68e29ec, type: 3}
+  planet: {fileID: 2537168048001583167, guid: b24fcf93c91dc5f4cb4ac74bef61c4d4, type: 3}
   rocket: {fileID: 2342267995824265705, guid: ac24454b21abba64b986e71fd64197ba, type: 3}
   levelTime: 40
