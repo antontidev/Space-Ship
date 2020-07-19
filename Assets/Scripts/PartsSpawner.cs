@@ -5,25 +5,26 @@ using UnityEngine;
 public class PartsSpawner : MonoBehaviour
 {
     [SerializeField]
-    private GameObject prefab;
-    [SerializeField]
-    private List<GameObject> shipPrefab;
+    private List<GameObject> parts;
 
-    void Start()
+    public IEnumerator Spawn()
     {
-        shipPrefab.ForEach((GameObject obj) =>
+        foreach (var el in parts)
         {
-              Instantiate(obj, Random.onUnitSphere * 1, transform.rotation);
-        });
-        for(int i = 0; i < 3; i++)
-        {
-           
-            Instantiate(prefab, Random.onUnitSphere, transform.rotation);
+            var part = Instantiate(el, Random.onUnitSphere * 1, transform.rotation);
+            part.GetComponent<ShipPart>().onClick += PartClicked;
+            yield return null;
         }
     }
 
     public void SubmitList(List<GameObject> list)
     {
-        shipPrefab = list;
+        parts = list;
+        StartCoroutine(Spawn());
+    }
+
+    private void PartClicked(GameObject obj)
+    {
+        
     }
 }

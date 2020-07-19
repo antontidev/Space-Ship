@@ -6,8 +6,11 @@ using UnityEngine;
 
 public class ShipPart : MonoBehaviour
 {
-  void OnMouseDown()
+    public delegate void OnClick(GameObject obj);
+    public OnClick onClick;
+
+    void OnMouseDown()
     {
-        Destroy(gameObject);
+        onClick?.Invoke(gameObject);
     }
 }

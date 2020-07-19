@@ -5,33 +5,78 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+    public static GameManagerScript Instance
+    {
+        get; private set;
+    }
+
+    public enum GameState { Ready, Running, Loose, Win }
+
+    public delegate void OnStateChangeHandler();
+    public event OnStateChangeHandler OnStateChange;
+
+    public GameState gameState { get; private set; }
+
     [SerializeField]
-    GameObject gameTimer;
+    Timer timer;
 
-    List<ScriptableObject> levels;
+    [SerializeField]
+    LevelManager levelManager;
 
-    private Timer timer;
+    [SerializeField]
+    PartsSpawner spawner;
+
+    private Rocket rocket;
+
     private void Start()
     {
-        timer = gameTimer.GetComponent<Timer>();  
+        Instance = this;
+        gameState = GameState.Ready;
+        timer.Up += MakeDecision;
+        levelManager.NextLevelLoaded += NotifyManagers;
     }
 
-    void Update()
+    void NotifyManagers(Level level)
     {
-        if (timer.timer <= 0)
+        spawner.SubmitList(level.modules);
+        var newRocket = Instantiate(level.rocket);
+
+        rocket = newRocket.GetComponent<Rocket>();
+
+        var planet = Instantiate(level.planet);
+    }
+
+    void MakeDecision()
+    {
+        if (rocket.IsReady)
         {
-            timer.ResetTimer();
-            goToLevelOne();
+            gameState = GameState.Win;
         }
+        else
+        {
+            gameState = GameState.Loose;
+        }
+
+        GoToEndScene(rocket.IsReady);
     }
 
-    void changeLevel()
+    public KeyValuePair<GameObject, bool> CheckPart(GameObject part)
+    {
+        return new KeyValuePair<GameObject, bool>(part, rocket.CheckPart(part));
+    }
+
+    void ChangeLevel()
+    {
+        levelManager.NextLevel();
+    }
+
+    void GoToLevelOne()
     {
         SceneManager.LoadScene("GameScene");
     }
 
-    void goToLevelOne()
+    void GoToEndScene(bool isReady)
     {
-        SceneManager.LoadScene("GameScene");
+
     }
 }
