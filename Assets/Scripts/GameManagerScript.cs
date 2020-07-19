@@ -55,6 +55,10 @@ public class GameManagerScript : MonoBehaviour
 
     void NotifyManagers(Level level)
     {
+        var planet = spawner.SpawnPlanet(level.planet);
+        var planetComponent = planet.GetComponent<Planet>();
+
+        spawner.SpawnRocket(level.rocket, planetComponent.spawnRocketPostition);
         spawner.SubmitList(level.modules);
         rocket.SubmitTrueParts(level.trueModules);
 
@@ -62,10 +66,6 @@ public class GameManagerScript : MonoBehaviour
         StartCoroutine(spawner.Spawn(level.trueModules));
 
         timer.ResetTimer(level.levelTime);
-
-        var planet = spawner.SpawnPlanet(level.planet);
-        var planetComponent = planet.GetComponent<Planet>();
-        spawner.SpawnRocket(level.rocket, planetComponent.spawnRocketPostition);
     }
 
     void MakeDecision()

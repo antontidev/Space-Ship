@@ -8,9 +8,6 @@ public class PartsSpawner : MonoBehaviour
     private List<GameObject> parts;
 
     [SerializeField]
-    public Transform rocketPosition;
-
-    [SerializeField]
     public Rocket rocket;
 
     public IEnumerator Spawn(List<GameObject> list)
@@ -42,7 +39,8 @@ public class PartsSpawner : MonoBehaviour
 
     public void SpawnRocket(GameObject rocket, Transform position)
     {
-        Instantiate(rocket, position.position, position.rotation);
+        var rocketObj = Instantiate(rocket, position.position, position.rotation);
+        this.rocket = rocketObj.GetComponent<Rocket>();
     }
 
     public void SubmitList(List<GameObject> list)
