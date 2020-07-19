@@ -34,7 +34,7 @@ public class GameManagerScript : MonoBehaviour
 
     //For testing
     [SerializeField]
-    Rocket rocket;
+    public Rocket rocket;
 
 
     private void Start()

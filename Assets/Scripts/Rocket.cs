@@ -14,7 +14,7 @@ public class Rocket : MonoBehaviour
     [SerializeField]
     private List<Transform> positions;
 
-    private Dictionary<string, bool> ready;
+    public Dictionary<string, bool> ready;
 
     public Quaternion defaultRotation;
 
