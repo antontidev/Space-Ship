@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "\u0422\u0435\u0441\u0442 \u0441\u0438\u044F\u043D\u0438\u0435"
-  m_Shader: {fileID: -6465566751694194690, guid: 1c9f4c2b7c0899740a2f97a5478214f3,
+  m_Name: Beam 2
+  m_Shader: {fileID: -6465566751694194690, guid: 9ff72d91c41b2cf459fcd39da6f445d1,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -20,11 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_B99E74C0:
-        m_Texture: {fileID: 0}
+    - Texture2D_4E5F217F:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - Vector1_D1BA21B: 1
+    m_Floats: []
     m_Colors:
-    - Color_C66D24CA: {r: 0.7490196, g: 0.1882353, b: 0.5647059, a: 0}
+    - Color_7E96115: {r: 16.94838, g: 4.2592783, b: 0, a: 1}
