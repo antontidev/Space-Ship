@@ -8,7 +8,7 @@ public class PhysObj : MonoBehaviour
 
     Gravity planet;
 
-    void Awake()
+    void Start()
     {
         planet = GameObject.FindGameObjectWithTag("Planet").GetComponent<Gravity>();
         GetComponent<Rigidbody>().useGravity = false;

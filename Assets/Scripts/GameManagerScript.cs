@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -32,25 +33,20 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField]
     TrashSpawner trashManager;
 
+    private GameObject planet;
+
+    private GameObject rocketObj;
+
     //For testing
     [SerializeField]
     public Rocket rocket;
 
 
-    private void Start()
+    [SerializeField]
+    public GameObject placeholder;
+
+    private void Awake()
     {
-        var levelManagerObj = GameObject.FindGameObjectsWithTag("LevelManager");
-
-        if (levelManagerObj.Length == 0)
-        {
-            var obj = Instantiate(levelManagerObject);
-
-            levelManager = obj.GetComponent<LevelManager>();
-        }
-        else
-        {
-            levelManager = levelManagerObj[0].GetComponent<LevelManager>();
-        }
 
         Instance = this;
         gameState = GameState.Ready;
@@ -62,10 +58,12 @@ public class GameManagerScript : MonoBehaviour
 
     void NotifyManagers(Level level)
     {
-        var planet = spawner.SpawnPlanet(level.planet);
+        planet = spawner.SpawnPlanet(level.planet);
         var planetComponent = planet.GetComponent<Planet>();
 
-        rocket = spawner.SpawnRocket(level.rocket, planetComponent.spawnRocketPostition);
+        rocketObj = spawner.SpawnRocket(level.rocket, planetComponent.spawnRocketPostition);
+        rocket = rocketObj.GetComponent<Rocket>();
+
         spawner.SubmitList(level.modules);
         rocket.SubmitTrueParts(level.trueModules);
 
@@ -87,6 +85,8 @@ public class GameManagerScript : MonoBehaviour
             gameState = GameState.Loose;
             ChangeLevel();
         }
+
+        GoToEndScene(rocket.IsReady);
 //        GoToEndScene(rocket.IsReady);
     }
 
@@ -97,7 +97,19 @@ public class GameManagerScript : MonoBehaviour
 
     void ChangeLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //ClearLevel();
+        //levelManager.NextLevel();
+    }
+
+    private void ClearLevel()
+    {
+        DestroyImmediate(planet);
+        foreach (Transform child in placeholder.transform)
+        {
+            DestroyImmediate(child.gameObject);
+        }
+
+        DestroyImmediate(rocketObj);
     }
 
     void GoToLevelOne()
@@ -107,6 +119,14 @@ public class GameManagerScript : MonoBehaviour
 
     void GoToEndScene(bool isReady)
     {
+        var go = new GameObject();
 
+        go.tag = "Ready";
+
+        go.AddComponent<IsReady>().isReady = isReady;
+
+        DontDestroyOnLoad(go);
+
+        SceneManager.LoadScene(2);
     }
 }
