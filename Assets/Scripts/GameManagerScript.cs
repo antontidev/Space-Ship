@@ -1,37 +1,24 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public static GameManagerScript Instance
-    {
-        get; private set;
-    }
+    [SerializeField]
+    private Timer timer;
 
-    public enum GameState { Ready, Running, Loose, Win }
-
-    public delegate void OnStateChangeHandler();
-    public event OnStateChangeHandler OnStateChange;
-
-    public GameState gameState { get; private set; }
+    [Scene]
+    public string nextScene;
 
     [SerializeField]
-    Timer timer;
+    private LevelManager2 levelManager;
 
     [SerializeField]
-    LevelManager levelManager;
+    private PartsSpawner spawner;
 
     [SerializeField]
-    public GameObject levelManagerObject;
-
-    [SerializeField]
-    PartsSpawner spawner;
-
-    [SerializeField]
-    TrashSpawner trashManager;
+    private TrashSpawner trashManager;
 
     private GameObject planet;
 
@@ -41,24 +28,18 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField]
     public Rocket rocket;
 
-
-    [SerializeField]
-    public GameObject placeholder;
-
-    private void Awake()
+    private void Start()
     {
-
-        Instance = this;
-        gameState = GameState.Ready;
         timer.Up += MakeDecision;
         levelManager.NextLevelLoaded += NotifyManagers;
 
         levelManager.NextLevel();
     }
 
-    void NotifyManagers(Level level)
+    private void NotifyManagers(Level level)
     {
-        planet = spawner.SpawnPlanet(level.planet);
+        planet = spawner.SpawnPlanet(planet: level.planet);
+
         var planetComponent = planet.GetComponent<Planet>();
 
         rocketObj = spawner.SpawnRocket(level.rocket, planetComponent.spawnRocketPostition);
@@ -67,59 +48,41 @@ public class GameManagerScript : MonoBehaviour
         spawner.SubmitList(level.modules);
         rocket.SubmitTrueParts(level.trueModules);
 
-        StartCoroutine(trashManager.Spawn());
         StartCoroutine(spawner.Spawn(level.trueModules));
+        StartCoroutine(trashManager.Spawn());
 
         timer.ResetTimer(level.levelTime);
     }
 
-    void MakeDecision()
+    private void MakeDecision()
     {
+        //Rewrite
         if (rocket.IsReady)
         {
-            gameState = GameState.Win;
+            PlayCutscene();
             ChangeLevel();
         }
         else
         {
-            gameState = GameState.Loose;
-            ChangeLevel();
+            GoToEndScene(rocket.IsReady);
         }
-
-        GoToEndScene(rocket.IsReady);
-//        GoToEndScene(rocket.IsReady);
     }
 
-    public KeyValuePair<GameObject, bool> CheckPart(GameObject part)
+    private void PlayCutscene()
     {
-        return new KeyValuePair<GameObject, bool>(part, rocket.CheckPart(part));
+
     }
 
-    void ChangeLevel()
+    private void ChangeLevel()
     {
-        //ClearLevel();
-        //levelManager.NextLevel();
+        SceneManager.LoadScene(nextScene);
     }
 
-    private void ClearLevel()
-    {
-        DestroyImmediate(planet);
-        foreach (Transform child in placeholder.transform)
-        {
-            DestroyImmediate(child.gameObject);
-        }
-
-        DestroyImmediate(rocketObj);
-    }
-
-    void GoToLevelOne()
-    {
-        SceneManager.LoadScene("GameScene");
-    }
-
-    void GoToEndScene(bool isReady)
+    private void GoToEndScene(bool isReady)
     {
         var go = new GameObject();
+
+        go.name = "Ready";
 
         go.tag = "Ready";
 
@@ -127,6 +90,6 @@ public class GameManagerScript : MonoBehaviour
 
         DontDestroyOnLoad(go);
 
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

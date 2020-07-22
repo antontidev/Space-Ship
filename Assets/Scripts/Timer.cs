@@ -12,6 +12,8 @@ public class Timer : MonoBehaviour
 
     public delegate void TimerUp();
 
+    private bool emitted = false;
+
     public TimerUp Up;
 
     private void Start()
@@ -21,15 +23,20 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
-        if (timer < 0.0f)
+        if (timer > 0.0f)
+        {
+            timer -= Time.deltaTime;
+        }
+        else if (!emitted)
         {
             Up?.Invoke();
+            emitted = true;
         }
     }
 
     public void ResetTimer(float t)
     {
-        this.timer = t;
+        timer = t;
+        emitted = false;
     }
 }

@@ -9,12 +9,9 @@ public class ClickManager : MonoBehaviour
 
     public Dictionary<string, GameObject> activeObjects;
 
-    public GameObject particleSystem; 
+    public GameObject particleSystem;
 
-    void Start ()
-    {
-        activeObjects = new Dictionary<string, GameObject>();
-    }
+    void Start() => activeObjects = new Dictionary<string, GameObject>();
 
     public void HandleClick(GameObject gameO)
     {

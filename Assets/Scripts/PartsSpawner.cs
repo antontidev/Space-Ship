@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PartsSpawner : MonoBehaviour
 {
+    public delegate void ObjectSpawned(List<GameObject> list);
+
+    public ObjectSpawned OnObjectSpawned;
+
     [SerializeField]
     private List<GameObject> parts;
 
@@ -12,16 +16,12 @@ public class PartsSpawner : MonoBehaviour
     [SerializeField]
     public ClickManager manager;
 
-    [SerializeField]
-    public GameObject parent;
-
     public IEnumerator Spawn(List<GameObject> list)
     {
         foreach (var el in list)
         {
             var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
 
-            part.transform.parent = parent.transform;
 
             var shippart = part.GetComponent<ShipPart>();
 
@@ -29,16 +29,15 @@ public class PartsSpawner : MonoBehaviour
             shippart.onClick += rocket.Handle;
             yield return null;
         }
+        OnObjectSpawned?.Invoke(list);
     }
 
     public IEnumerator Spawn()
     {
+
         foreach (var el in parts)
         {
             var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
-
-
-            part.transform.parent = parent.transform;
 
             var shipPart = part.GetComponent<ShipPart>();
             shipPart.onClick += rocket.Handle;
@@ -46,6 +45,7 @@ public class PartsSpawner : MonoBehaviour
 
             yield return null;
         }
+        OnObjectSpawned?.Invoke(parts);
     }
 
 
@@ -77,10 +77,5 @@ public class PartsSpawner : MonoBehaviour
         parts = list;
 
         StartCoroutine(Spawn());
-    }
-
-    private void PartClicked(GameObject obj)
-    {
-
     }
 }

@@ -16,8 +16,11 @@ public class modulesUI : MonoBehaviour
 
     void Start()
     {
-        rocket = gameManager.rocket;
-        rocket.OnReadyModuleChange += UpdateCanvas;
+        rocket = gameManager?.rocket;
+        if (rocket != null)
+        {
+            rocket.OnReadyModuleChange += UpdateCanvas;
+        }
     }
 
     public void UpdateCanvas()
@@ -37,7 +40,7 @@ public class modulesUI : MonoBehaviour
             switch (entry.Key)
             {
                 case "Top":
-                    GameObject.Find("Canvas/Image1/Bottom").GetComponent<TextMeshProUGUI>().color = color; 
+                    GameObject.Find("Canvas/Image1/Bottom").GetComponent<TextMeshProUGUI>().color = color;
                     break;
                 case "Middle":
                     GameObject.Find("Canvas/Image1/Middle").GetComponent<TextMeshProUGUI>().color = color;

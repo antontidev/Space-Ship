@@ -20,6 +20,6 @@ public class TimerUI : MonoBehaviour
 
     void Update()
     {
-        timerText.text = Mathf.Floor(time.timer).ToString();
+   //     timerText.text = Mathf.Floor(time.timer).ToString();
     }
 }

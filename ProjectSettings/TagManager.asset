@@ -15,6 +15,7 @@ TagManager:
   - Top
   - LevelManager
   - Ready
+  - Manager
   layers:
   - Default
   - TransparentFX

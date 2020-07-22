@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class playBtn : MonoBehaviour
 {
+    [Scene]
+    public string gameScene;
   public void playGame()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene(gameScene);
     }
 
     public void quitGame()
