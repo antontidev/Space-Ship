@@ -27,6 +27,14 @@ namespace InputSamples.Controls
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""b5560351-2a50-40d4-84b9-2f1b5ce1c8ec"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -447,6 +455,17 @@ namespace InputSamples.Controls
                     ""action"": ""point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""081643ad-f669-4d6e-b239-34894e269a24"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touch;Mouse"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -490,6 +509,7 @@ namespace InputSamples.Controls
             // pointer
             m_pointer = asset.FindActionMap("pointer", throwIfNotFound: true);
             m_pointer_point = m_pointer.FindAction("point", throwIfNotFound: true);
+            m_pointer_Look = m_pointer.FindAction("Look", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -540,11 +560,13 @@ namespace InputSamples.Controls
         private readonly InputActionMap m_pointer;
         private IPointerActions m_PointerActionsCallbackInterface;
         private readonly InputAction m_pointer_point;
+        private readonly InputAction m_pointer_Look;
         public struct PointerActions
         {
             private @PointerControls m_Wrapper;
             public PointerActions(@PointerControls wrapper) { m_Wrapper = wrapper; }
             public InputAction @point => m_Wrapper.m_pointer_point;
+            public InputAction @Look => m_Wrapper.m_pointer_Look;
             public InputActionMap Get() { return m_Wrapper.m_pointer; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -557,6 +579,9 @@ namespace InputSamples.Controls
                     @point.started -= m_Wrapper.m_PointerActionsCallbackInterface.OnPoint;
                     @point.performed -= m_Wrapper.m_PointerActionsCallbackInterface.OnPoint;
                     @point.canceled -= m_Wrapper.m_PointerActionsCallbackInterface.OnPoint;
+                    @Look.started -= m_Wrapper.m_PointerActionsCallbackInterface.OnLook;
+                    @Look.performed -= m_Wrapper.m_PointerActionsCallbackInterface.OnLook;
+                    @Look.canceled -= m_Wrapper.m_PointerActionsCallbackInterface.OnLook;
                 }
                 m_Wrapper.m_PointerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -564,6 +589,9 @@ namespace InputSamples.Controls
                     @point.started += instance.OnPoint;
                     @point.performed += instance.OnPoint;
                     @point.canceled += instance.OnPoint;
+                    @Look.started += instance.OnLook;
+                    @Look.performed += instance.OnLook;
+                    @Look.canceled += instance.OnLook;
                 }
             }
         }
@@ -598,6 +626,7 @@ namespace InputSamples.Controls
         public interface IPointerActions
         {
             void OnPoint(InputAction.CallbackContext context);
+            void OnLook(InputAction.CallbackContext context);
         }
     }
 }
