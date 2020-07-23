@@ -23,7 +23,7 @@ public class FreeLookAddOn : MonoBehaviour
         lookMovement.y = InvertY ? -lookMovement.y : lookMovement.y;
 
         // This is because X axis is only contains between -180 and 180 instead of 0 and 1 like the Y axis
-        lookMovement.x = lookMovement.x * 180f;
+        lookMovement.x *= 180f;
 
         //Ajust axis values using look speed and Time.deltaTime so the look doesn't go faster if there is more FPS
         _freeLookComponent.m_XAxis.Value += lookMovement.x * LookSpeed * Time.deltaTime;
