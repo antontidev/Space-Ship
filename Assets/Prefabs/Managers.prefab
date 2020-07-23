@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 615708033884148863}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3416802922840371494
 MonoBehaviour:
@@ -62,7 +62,18 @@ MonoBehaviour:
     m_ActionId: 16794494-bcfa-40ca-a9d4-c6a16292be4a
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1834512176152038508}
+        m_MethodName: OnLook
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7fef7d2f-072c-4214-8241-f9d531880609
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
@@ -114,54 +125,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!1 &615708033116803304
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 615708033116803305}
-  - component: {fileID: 615708033116803311}
-  m_Layer: 0
-  m_Name: TrashManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &615708033116803305
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 615708033116803304}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.812961, y: 2.4349196, z: -3.4957023}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 615708033884148863}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &615708033116803311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 615708033116803304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed27af675be8dac48bd73cd48fd329bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parts:
-  - {fileID: 7504500674138586896, guid: eae560c47aa9c2a48b82ee0e855556ae, type: 3}
-  - {fileID: 4710313217320542931, guid: 22c19444aaf17664da71468aafcba207, type: 3}
-  - {fileID: 7714276830686208863, guid: 235c65717ca0b354d818499dd72a6d96, type: 3}
-  - {fileID: 2010235100685108766, guid: 67492097a1bd4d947993ebfd1d344c53, type: 3}
 --- !u!1 &615708033474029965
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 615708033884148863}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &615708033474029955
 MonoBehaviour:
@@ -255,7 +218,6 @@ MonoBehaviour:
   nextScene: Level3
   levelManager: {fileID: 1457000360098657050}
   spawner: {fileID: 615708034070434915}
-  trashManager: {fileID: 615708033116803311}
   rocket: {fileID: 0}
 --- !u!1 &615708033756642429
 GameObject:
@@ -286,7 +248,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 615708033884148863}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &615708033756642418
 MonoBehaviour:
@@ -330,7 +292,6 @@ Transform:
   m_Children:
   - {fileID: 615708033521810050}
   - {fileID: 615708034070434912}
-  - {fileID: 615708033116803305}
   - {fileID: 615708033474029954}
   - {fileID: 615708033756642419}
   - {fileID: 1457000360098657049}
@@ -383,6 +344,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parts: []
+  trash:
+  - {fileID: 7504500674138586896, guid: eae560c47aa9c2a48b82ee0e855556ae, type: 3}
+  - {fileID: 4710313217320542931, guid: 22c19444aaf17664da71468aafcba207, type: 3}
+  - {fileID: 7714276830686208863, guid: 235c65717ca0b354d818499dd72a6d96, type: 3}
+  - {fileID: 2010235100685108766, guid: 67492097a1bd4d947993ebfd1d344c53, type: 3}
   manager: {fileID: 615708033474029955}
 --- !u!1 &1457000360098657051
 GameObject:
@@ -413,7 +379,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 615708033884148863}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1457000360098657050
 MonoBehaviour:
@@ -810,6 +776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fdebeb008991d40ba69987b0496fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LookSpeed: 1
+  InvertY: 0
 --- !u!1 &4292764253328498696
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,5 +1399,5 @@ Transform:
   - {fileID: 4292764254102515611}
   - {fileID: 4292764253326247795}
   m_Father: {fileID: 615708033884148863}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

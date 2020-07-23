@@ -18,9 +18,6 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField]
     private PartsSpawner spawner;
 
-    [SerializeField]
-    private TrashSpawner trashManager;
-
     private GameObject planet;
 
     private GameObject rocketObj;
@@ -52,7 +49,7 @@ public class GameManagerScript : MonoBehaviour
         rocket.SubmitTrueParts(level.trueModules);
 
         StartCoroutine(spawner.Spawn(level.trueModules));
-        StartCoroutine(trashManager.Spawn());
+        StartCoroutine(spawner.SpawnTrash());
 
         timer.ResetTimer(level.levelTime);
     }
