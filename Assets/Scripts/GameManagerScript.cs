@@ -56,16 +56,8 @@ public class GameManagerScript : MonoBehaviour
 
     private void MakeDecision()
     {
-        //Rewrite
-        if (rocket.IsReady)
-        {
-            PlayCutscene();
-            ChangeLevel();
-        }
-        else
-        {
-            GoToEndScene(rocket.IsReady);
-        }
+        PlayCutscene();
+        ChangeLevel();
     }
 
     private void PlayCutscene()
