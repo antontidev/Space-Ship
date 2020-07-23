@@ -14,7 +14,7 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 1
+  m_Fog: 0
   m_FogColor: {r: 0.65080994, g: 0.666729, b: 0.7075472, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.05
@@ -44,7 +44,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 6764c48b02ed2f64a9cfafbeb602756f,
+    type: 2}
   m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
@@ -237,6 +238,16 @@ PrefabInstance:
       propertyPath: time
       value: 
       objectReference: {fileID: 1371252003}
+    - target: {fileID: 6243692912760816746, guid: d996d7b0857da89439e3cdf2a8294242,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000017201653
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243692912760816746, guid: d996d7b0857da89439e3cdf2a8294242,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -4.0334816e-10
+      objectReference: {fileID: 0}
     - target: {fileID: 6243692912779611346, guid: d996d7b0857da89439e3cdf2a8294242,
         type: 3}
       propertyPath: gameManager
@@ -246,6 +257,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243692913919665509, guid: d996d7b0857da89439e3cdf2a8294242,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.011730146
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243692913919665509, guid: d996d7b0857da89439e3cdf2a8294242,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243692913919665509, guid: d996d7b0857da89439e3cdf2a8294242,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6243692913919665509, guid: d996d7b0857da89439e3cdf2a8294242,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9999312
       objectReference: {fileID: 0}
     - target: {fileID: 6663305983048748680, guid: d996d7b0857da89439e3cdf2a8294242,
         type: 3}

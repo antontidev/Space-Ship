@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+
     [SerializeField]
     private Timer timer;
 
@@ -30,6 +31,8 @@ public class GameManagerScript : MonoBehaviour
 
     private void Start()
     {
+
+        Application.targetFrameRate = 300;
         timer.Up += MakeDecision;
         levelManager.NextLevelLoaded += NotifyManagers;
 
