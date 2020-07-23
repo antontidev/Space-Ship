@@ -7,16 +7,16 @@ public class GameManagerScript : MonoBehaviour
 {
 
     [SerializeField]
-    private Timer timer;
+    public Timer timer;
 
     [Scene]
     public string nextScene;
 
     [SerializeField]
-    private LevelManager2 levelManager;
+    public LevelManager2 levelManager;
 
     [SerializeField]
-    private PartsSpawner spawner;
+    public PartsSpawner spawner;
 
     private GameObject planet;
 

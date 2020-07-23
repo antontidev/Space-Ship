@@ -10,7 +10,7 @@ public class modulesUI : MonoBehaviour
     List<TextMeshProUGUI> lights;
 
     [SerializeField]
-    GameManagerScript gameManager;
+    public GameManagerScript gameManager;
 
     private Rocket rocket;
 

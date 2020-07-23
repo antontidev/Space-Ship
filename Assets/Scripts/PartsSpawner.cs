@@ -73,7 +73,6 @@ public class PartsSpawner : MonoBehaviour
 		DeactivateChildrens(rocketObj);
 		this.rocket = rocketObj.GetComponent<Rocket>();
 
-		this.rocket.manager = manager;
 		return rocketObj;
 	}
 

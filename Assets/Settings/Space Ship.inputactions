@@ -23,7 +23,7 @@
                 },
                 {
                     "name": "Fire",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "53ee30c0-10b1-4f9c-92b6-088f8adbcdd7",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -213,7 +213,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse;Touch",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false

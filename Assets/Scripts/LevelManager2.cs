@@ -8,9 +8,6 @@ public class LevelManager2 : MonoBehaviour
     public LevelLoaded NextLevelLoaded;
 
     public Level level;
-
-    public int CurrentLevel;
-
     public Level NextLevel()
     {
         NextLevelLoaded?.Invoke(level);

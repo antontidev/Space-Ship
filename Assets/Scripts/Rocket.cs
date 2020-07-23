@@ -11,14 +11,9 @@ public class Rocket : MonoBehaviour
     [SerializeField]
     public List<GameObject> trueParts;
 
-    [SerializeField]
     private List<Transform> positions;
 
     public Dictionary<string, bool> ready;
-
-    public Quaternion defaultRotation;
-
-    public ClickManager manager;
 
     private void Start()
     {
@@ -93,5 +88,5 @@ public class Rocket : MonoBehaviour
     public void ExchangeTransform(Transform trans)
     {
 
-    } 
+    }
 }

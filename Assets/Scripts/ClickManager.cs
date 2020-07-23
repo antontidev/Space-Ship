@@ -9,7 +9,8 @@ public class ClickManager : MonoBehaviour
 
     public Dictionary<string, GameObject> activeObjects;
 
-    public GameObject particleSystem;
+    [SerializeField]
+    public GameObject smokeEffect;
 
     void Start() => activeObjects = new Dictionary<string, GameObject>();
 
@@ -37,7 +38,7 @@ public class ClickManager : MonoBehaviour
 
         if (tagString == "Bottom")
         {
-            Instantiate(particleSystem, gameO.transform, false);
+            Instantiate(smokeEffect, gameO.transform, false);
         }
 
         DeleteRigidBody(gameO);
