@@ -4,13 +4,18 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Manager
-  - LevelManager
-  - Bottom
-  - Middle
-  - Top
   - Planet
+  - Timer
+  - ModuleOne
+  - SpaceShip
+  - ModuleThree
+  - ModuleTwo
+  - Middle
+  - Bottom
+  - Top
+  - LevelManager
   - Ready
+  - Manager
   layers:
   - Default
   - TransparentFX
@@ -20,13 +25,13 @@ TagManager:
   - UI
   - 
   - 
-  - ActiveLines
-  - FlattenedLines
-  - Background
-  - Bins
-  - FlungTrash
-  - WorldBall
-  - Checkpoints
+  - Modules
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -45,9 +50,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Canvas
+    uniqueID: 895915297
+    locked: 0
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Trash
-    uniqueID: 2727232013
     locked: 0
