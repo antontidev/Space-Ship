@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using InputSamples.Gestures;
 using UnityEngine;
@@ -6,6 +7,7 @@ namespace InputSamples.Demo.Swiping
 {
     public class SwipingController : MonoBehaviour
     {
+        private LayerMask tapLayer;
         /// <summary>
         /// Reference to gesture input manager.
         /// </summary>
@@ -13,30 +15,33 @@ namespace InputSamples.Demo.Swiping
         private GestureController gestureController;
 
         /// <summary>
-        /// All active bins.
-        /// </summary>
-        [SerializeField]
-        private Bin[] bins;
-
-        /// <summary>
         /// Minimum cosine of angle between swipe and bin in order to target the given bin.
         /// </summary>
         [SerializeField]
         private float minimumCosineForBinTargetting = 0.75f;
+
+        [SerializeField]
+        public FreeLookAddOn addOn;
 
         /// <summary>
         /// Mapping of input IDs to 'grabbed' trash.
         /// </summary>
         private readonly Dictionary<int, Trash> swipeMapping = new Dictionary<int, Trash>();
 
-        private Camera cachedCamera;
+        [SerializeField]
+        public Camera cachedCamera;
         private int castLayerMask;
         private float screenUnitsToWorldUnits;
+
+        private Dictionary<string, ShipPart> cachedShipParts;
 
         protected virtual void Awake()
         {
             castLayerMask = LayerMask.GetMask("Default");
-            cachedCamera = Camera.main;
+
+            tapLayer = LayerMask.GetMask("Modules");
+
+            cachedShipParts = new Dictionary<string, ShipPart>();
 
             // Calculate transformation factor from screen units to world units
             if (!cachedCamera.orthographic)
@@ -54,6 +59,7 @@ namespace InputSamples.Demo.Swiping
             gestureController.PotentiallySwiped += OnDragged;
             gestureController.Swiped += OnSwiped;
             gestureController.Pressed += OnPressed;
+            gestureController.Tapped += OnTapped;
         }
 
         protected virtual void OnDisable()
@@ -61,6 +67,32 @@ namespace InputSamples.Demo.Swiping
             gestureController.PotentiallySwiped -= OnDragged;
             gestureController.Swiped -= OnSwiped;
             gestureController.Pressed -= OnPressed;
+            gestureController.Tapped -= OnTapped;
+        }
+
+        private void OnTapped(TapInput input)
+        {
+            var ray = cachedCamera.ScreenPointToRay(input.PressPosition);
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 100, tapLayer.value))
+            {
+                var gameObj = hit.transform.gameObject;
+
+                ShipPart shipPart;
+                if (cachedShipParts.ContainsKey(gameObj.name))
+                {
+                    shipPart = cachedShipParts[gameObj.name];
+                }
+                else {
+                    shipPart = hit.transform.gameObject.GetComponent<ShipPart>();
+
+                    cachedShipParts[gameObj.name] = shipPart;
+                }
+
+                shipPart.onClick?.Invoke(gameObj);
+            }
         }
 
         private void OnSwiped(SwipeInput input)
@@ -83,12 +115,7 @@ namespace InputSamples.Demo.Swiping
             }
 
             // Find bin in swipe direction
-            Bin targetBin = FindTargetBinForSwipe(input);
-            Vector2 targetPosition = targetBin != null
-                ? targetBin.transform.position
-                : swipedTrash.transform.position + (Vector3)input.SwipeDirection;
 
-            swipedTrash.LaunchAt(targetPosition, input.SwipeVelocity * screenUnitsToWorldUnits);
         }
 
         private void OnPressed(SwipeInput input)
@@ -138,30 +165,6 @@ namespace InputSamples.Demo.Swiping
                     swipeMapping[input.InputId] = trash;
                 }
             }
-        }
-
-        /// <summary>
-        /// Given a swipe, find the nearest bin (within reason) of the swipe direction.
-        /// </summary>
-        private Bin FindTargetBinForSwipe(SwipeInput input)
-        {
-            Vector2 swipeEndPosition = cachedCamera.ScreenToWorldPoint(input.EndPosition);
-            var biggestDot = 0.0f;
-            Bin targetBin = null;
-
-            foreach (Bin bin in bins)
-            {
-                Vector2 toTargetBin = (Vector2)bin.transform.position - swipeEndPosition;
-                float toTargetDot = Vector2.Dot(input.SwipeDirection, toTargetBin.normalized);
-
-                if (toTargetDot > biggestDot &&
-                    toTargetDot >= minimumCosineForBinTargetting)
-                {
-                    biggestDot = toTargetDot;
-                    targetBin = bin;
-                }
-            }
-            return targetBin;
         }
     }
 }

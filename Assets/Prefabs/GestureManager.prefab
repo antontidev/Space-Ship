@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8207462439348172086}
   - component: {fileID: 8207462439348172089}
   - component: {fileID: 8207462439348172088}
+  - component: {fileID: 4077302263300584240}
   m_Layer: 0
   m_Name: GestureManager
   m_TagString: Untagged
@@ -66,3 +67,17 @@ MonoBehaviour:
   m_UseMouse: 1
   m_UsePen: 1
   m_UseTouch: 1
+--- !u!114 &4077302263300584240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8207462439348172087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a3665d640b4815b0ffe0e9b5f180f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gestureController: {fileID: 0}
+  minimumCosineForBinTargetting: 0.75

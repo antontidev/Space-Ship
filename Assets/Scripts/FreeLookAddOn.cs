@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using UnityEngine.InputSystem;
+using InputSamples.Gestures;
 
 [RequireComponent(typeof(CinemachineFreeLook))]
 public class FreeLookAddOn : MonoBehaviour
@@ -14,6 +15,11 @@ public class FreeLookAddOn : MonoBehaviour
     void Start()
     {
         _freeLookComponent = GetComponent<CinemachineFreeLook>();
+    }
+
+    public void OnLookSwipe(SwipeInput swipeInput)
+    {
+
     }
 
     public void OnLook(InputAction.CallbackContext context)
