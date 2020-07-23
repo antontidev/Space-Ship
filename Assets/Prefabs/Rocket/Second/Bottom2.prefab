@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8241762183921911969}
   - component: {fileID: -8349230930185552732}
   - component: {fileID: -4401936292988706573}
-  - component: {fileID: -4078871602430501967}
   - component: {fileID: -4226883785473022988}
   - component: {fileID: 8294591769698460143}
+  - component: {fileID: 8283402552756692904}
   m_Layer: 0
   m_Name: Bottom2
   m_TagString: Bottom
@@ -113,20 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ba460920fd9c8479a22f962327279b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &-4078871602430501967
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8966587318496573772}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6564495154122040233, guid: 756787cdb04b6d543935e87c42d78c3b, type: 3}
 --- !u!114 &-4226883785473022988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,3 +140,16 @@ MonoBehaviour:
   gravity: 5
   oxygen: 0
   temperature: -50
+--- !u!65 &8283402552756692904
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8966587318496573772}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.899735, y: 9.011115, z: 1.9014549}
+  m_Center: {x: 0.111936614, y: -0.043245085, z: 0.38928834}

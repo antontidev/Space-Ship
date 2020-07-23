@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4199908060873278756}
   - component: {fileID: 3674840091046738570}
   - component: {fileID: 5448985666069126181}
-  - component: {fileID: 3105733808181352718}
+  - component: {fileID: 4796904621200387079}
   m_Layer: 0
   m_Name: Middle1
   m_TagString: Middle
@@ -140,8 +140,8 @@ MonoBehaviour:
   gravity: 1
   oxygen: 1
   temperature: 0
---- !u!64 &3105733808181352718
-MeshCollider:
+--- !u!65 &4796904621200387079
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -150,7 +150,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7133521204521878831, guid: 99a57697f93c0b942b3295ba81b884e6, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2.3294992, y: 2.2860875, z: 2.0739462}
+  m_Center: {x: -0.023979425, y: 0.008754967, z: -0.4012043}

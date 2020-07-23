@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8302282881609612421}
   - component: {fileID: 4025299543717435359}
   - component: {fileID: 7474318781767570610}
-  - component: {fileID: 3117749971994157221}
+  - component: {fileID: 2063454918585721592}
   m_Layer: 0
   m_Name: Middle2
   m_TagString: Middle
@@ -140,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9bbaac595735448db8caa40ade5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &3117749971994157221
-MeshCollider:
+--- !u!65 &2063454918585721592
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -150,7 +150,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3254591967430720901, guid: 756787cdb04b6d543935e87c42d78c3b, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 2.3571868, y: 2.3427339, z: 2.0843842}
+  m_Center: {x: -0.01225078, y: 0.0022636647, z: -0.141211}

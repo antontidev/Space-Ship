@@ -49,15 +49,14 @@ public class ClickManager : MonoBehaviour
     private void AddRigidBody(GameObject go)
     {
         go.AddComponent<PhysObj>();
-        var meshC = go.AddComponent<MeshCollider>();
-        meshC.convex = true;
+        var meshC = go.AddComponent<BoxCollider>();
     }
 
     private void DeleteRigidBody(GameObject go)
     {
         var physObj = go.GetComponent<PhysObj>();
         var rigidGameO = go.GetComponent<Rigidbody>();
-        var meshC = go.GetComponent<MeshCollider>();
+        var meshC = go.GetComponent<BoxCollider>();
 
         Destroy(physObj);
         Destroy(rigidGameO);

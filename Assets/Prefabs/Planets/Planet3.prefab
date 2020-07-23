@@ -12,13 +12,13 @@ GameObject:
   - component: {fileID: 1758595858621275073}
   - component: {fileID: 7257346593555421306}
   - component: {fileID: 8037048615208052}
-  - component: {fileID: 8037048615208053}
+  - component: {fileID: 5150308212878726173}
   m_Layer: 0
   m_Name: Icosphere
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &7670175056833889273
 Transform:
@@ -96,8 +96,8 @@ MonoBehaviour:
   grav: -9
   temperature: 90
   oxygen: 1
---- !u!64 &8037048615208053
-MeshCollider:
+--- !u!135 &5150308212878726173
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,10 +106,9 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 289301614986012343, guid: 3c703b204f8c4944699d53929710a475, type: 3}
+  serializedVersion: 2
+  m_Radius: 0.98724765
+  m_Center: {x: 0.010217129, y: 0.0019965763, z: -0.030791782}
 --- !u!1 &807117192728450750
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +125,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &9209580722206292452
 Transform:
@@ -204,7 +203,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4570153331511469795
 Transform:
@@ -252,7 +251,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4948135733960704445
 Transform:
