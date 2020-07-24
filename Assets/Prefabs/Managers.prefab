@@ -125,7 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 615708033521810061}
-  smokeEffect: {fileID: 0}
+  smokeEffect: {fileID: 6306638261461755786, guid: 796f59b9a5f74574fad1bba7dc61cca0,
+    type: 3}
 --- !u!1 &615708033521810060
 GameObject:
   m_ObjectHideFlags: 0
@@ -321,7 +322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gestureController: {fileID: 1139876699963052997}
   minimumCosineForBinTargetting: 0.75
-  cachedCamera: {fileID: 0}
+  addOn: {fileID: 1834512176152038508}
+  cachedCamera: {fileID: 4292764254102515610}
 --- !u!1 &1457000360098657051
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +757,7 @@ MonoBehaviour:
   m_BindingMode: 0
   m_SplineCurvature: 0.2
   m_Orbits:
-  - m_Height: 1.5
+  - m_Height: 1
     m_Radius: 0
   - m_Height: 0
     m_Radius: 1.5
@@ -835,7 +837,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4292764253328498696}
-  m_LocalRotation: {x: -1e-45, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -1e-45, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1039,7 +1041,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4292764254102515607}
-  m_LocalRotation: {x: -0.011571047, y: 5.376635e-10, z: 6.221746e-12, w: 0.99993306}
+  m_LocalRotation: {x: -0.011571047, y: -0.0000000010753268, z: -1.244349e-11, w: 0.99993306}
   m_LocalPosition: {x: -162.62442, y: -155.44473, z: 13.5286045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1226,7 +1228,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4292764254334450374}
-  m_LocalRotation: {x: -0.011571047, y: 5.3766347e-10, z: 6.2217458e-12, w: 0.99993306}
+  m_LocalRotation: {x: -0.011571048, y: -5.3766336e-10, z: -6.2217453e-12, w: 0.99993306}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1516,7 +1518,8 @@ PrefabInstance:
       propertyPath: m_UsePen
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4077302263300584240, guid: 6eb39271f414d6f4ea530d88245cfe21, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6eb39271f414d6f4ea530d88245cfe21, type: 3}
 --- !u!114 &1139876699963052997 stripped
 MonoBehaviour:

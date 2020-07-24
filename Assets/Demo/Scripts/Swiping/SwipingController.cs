@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using InputSamples.Gestures;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 namespace InputSamples.Demo.Swiping
 {
@@ -60,6 +61,7 @@ namespace InputSamples.Demo.Swiping
             gestureController.Swiped += OnSwiped;
             gestureController.Pressed += OnPressed;
             gestureController.Tapped += OnTapped;
+            TouchSimulation.Enable();
         }
 
         protected virtual void OnDisable()

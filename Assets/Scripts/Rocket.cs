@@ -11,7 +11,8 @@ public class Rocket : MonoBehaviour
     [SerializeField]
     public List<GameObject> trueParts;
 
-    private List<Transform> positions;
+    [SerializeField]
+    public List<Transform> positions;
 
     public Dictionary<string, bool> ready;
 
