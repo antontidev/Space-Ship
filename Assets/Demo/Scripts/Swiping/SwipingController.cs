@@ -34,15 +34,12 @@ namespace InputSamples.Demo.Swiping
         private int castLayerMask;
         private float screenUnitsToWorldUnits;
 
-        private Dictionary<string, ShipPart> cachedShipParts;
 
         protected virtual void Awake()
         {
             castLayerMask = LayerMask.GetMask("Default");
 
             tapLayer = LayerMask.GetMask("Modules");
-
-            cachedShipParts = new Dictionary<string, ShipPart>();
 
             // Calculate transformation factor from screen units to world units
             if (!cachedCamera.orthographic)
@@ -60,7 +57,6 @@ namespace InputSamples.Demo.Swiping
             gestureController.PotentiallySwiped += OnDragged;
             gestureController.Swiped += OnSwiped;
             gestureController.Pressed += OnPressed;
-            gestureController.Tapped += OnTapped;
             TouchSimulation.Enable();
         }
 
@@ -69,32 +65,6 @@ namespace InputSamples.Demo.Swiping
             gestureController.PotentiallySwiped -= OnDragged;
             gestureController.Swiped -= OnSwiped;
             gestureController.Pressed -= OnPressed;
-            gestureController.Tapped -= OnTapped;
-        }
-
-        private void OnTapped(TapInput input)
-        {
-            var ray = cachedCamera.ScreenPointToRay(input.PressPosition);
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100, tapLayer.value))
-            {
-                var gameObj = hit.transform.gameObject;
-
-                ShipPart shipPart;
-                if (cachedShipParts.ContainsKey(gameObj.name))
-                {
-                    shipPart = cachedShipParts[gameObj.name];
-                }
-                else {
-                    shipPart = hit.transform.gameObject.GetComponent<ShipPart>();
-
-                    cachedShipParts[gameObj.name] = shipPart;
-                }
-
-                shipPart.onClick?.Invoke(gameObj);
-            }
         }
 
         private void OnSwiped(SwipeInput input)

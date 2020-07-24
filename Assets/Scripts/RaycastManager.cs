@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using InputSamples.Gestures;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,28 +10,53 @@ public class RaycastManager : MonoBehaviour
     [SerializeField]
     public Camera cam;
 
-    private Mouse mouse;
+    [SerializeField]
+    public GestureController gestureController;
+
+    [Header("Layer for raycasting")]
+    [Layer]
+    public int tapLayer;
+
+    private Dictionary<string, ShipPart> cachedShipParts;
 
     private void Start()
     {
-        mouse = Mouse.current;
+        cachedShipParts = new Dictionary<string, ShipPart>();
     }
 
-    // Start is called before the first frame update
-    public void OnClickHandler(InputAction.CallbackContext context)
+    private void OnEnable()
     {
-        RaycastHit raycastHit;
+        gestureController.Tapped += OnTappedHandler;
+    }
 
-        Vector3 mousePos = new Vector3(mouse.position.x.clampConstant, mouse.position.y.clampConstant, 0);
+    private void OnDisable()
+    {
+        gestureController.Tapped -= OnTappedHandler;
+    }
 
-        var ray = cam.ScreenPointToRay(mousePos);
+    private void OnTappedHandler(TapInput input)
+    {
+        var ray = cam.ScreenPointToRay(input.PressPosition);
 
-        if (Physics.Raycast(ray, out raycastHit, 100))
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, 100, 1 << tapLayer))
         {
+            var gameObj = hit.transform.gameObject;
 
+            ShipPart shipPart;
+            if (cachedShipParts.ContainsKey(gameObj.name))
+            {
+                shipPart = cachedShipParts[gameObj.name];
+            }
+            else
+            {
+                shipPart = hit.transform.gameObject.GetComponent<ShipPart>();
 
+                cachedShipParts[gameObj.name] = shipPart;
+            }
+
+            shipPart.onClick?.Invoke(gameObj);
         }
-
-
     }
 }
