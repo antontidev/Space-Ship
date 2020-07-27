@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Shader Graphs_Flame_shader
+  m_Shader: {fileID: -6465566751694194690, guid: ab74cf7eb219e57479cfcdf4abf4f4f3,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_D8DF00EF:
+        m_Texture: {fileID: 2800000, guid: 59495516245b27c4cb54a80a9a9b99e9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_48B3AC1D: 0.2
+    - Vector1_54B2D938: 0.1
+    - Vector1_7979D504: 4.94
+    - Vector1_A0059BF8: 1.2
+    m_Colors:
+    - Color_C9DF4354: {r: 9.734288, g: 5.6035085, b: 0.45868343, a: 1}
+    - Vector2_AE1C03B2: {r: 0, g: 1.5, b: 0, a: 0}
+    - Vector2_FAC8F919: {r: -0.1, g: -0.5, b: 0, a: 0}
