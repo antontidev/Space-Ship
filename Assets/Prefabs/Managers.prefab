@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: {fileID: 615708033756642418}
-  nextScene: Level3
+  nextScene: Level2
   levelManager: {fileID: 1457000360098657050}
   spawner: {fileID: 615708034070434915}
   rocket: {fileID: 0}
@@ -401,8 +401,7 @@ GameObject:
   - component: {fileID: 4292764253264602948}
   - component: {fileID: 4292764253264602955}
   - component: {fileID: 4292764253264602954}
-  - component: {fileID: 4292764253264602949}
-  - component: {fileID: 939846032282201285}
+  - component: {fileID: 1199481533}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -448,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 0
+  m_BindingMode: 2
   m_FollowOffset: {x: 0, y: 0, z: -1.5}
   m_XDamping: 1
   m_YDamping: 1
@@ -459,7 +458,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 2
+    m_Definition: 1
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -490,7 +489,7 @@ MonoBehaviour:
   m_LegacyHeightOffset: 3.4028235e+38
   m_LegacyHeadingBias: 3.4028235e+38
   m_HeadingIsSlave: 1
---- !u!114 &4292764253264602949
+--- !u!114 &1199481533
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -503,11 +502,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadTime: 1
+  m_LookaheadSmoothing: 30
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0
-  m_VerticalDamping: 0
+  m_HorizontalDamping: 5
+  m_VerticalDamping: 5
   m_ScreenX: 0.5
   m_ScreenY: 0.6
   m_DeadZoneWidth: 0
@@ -517,23 +516,6 @@ MonoBehaviour:
   m_BiasX: 0
   m_BiasY: 0
   m_CenterOnActivate: 1
---- !u!114 &939846032282201285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4292764253264602951}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
-  m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
-  mNoiseOffsets: {x: 254.25458, y: 716.7251, z: 939.318}
 --- !u!1 &4292764253326247789
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,7 +631,7 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: -1
       m_LegacyVelocityFilterStrength: -1
   m_Heading:
-    m_Definition: 2
+    m_Definition: 1
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -658,8 +640,8 @@ MonoBehaviour:
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
-  m_BindingMode: 0
-  m_SplineCurvature: 0.2
+  m_BindingMode: 2
+  m_SplineCurvature: 1
   m_Orbits:
   - m_Height: 1
     m_Radius: 0
@@ -715,8 +697,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fdebeb008991d40ba69987b0496fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LookSpeed: 0.5
+  LookSpeed: 30
   InvertY: 1
+  gestureController: {fileID: 1139876699963052997}
 --- !u!1 &4292764253328498696
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +724,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4292764253328498696}
-  m_LocalRotation: {x: -0, y: 1e-45, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -802,7 +785,7 @@ GameObject:
   - component: {fileID: 4292764253802791638}
   - component: {fileID: 4292764253802791637}
   - component: {fileID: 4292764253802791636}
-  - component: {fileID: 4292764253802791639}
+  - component: {fileID: 587650488}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -848,7 +831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 0
+  m_BindingMode: 2
   m_FollowOffset: {x: 0, y: 0, z: -1.5}
   m_XDamping: 1
   m_YDamping: 1
@@ -859,7 +842,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 2
+    m_Definition: 1
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -890,7 +873,7 @@ MonoBehaviour:
   m_LegacyHeightOffset: 3.4028235e+38
   m_LegacyHeadingBias: 3.4028235e+38
   m_HeadingIsSlave: 1
---- !u!114 &4292764253802791639
+--- !u!114 &587650488
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -903,11 +886,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadTime: 1
+  m_LookaheadSmoothing: 30
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0
-  m_VerticalDamping: 0
+  m_HorizontalDamping: 5
+  m_VerticalDamping: 5
   m_ScreenX: 0.5
   m_ScreenY: 0.5
   m_DeadZoneWidth: 0
@@ -945,7 +928,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4292764254102515607}
-  m_LocalRotation: {x: -0.011571047, y: 0.0000000010753269, z: 1.2443491e-11, w: 0.99993306}
+  m_LocalRotation: {x: -0.011571047, y: -0.0000000010753269, z: -1.2443491e-11, w: 0.99993306}
   m_LocalPosition: {x: -162.62442, y: -155.44473, z: 13.5286045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1132,7 +1115,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4292764254334450374}
-  m_LocalRotation: {x: -0.011571048, y: 5.3766347e-10, z: 6.2217466e-12, w: 0.99993306}
+  m_LocalRotation: {x: -0.011571048, y: -5.3766347e-10, z: -6.2217466e-12, w: 0.99993306}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1193,7 +1176,7 @@ GameObject:
   - component: {fileID: 4292764254681179003}
   - component: {fileID: 4292764254681179006}
   - component: {fileID: 4292764254681179001}
-  - component: {fileID: 4292764254681179000}
+  - component: {fileID: 1102583443}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -1239,7 +1222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 0
+  m_BindingMode: 2
   m_FollowOffset: {x: 0, y: 0, z: -1.5}
   m_XDamping: 1
   m_YDamping: 1
@@ -1250,7 +1233,7 @@ MonoBehaviour:
   m_RollDamping: 0
   m_AngularDamping: 0
   m_Heading:
-    m_Definition: 2
+    m_Definition: 1
     m_VelocityFilterStrength: 4
     m_Bias: 0
   m_RecenterToTargetHeading:
@@ -1281,7 +1264,7 @@ MonoBehaviour:
   m_LegacyHeightOffset: 3.4028235e+38
   m_LegacyHeadingBias: 3.4028235e+38
   m_HeadingIsSlave: 1
---- !u!114 &4292764254681179000
+--- !u!114 &1102583443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1294,11 +1277,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TrackedObjectOffset: {x: 0, y: 0, z: 0}
-  m_LookaheadTime: 0
-  m_LookaheadSmoothing: 0
+  m_LookaheadTime: 1
+  m_LookaheadSmoothing: 30
   m_LookaheadIgnoreY: 0
-  m_HorizontalDamping: 0
-  m_VerticalDamping: 0
+  m_HorizontalDamping: 5
+  m_VerticalDamping: 5
   m_ScreenX: 0.5
   m_ScreenY: 0.55
   m_DeadZoneWidth: 0.5
@@ -1358,7 +1341,7 @@ PrefabInstance:
     - target: {fileID: 3005099631143351550, guid: 6eb39271f414d6f4ea530d88245cfe21,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[1].m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3005099631143351550, guid: 6eb39271f414d6f4ea530d88245cfe21,
         type: 3}
@@ -1443,7 +1426,7 @@ PrefabInstance:
     - target: {fileID: 8207462439348172087, guid: 6eb39271f414d6f4ea530d88245cfe21,
         type: 3}
       propertyPath: m_Name
-      value: NewInputManager
+      value: InputManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eb39271f414d6f4ea530d88245cfe21, type: 3}

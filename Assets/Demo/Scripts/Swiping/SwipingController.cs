@@ -57,7 +57,6 @@ namespace InputSamples.Demo.Swiping
             gestureController.PotentiallySwiped += OnDragged;
             gestureController.Swiped += OnSwiped;
             gestureController.Pressed += OnPressed;
-            TouchSimulation.Enable();
         }
 
         protected virtual void OnDisable()

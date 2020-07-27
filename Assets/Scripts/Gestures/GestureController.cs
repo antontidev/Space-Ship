@@ -39,6 +39,12 @@ namespace InputSamples.Gestures
         [SerializeField]
         private float swipeDirectionSamenessThreshold = 0.6f;
 
+        /// <summary>
+        /// Minimym distance between fingers that a scale must move before event is invoked
+        /// </summary>
+        [SerializeField]
+        private float minScaleDistance = 10.0f;
+
         [Header("Debug"), SerializeField]
         private Text label;
 
@@ -65,6 +71,16 @@ namespace InputSamples.Gestures
         /// </summary>
         public event Action<TapInput> Tapped;
 
+        /// <summary>
+        /// Dictionary of current fingers on screen
+        /// </summary>
+        private Dictionary<int, ActiveGesture> activeFingers = new Dictionary<int, ActiveGesture>();
+
+        /// <summary>
+        /// Event fired when a user performs a swipe gesture, on pressed
+        /// </summary>
+        public event Action<ScaleInput> Scaled;
+
         protected virtual void Awake()
         {
             inputManager.Pressed += OnPressed;
@@ -83,6 +99,25 @@ namespace InputSamples.Gestures
         }
 
         /// <summary>
+        /// Checks whether a given active gesture will be a valid two-finger scale swipe
+        /// </summary>
+        /// <returns>Returns true, if dot multipclication of direction vectors was zero</returns>
+        private bool IsValidScale()
+        {
+            List<Vector2> dir = new List<Vector2>();
+            foreach (var element in activeFingers)
+            {
+                dir.Add(element.Value.GetDirection());
+            }
+
+            var mult = Vector2.Dot(dir[0], dir[1]);
+
+            Debug.Log(mult);
+            //Using dot product of two vectors from dictionary
+            return false;
+        }
+
+        /// <summary>
         /// Checks whether a given active gesture will be a valid tap.
         /// </summary>
         private bool IsValidTap(ref ActiveGesture gesture)
@@ -98,6 +133,11 @@ namespace InputSamples.Gestures
             var newGesture = new ActiveGesture(input.InputId, input.Position, time);
             activeGestures.Add(input.InputId, newGesture);
 
+            if (activeFingers.Count < 2)
+            {
+                activeFingers.Add(input.InputId, newGesture);
+            }
+
             DebugInfo(newGesture);
 
             Pressed?.Invoke(new SwipeInput(newGesture));
@@ -112,10 +152,17 @@ namespace InputSamples.Gestures
             }
 
             existingGesture.SubmitPoint(input.Position, time);
+            // Is it fine? I don't know what existing gesture is
+            activeFingers[input.InputId] = existingGesture;
 
             if (IsValidSwipe(ref existingGesture))
             {
                 PotentiallySwiped?.Invoke(new SwipeInput(existingGesture));
+            }
+            // There is no arguments because we updated position value before
+            if (activeFingers.Count > 2 && IsValidScale())
+            {
+                Scaled?.Invoke(new ScaleInput(activeFingers));
             }
 
             DebugInfo(existingGesture);
@@ -130,6 +177,7 @@ namespace InputSamples.Gestures
             }
 
             activeGestures.Remove(input.InputId);
+            activeFingers.Remove(input.InputId);
             existingGesture.SubmitPoint(input.Position, time);
 
             if (IsValidSwipe(ref existingGesture))

@@ -88,7 +88,6 @@ namespace InputSamples.Gestures
         {
             Vector2 toNewPosition = position - EndPosition;
             float distanceMoved = toNewPosition.magnitude;
-
             // Set new end time
             EndTime = time;
 
@@ -113,6 +112,11 @@ namespace InputSamples.Gestures
             SwipeDirectionSameness = Vector2.Dot(toNewEndPosition, accumulatedNormalized / (Samples - 1));
 
             TravelDistance += distanceMoved;
+        }
+
+        public Vector2 GetDirection()
+        {
+            return (EndPosition - StartPosition).normalized;
         }
     }
 }
