@@ -22,30 +22,20 @@ public class FreeLookAddOn : MonoBehaviour
 
     private void OnEnable()
     {
-        //gestureController.Swiped += OnLookSwipe;
-        gestureController.Pressed += OnPressed;
-        UnityEngine.InputSystem.EnhancedTouch.Touch.onFingerMove += Touch_onFingerMove;
+        gestureController.Dragged += Touch_onFingerMove;
     }
     private void OnDisable()
     {
-        //gestureController.Swiped -= OnLookSwipe;
-        gestureController.Pressed -= OnPressed;
-
-        UnityEngine.InputSystem.EnhancedTouch.Touch.onFingerMove -= Touch_onFingerMove;
+        gestureController.Dragged -= Touch_onFingerMove;
     }
 
-    private void Touch_onFingerMove(Finger finger)
+    private void Touch_onFingerMove(SwipeInput input)
     {
-        var dir = finger.currentTouch.delta;
+        var delta = input.EndPosition - input.PreviousPosition;
 
-        _freeLookComponent.m_XAxis.Value += dir.x * Time.deltaTime * LookSpeed;
-        _freeLookComponent.m_YAxis.Value += dir.y * Time.deltaTime * LookSpeed;
-    }
-
-
-    private void OnPressed(SwipeInput pressed)
-    {
-        Debug.Log(pressed.StartPosition.ToString());
+        Debug.Log(delta);
+        //_freeLookComponent.m_XAxis.Value += dir.x * Time.deltaTime * LookSpeed;
+        //_freeLookComponent.m_YAxis.Value += dir.y * Time.deltaTime * LookSpeed;
     }
 
     public void OnLookSwipe(SwipeInput swipeInput)
@@ -64,19 +54,5 @@ public class FreeLookAddOn : MonoBehaviour
         _freeLookComponent.m_XAxis.Value += dir.x * duration * Time.deltaTime * LookSpeed;
         _freeLookComponent.m_YAxis.Value += dir.y * duration * Time.deltaTime * LookSpeed;
 
-    }
-
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        //Normalize the vector to have an uniform vector in whichever form it came from (I.E Gamepad, mouse, etc)
-        Vector2 lookMovement = context.ReadValue<Vector2>().normalized;
-        lookMovement.y = InvertY ? -lookMovement.y : lookMovement.y;
-
-        // This is because X axis is only contains between -180 and 180 instead of 0 and 1 like the Y axis
-        lookMovement.x *= 180f;
-
-        //Ajust axis values using look speed and Time.deltaTime so the look doesn't go faster if there is more FPS
-        _freeLookComponent.m_XAxis.Value += lookMovement.x * LookSpeed * Time.deltaTime;
-        _freeLookComponent.m_YAxis.Value += lookMovement.y * LookSpeed * Time.deltaTime;
     }
 }

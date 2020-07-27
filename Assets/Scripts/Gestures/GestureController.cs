@@ -54,7 +54,12 @@ namespace InputSamples.Gestures
         /// <summary>
         /// Event fired when the user presses on the screen.
         /// </summary>
-        public new event Action<SwipeInput> Pressed;
+        public event Action<SwipeInput> Pressed;
+
+        /// <summary>
+        /// Event fired when the user move finger on screen
+        /// </summary>
+        public event Action<SwipeInput> Dragged;
 
         /// <summary>
         /// Event fired for every motion (possibly multiple times a frame) of a potential swipe gesture.
@@ -152,8 +157,8 @@ namespace InputSamples.Gestures
             }
 
             existingGesture.SubmitPoint(input.Position, time);
-            // Is it fine? I don't know what existing gesture is
-            activeFingers[input.InputId] = existingGesture;
+
+            Dragged?.Invoke(new SwipeInput(existingGesture));
 
             if (IsValidSwipe(ref existingGesture))
             {

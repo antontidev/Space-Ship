@@ -18,19 +18,4 @@ public class ShipPart : MonoBehaviour
     {
         defaultPosition = gameObject.transform;
     }
-
-    private void OnMouseEnter()
-    {
-        
-    }
-
-    private void OnMouseExit()
-    {
-        
-    }
-
-    void OnMouseDown()
-    {
-        onClick?.Invoke(gameObject);
-    }
 }
