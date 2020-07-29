@@ -8,18 +8,11 @@ public class Timer : MonoBehaviour
     [SerializeField]
     public float timer;
 
-    private float defaultTimer;
-
     public delegate void TimerUp();
 
     private bool emitted = false;
 
     public TimerUp Up;
-
-    private void Start()
-    {
-        defaultTimer = timer;
-    }
 
     void Update()
     {
@@ -34,7 +27,12 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void ResetTimer(float t)
+    public void LevelLoaded(Level level)
+    {
+        ResetTimer(level.levelTime);
+    }
+
+    private void ResetTimer(float t)
     {
         timer = t;
         emitted = false;

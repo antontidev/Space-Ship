@@ -85,9 +85,4 @@ public class Rocket : MonoBehaviour
 
         part.GetComponent<PhysObj>().enabled = false;
     }
-
-    public void ExchangeTransform(Transform trans)
-    {
-
-    }
 }

@@ -7,15 +7,61 @@ using UnityEngine;
 
 public class ShipPart : MonoBehaviour
 {
-    private Transform defaultPosition;
     public delegate void OnClick(GameObject obj);
 
     public OnClick onClick;
-    [AutoProperty]
-    private UIPanel panel;
+
+    private int clickCount = 0;
+
+    private Material glowEffect;
+
+    private MeshRenderer renderer;
 
     public void Awake()
     {
-        defaultPosition = gameObject.transform;
+        renderer = GetComponent<MeshRenderer>();
+    }
+
+    public void SubmitGlowMaterial(Material glow)
+    {
+        glowEffect = glow;
+    }
+    
+    public void ClickOnObject(GameObject gameObj)
+    {
+        clickCount++;
+
+        switch (clickCount)
+        {
+            case 1:
+                var list = ToList(renderer.materials);
+
+                list.Add(glowEffect);
+
+                renderer.materials = list.ToArray();
+                break;
+            case 2:
+                var matList = ToList(renderer.materials);
+
+                matList.RemoveAt(matList.Count);
+
+                renderer.materials = matList.ToArray();
+
+                clickCount = 0;
+
+                onClick?.Invoke(gameObj);
+                break;
+        }
+    }
+
+    private List<Material> ToList(Material[] materials)
+    {
+        List<Material> listMaterials = new List<Material>();
+        materials.ForEach((Material material) =>
+        {
+            listMaterials.Add(material);
+        });
+
+        return listMaterials;
     }
 }

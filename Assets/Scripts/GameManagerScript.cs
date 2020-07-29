@@ -41,34 +41,29 @@ public class GameManagerScript : IGameManager
     private void Start()
     {
         Application.targetFrameRate = 60;
-        timer.Up += MakeDecision;
-        levelManager.NextLevelLoaded += NotifyManagers;
 
         levelManager.NextLevel();
     }
 
-    private void NotifyManagers(Level level)
+    private void OnEnable()
     {
-        var planet = spawner.SpawnPlanet(planet: level.planet);
+        levelManager.NextLevelLoaded += spawner.LevelLoaded;
+        levelManager.NextLevelLoaded += timer.LevelLoaded;
+        spawner.planetSpawned += SetCameraTarget;
+        timer.Up += MakeDecision;
+    }
 
-        cam.LookAt = cam.Follow = planet.transform;
+    private void OnDisable()
+    {
+        levelManager.NextLevelLoaded -= spawner.LevelLoaded;
+        levelManager.NextLevelLoaded -= timer.LevelLoaded;
+        spawner.planetSpawned -= SetCameraTarget;
+        timer.Up -= MakeDecision;
+    }
 
-        planetComponent = planet.GetComponent<Planet>();
-
-        planetComponent.gestureController = gestureController;
-
-      //  gestureController.Dragged += planetComponent.GestureController_Dragged;
-
-        rocketObj = spawner.SpawnRocket(level.rocket, planetComponent.spawnRocketPostition);
-        rocket = rocketObj.GetComponent<Rocket>();
-
-        spawner.SubmitList(level.modules);
-        rocket.SubmitTrueParts(level.trueModules);
-
-        StartCoroutine(spawner.Spawn(level.trueModules));
-        StartCoroutine(spawner.SpawnTrash());
-
-        timer.ResetTimer(level.levelTime);
+    private void SetCameraTarget(Transform planetTransform)
+    {
+        cam.LookAt = cam.Follow = planetTransform;
     }
 
     private void MakeDecision()

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRocketPostition: {fileID: 3009871340779720485}
+  gestureController: {fileID: 0}
 --- !u!1 &4247587939300802313
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,6 +103,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -129,6 +131,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &946279166658463495
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -156,7 +159,7 @@ GameObject:
   - component: {fileID: 1485177364}
   - component: {fileID: 4486691948018794969}
   m_Layer: 0
-  m_Name: Icosphere.002
+  m_Name: planet
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,6 +202,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -227,6 +231,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1485177364
 MonoBehaviour:
   m_ObjectHideFlags: 0

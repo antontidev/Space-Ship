@@ -1,39 +1,49 @@
-﻿using System.Collections;
+﻿using InputSamples.Gestures;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PartsSpawner : MonoBehaviour
 {
-	public delegate void ObjectSpawned(List<GameObject> list);
+	public delegate void PlanetSpawned(Transform planetTransform);
 
-	public ObjectSpawned OnObjectSpawned;
+	public PlanetSpawned planetSpawned;
 
-	[SerializeField]
 	private List<GameObject> parts;
+
+	private List<GameObject> trueParts;
+
+	private GameObject rocketObj;
+
+	private GameObject planet;
+
+	private Rocket rocketComp;
+
+	private Transform planetTransform;
 
 	[SerializeField]
 	public List<GameObject> trash;
 
-	private Rocket rocket;
+	[SerializeField]
+	public Material glowEffect;
 
 	[SerializeField]
 	public ClickManager manager;
 
-	public IEnumerator Spawn(List<GameObject> list)
-	{
-		foreach (var el in list)
-		{
-			var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
+	public IEnumerator SpawnLevel()
+    {
+		SpawnPlanet();
 
+		SpawnRocket();
 
-			var shippart = part.GetComponent<ShipPart>();
+		var trash = StartCoroutine(SpawnTrash());
 
-			shippart.onClick += manager.HandleClick;
-			shippart.onClick += rocket.Handle;
-			yield return null;
-		}
-		OnObjectSpawned?.Invoke(list);
-	}
+		var parts = StartCoroutine(SpawnAllParts());
+
+		yield return trash;
+		yield return parts;
+    }
 
 	public IEnumerator SpawnTrash()
     {
@@ -45,35 +55,39 @@ public class PartsSpawner : MonoBehaviour
         }
     }
 
-	public IEnumerator Spawn()
+	public IEnumerator SpawnAllParts()
 	{
+		var allParts = parts.Concat(trueParts);
 
-		foreach (var el in parts)
+		foreach (var el in allParts)
 		{
 			var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
 
 			var shipPart = part.GetComponent<ShipPart>();
-			shipPart.onClick += rocket.Handle;
+
+			//shipPart.SubmitGlowMaterial(glowEffect);
+			shipPart.onClick += rocketComp.Handle;
 			shipPart.onClick += manager.HandleClick;
 
 			yield return null;
 		}
-		OnObjectSpawned?.Invoke(parts);
 	}
 
 
-	public GameObject SpawnPlanet(GameObject planet)
+	private void SpawnPlanet()
 	{
-		return Instantiate(planet, Vector3.zero, transform.rotation);
+		var plan = Instantiate(planet, Vector3.zero, transform.rotation);
+
+		planetTransform = plan.transform;
+
+		planetSpawned?.Invoke(planetTransform);
 	}
 
-	public GameObject SpawnRocket(GameObject rocket, Transform position)
+	private void SpawnRocket()
 	{
-		var rocketObj = Instantiate(rocket, position.position, transform.rotation);
-		DeactivateChildrens(rocketObj);
-		this.rocket = rocketObj.GetComponent<Rocket>();
-
-		return rocketObj;
+		var rock = Instantiate(rocketObj, planetTransform.position, transform.rotation);
+		DeactivateChildrens(rock);
+		rocketComp = rock.GetComponent<Rocket>();
 	}
 
 	private void DeactivateChildrens(GameObject go)
@@ -84,10 +98,16 @@ public class PartsSpawner : MonoBehaviour
 		}
 	}
 
-	public void SubmitList(List<GameObject> list)
+	public void LevelLoaded(Level level)
 	{
-		parts = list;
+		parts = level.modules;
 
-		StartCoroutine(Spawn());
+		trueParts = level.trueModules;
+
+		rocketObj = level.rocket;
+
+		planet = level.planet;
+
+		StartCoroutine(SpawnLevel());
 	}
 }

@@ -44,19 +44,23 @@ public class RaycastManager : MonoBehaviour
         {
             var gameObj = hit.transform.gameObject;
 
-            ShipPart shipPart;
-            if (cachedShipParts.ContainsKey(gameObj.name))
-            {
-                shipPart = cachedShipParts[gameObj.name];
-            }
-            else
-            {
-                shipPart = hit.transform.gameObject.GetComponent<ShipPart>();
+            ShipPart shipPart = GetShipPart(gameObj);
 
-                cachedShipParts[gameObj.name] = shipPart;
-            }
+            shipPart.ClickOnObject(gameObj);
+        }
+    }
 
-            shipPart.onClick?.Invoke(gameObj);
+    private ShipPart GetShipPart(GameObject gameObj)
+    {
+        if (cachedShipParts.ContainsKey(gameObj.name))
+        {
+            return cachedShipParts[gameObj.name];
+        }
+        else
+        {
+            var shipPart = gameObj.GetComponent<ShipPart>();
+
+            return cachedShipParts[gameObj.name] = shipPart;
         }
     }
 }
