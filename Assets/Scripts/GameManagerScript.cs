@@ -2,9 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using InputSamples.Gestures;
+using Cinemachine;
 
-public class GameManagerScript : MonoBehaviour
+public class IGameManager : MonoBehaviour
 {
+
+}
+
+public class GameManagerScript : IGameManager
+{
+    [SerializeField]
+    private CinemachineFreeLook cam;
+
+    [SerializeField]
+    private GestureController gestureController;
 
     [SerializeField]
     public Timer timer;
@@ -18,7 +30,7 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField]
     public PartsSpawner spawner;
 
-    private GameObject planet;
+    private Planet planetComponent;
 
     private GameObject rocketObj;
 
@@ -28,8 +40,7 @@ public class GameManagerScript : MonoBehaviour
 
     private void Start()
     {
-
-        Application.targetFrameRate = 300;
+        Application.targetFrameRate = 60;
         timer.Up += MakeDecision;
         levelManager.NextLevelLoaded += NotifyManagers;
 
@@ -38,9 +49,15 @@ public class GameManagerScript : MonoBehaviour
 
     private void NotifyManagers(Level level)
     {
-        planet = spawner.SpawnPlanet(planet: level.planet);
+        var planet = spawner.SpawnPlanet(planet: level.planet);
 
-        var planetComponent = planet.GetComponent<Planet>();
+        cam.LookAt = cam.Follow = planet.transform;
+
+        planetComponent = planet.GetComponent<Planet>();
+
+        planetComponent.gestureController = gestureController;
+
+      //  gestureController.Dragged += planetComponent.GestureController_Dragged;
 
         rocketObj = spawner.SpawnRocket(level.rocket, planetComponent.spawnRocketPostition);
         rocket = rocketObj.GetComponent<Rocket>();
