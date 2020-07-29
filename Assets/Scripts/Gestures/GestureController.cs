@@ -7,13 +7,21 @@ using UnityEngine.UI;
 
 namespace InputSamples.Gestures
 {
+
+    /// <summary>
+    /// Interface for Zenject
+    /// </summary>
+    public class IController : MonoBehaviour
+    {
+
+    }
+
     /// <summary>
     /// Controller that interprets takes pointer input from <see cref="PointerInputManager"/> and detects
     /// directional swipes and detects taps.
     /// </summary>
-    public class GestureController : MonoBehaviour
+    public class GestureController : IController
     {
-        [SerializeField]
         private PointerInputManager inputManager;
 
         // Maximum duration of a press before it can no longer be considered a tap.
@@ -79,14 +87,26 @@ namespace InputSamples.Gestures
         /// <summary>
         /// Dictionary of current fingers on screen
         /// </summary>
-        private Dictionary<int, ActiveGesture> activeFingers = new Dictionary<int, ActiveGesture>();
+        private readonly Dictionary<int, ActiveGesture> activeFingers = new Dictionary<int, ActiveGesture>();
 
         /// <summary>
         /// Event fired when a user performs a swipe gesture, on pressed
         /// </summary>
         public event Action<ScaleInput> Scaled;
 
-        protected virtual void Awake()
+        private void Awake()
+        {
+            inputManager = GetComponent<PointerInputManager>();
+        }
+
+        protected virtual void OnEnable()
+        {
+            inputManager.Pressed += OnPressed;
+            inputManager.Dragged += OnDragged;
+            inputManager.Released += OnReleased;
+        }
+
+        protected virtual void OnDisable()
         {
             inputManager.Pressed += OnPressed;
             inputManager.Dragged += OnDragged;
