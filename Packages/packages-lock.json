@@ -7,8 +7,24 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.unity.analytics": {
+      "version": "3.3.2",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.cinemachine": {
       "version": "2.6.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.device-simulator": {
+      "version": "2.2.3-preview",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -19,6 +35,15 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.game.foundation": {
+      "version": "0.6.0-preview.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.analytics": "3.3.2"
+      },
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {

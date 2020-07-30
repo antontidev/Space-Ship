@@ -36,20 +36,30 @@ public class ShipPart : MonoBehaviour
             case 1:
                 var list = ToList(renderer.materials);
 
-                list.Add(glowEffect);
+                if (glowEffect != null)
+                {
+                   list.Add(glowEffect);
+                }
 
                 renderer.materials = list.ToArray();
                 break;
             case 2:
-                var matList = ToList(renderer.materials);
+                onClick?.Invoke(gameObj);
 
-                matList.RemoveAt(matList.Count);
+                //var matList = ToList(renderer.materials);
 
-                renderer.materials = matList.ToArray();
+                //if (matList[matList.Count] != null)
+                //{
+                ////    matList.RemoveAt(matList.Count);
+                //}
+
+                //renderer.materials = matList.ToArray();
 
                 clickCount = 0;
 
-                onClick?.Invoke(gameObj);
+                break;
+            default:
+                clickCount = 0;
                 break;
         }
     }

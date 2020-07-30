@@ -1,28 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Взрыв : MonoBehaviour
 {
-	
-	public float destroyDelay;
-	public float minForce;
-	public float maxForce;
-	public float radius;
-	public void Explode (){
+    public float destroyDelay;
+    public float minForce;
+    public float maxForce;
+    public float radius;
 
-	void Start(){
-		Explode ();
-	}
-			foreach (Transform t in transform) {
-			
-				var rb = t. GetComponent<Rigidbody> ();
+    void Start()
+    {
+        Explode();
+    }
 
-				if(rb != null){
-					rb.AddExplosionForce (Random.Range (minForce, maxForce), transform.position, radius);
+    public void Explode()
+    {
+        foreach (Transform t in transform)
+        {
+            var rb = t.GetComponent<Rigidbody>();
 
-				}
-				Destroy (t.gameObject, destroyDelay);
-			}
-	}
+            if (rb != null)
+            {
+                rb.AddExplosionForce(Random.Range(minForce, maxForce), transform.position, radius);
+            }
+            Destroy(t.gameObject, destroyDelay);
+        }
+    }
 }

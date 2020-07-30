@@ -31,31 +31,27 @@ public class PartsSpawner : MonoBehaviour
 	[SerializeField]
 	public ClickManager manager;
 
-	public IEnumerator SpawnLevel()
+	public void SpawnLevel()
     {
 		SpawnPlanet();
 
 		SpawnRocket();
 
-		var trash = StartCoroutine(SpawnTrash());
+		SpawnTrash();
 
-		var parts = StartCoroutine(SpawnAllParts());
-
-		yield return trash;
-		yield return parts;
+		SpawnAllParts();
     }
 
-	public IEnumerator SpawnTrash()
+	public void SpawnTrash()
     {
 		foreach (var element in trash)
         {
 			var trashPart = Instantiate(element, Random.onUnitSphere * 5, transform.rotation);
 
-			yield return null;
         }
     }
 
-	public IEnumerator SpawnAllParts()
+	public void SpawnAllParts()
 	{
 		var allParts = parts.Concat(trueParts);
 
@@ -68,8 +64,6 @@ public class PartsSpawner : MonoBehaviour
 			//shipPart.SubmitGlowMaterial(glowEffect);
 			shipPart.onClick += rocketComp.Handle;
 			shipPart.onClick += manager.HandleClick;
-
-			yield return null;
 		}
 	}
 
@@ -78,9 +72,10 @@ public class PartsSpawner : MonoBehaviour
 	{
 		var plan = Instantiate(planet, Vector3.zero, transform.rotation);
 
-		planetTransform = plan.transform;
+		var planComp = plan.GetComponent<Planet>();
+		planetTransform = planComp.spawnRocketPostition;
 
-		planetSpawned?.Invoke(planetTransform);
+		planetSpawned?.Invoke(plan.transform);
 	}
 
 	private void SpawnRocket()
@@ -108,6 +103,6 @@ public class PartsSpawner : MonoBehaviour
 
 		planet = level.planet;
 
-		StartCoroutine(SpawnLevel());
+		SpawnLevel();
 	}
 }
