@@ -20,9 +20,13 @@ namespace InputSamples.Gestures
     /// Controller that interprets takes pointer input from <see cref="PointerInputManager"/> and detects
     /// directional swipes and detects taps.
     /// </summary>
-    public class GestureController : IController
+    [RequireComponent(typeof(PointerInputManager))]
+    public class GestureController : MonoBehaviour
     {
         private PointerInputManager inputManager;
+
+        // For accessing GestureController without setting up a reference inside the Editor
+        public static GestureController Instance { get; private set; }
 
         // Maximum duration of a press before it can no longer be considered a tap.
         [SerializeField]
@@ -97,6 +101,8 @@ namespace InputSamples.Gestures
         private void Awake()
         {
             inputManager = GetComponent<PointerInputManager>();
+
+            Instance = this;
         }
 
         protected virtual void OnEnable()

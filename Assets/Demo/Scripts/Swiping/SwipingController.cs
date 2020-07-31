@@ -21,9 +21,6 @@ namespace InputSamples.Demo.Swiping
         [SerializeField]
         private float minimumCosineForBinTargetting = 0.75f;
 
-        [SerializeField]
-        public FreeLookAddOn addOn;
-
         /// <summary>
         /// Mapping of input IDs to 'grabbed' trash.
         /// </summary>

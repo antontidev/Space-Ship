@@ -13,10 +13,7 @@ public class IGameManager : MonoBehaviour
 public class GameManagerScript : IGameManager
 {
     [SerializeField]
-    private CinemachineFreeLook cam;
-
-    [SerializeField]
-    private GestureController gestureController;
+    public FreeLookAddOn freeLookCamera;
 
     [SerializeField]
     public Timer timer;
@@ -29,10 +26,6 @@ public class GameManagerScript : IGameManager
 
     [SerializeField]
     public PartsSpawner spawner;
-
-    private Planet planetComponent;
-
-    private GameObject rocketObj;
 
     //For testing
     [SerializeField]
@@ -49,21 +42,16 @@ public class GameManagerScript : IGameManager
     {
         levelManager.NextLevelLoaded += spawner.LevelLoaded;
         levelManager.NextLevelLoaded += timer.LevelLoaded;
-        spawner.planetSpawned += SetCameraTarget;
         timer.Up += MakeDecision;
+        spawner.planetSpawned += freeLookCamera.SetTargetObject;
     }
 
     private void OnDisable()
     {
         levelManager.NextLevelLoaded -= spawner.LevelLoaded;
         levelManager.NextLevelLoaded -= timer.LevelLoaded;
-        spawner.planetSpawned -= SetCameraTarget;
         timer.Up -= MakeDecision;
-    }
-
-    private void SetCameraTarget(Transform planetTransform)
-    {
-        cam.LookAt = cam.Follow = planetTransform;
+        spawner.planetSpawned -= freeLookCamera.SetTargetObject;
     }
 
     private void MakeDecision()

@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent (typeof (Rigidbody))]
 public class PhysObj : MonoBehaviour
 {
-
     Gravity planet;
 
     void Start()

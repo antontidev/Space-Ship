@@ -20,7 +20,7 @@ public class PartsSpawner : MonoBehaviour
 
 	private Rocket rocketComp;
 
-	private Transform planetTransform;
+	private Transform rocketSpawnPosition;
 
 	[SerializeField]
 	public List<GameObject> trash;
@@ -73,14 +73,26 @@ public class PartsSpawner : MonoBehaviour
 		var plan = Instantiate(planet, Vector3.zero, transform.rotation);
 
 		var planComp = plan.GetComponent<Planet>();
-		planetTransform = planComp.spawnRocketPostition;
 
-		planetSpawned?.Invoke(plan.transform);
+		Transform camTargetPlanet = plan.transform;
+
+		//Find right planet to look at
+		foreach(Transform child in plan.transform)
+        {
+			if (child.tag == "Planet")
+            {
+				camTargetPlanet = child;
+            }
+        }
+
+		rocketSpawnPosition = planComp.spawnRocketPostition;
+
+		planetSpawned?.Invoke(camTargetPlanet);
 	}
 
 	private void SpawnRocket()
 	{
-		var rock = Instantiate(rocketObj, planetTransform.position, transform.rotation);
+		var rock = Instantiate(rocketObj, rocketSpawnPosition.position, transform.rotation);
 		DeactivateChildrens(rock);
 		rocketComp = rock.GetComponent<Rocket>();
 	}
