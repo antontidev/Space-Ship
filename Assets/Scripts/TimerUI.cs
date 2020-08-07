@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using UniRx;
 
+[RequireComponent(typeof(TextMeshProUGUI))]
 public class TimerUI : MonoBehaviour
 {
 
@@ -14,12 +16,12 @@ public class TimerUI : MonoBehaviour
 
     void Start()
     {
-        timerText = GameObject.Find("Canvas/Text").GetComponent<TextMeshProUGUI>();
+        timerText = GetComponent<TextMeshProUGUI>();
+
+        time.roundedTimer.Subscribe(x => {
+            UpdateText(x);
+        });
     }
 
-
-    void Update()
-    {
-   //     timerText.text = Mathf.Floor(time.timer).ToString();
-    }
+    void UpdateText(int timer) => timerText.text = timer.ToString();
 }

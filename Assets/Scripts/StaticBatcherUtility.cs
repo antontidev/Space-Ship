@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using UnityEngine;
 
+//For future purposes
 public class StaticBatcherUtility : MonoBehaviour
 {
     private ObservableCollection<GameObject> batchedObjects;

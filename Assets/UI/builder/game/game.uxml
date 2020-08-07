@@ -1,5 +1,8 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <ui:VisualElement>
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="top">
+        <Style src="game.uss" />
+    </ui:VisualElement>
+    <ui:VisualElement name="bottom">
         <Style src="game.uss" />
     </ui:VisualElement>
 </ui:UXML>

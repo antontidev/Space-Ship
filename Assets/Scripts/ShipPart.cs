@@ -7,9 +7,9 @@ using UnityEngine;
 
 public class ShipPart : MonoBehaviour
 {
-    public delegate void OnClick(GameObject obj);
+    public delegate void OnSecondClick(GameObject obj);
 
-    public OnClick onClick;
+    public OnSecondClick onClick;
 
     private int clickCount = 0;
 

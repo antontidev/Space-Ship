@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: "Shader Graphs_\u0421\u0438\u044F\u043D\u0438\u0435"
-  m_Shader: {fileID: -6465566751694194690, guid: 1c9f4c2b7c0899740a2f97a5478214f3,
+  m_Shader: {fileID: -6465566751694194690, guid: 23a0b07414ba2584ebe9cf86841eee53,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
@@ -24,10 +24,21 @@ Material:
         m_Texture: {fileID: 2800000, guid: 10c49fcd9c64421db7c0133e61e55f97, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - Texture2D_D8DF00EF:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_48B3AC1D: 0.1
+    - Vector1_54B2D938: 5
+    - Vector1_7979D504: 10
+    - Vector1_A0059BF8: 1.2
     - Vector1_B41D6AF7: 120.4
     - Vector1_BFA49D49: 0
     - Vector1_D1BA21B: 1.45
     m_Colors:
     - Color_C66D24CA: {r: 1, g: 0, b: 0, a: 0}
+    - Color_C9DF4354: {r: 2.491345, g: 2.491345, b: 2.491345, a: 0}
+    - Vector2_AE1C03B2: {r: 0, g: -0.2, b: 0, a: 0}
+    - Vector2_FAC8F919: {r: -0.1, g: -0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
