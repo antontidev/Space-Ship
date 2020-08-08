@@ -11,7 +11,6 @@
 	概	述：		新建
 
 *********************************************************************/
-using System;
 using System.Collections.Generic;
 using System.Text;
 

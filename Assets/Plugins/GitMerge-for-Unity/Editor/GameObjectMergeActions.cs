@@ -1,10 +1,10 @@
 ﻿
 namespace GitMerge
 {
-    using UnityEngine;
-    using UnityEditor;
     using System.Collections.Generic;
     using System.Text;
+    using UnityEditor;
+    using UnityEngine;
 
     /// <summary>
     /// One instance of this class represents one GameObject with relevance to the merge process.
@@ -239,7 +239,7 @@ namespace GitMerge
         {
             var our = ourProperty.GetValue();
             var their = theirProperty.GetValue();
-            
+
             return !object.Equals(our, their);
         }
 

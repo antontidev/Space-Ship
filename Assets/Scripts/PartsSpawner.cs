@@ -1,120 +1,118 @@
-﻿using InputSamples.Gestures;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class PartsSpawner : MonoBehaviour
 {
-	public delegate void PlanetSpawned(Transform planetTransform);
+    public delegate void PlanetSpawned(Transform planetTransform);
 
-	public PlanetSpawned planetSpawned;
+    public PlanetSpawned planetSpawned;
 
-	private List<GameObject> parts;
+    private List<GameObject> parts;
 
-	private List<GameObject> trueParts;
+    private List<GameObject> trueParts;
 
-	private GameObject rocketObj;
+    private GameObject rocketObj;
 
-	private GameObject planet;
+    private GameObject planet;
 
-	private Rocket rocketComp;
+    private Rocket rocketComp;
 
-	private Transform rocketSpawnPosition;
+    private Transform rocketSpawnPosition;
 
-	[SerializeField]
-	public List<GameObject> trash;
+    [SerializeField]
+    public List<GameObject> trash;
 
-	[SerializeField]
-	public Material glowEffect;
+    [SerializeField]
+    public Material glowEffect;
 
-	[SerializeField]
-	public ClickManager manager;
+    [SerializeField]
+    public ClickManager manager;
 
-	public void SpawnLevel()
+    public void SpawnLevel()
     {
-		SpawnPlanet();
+        SpawnPlanet();
 
-		SpawnRocket();
+        SpawnRocket();
 
-		SpawnTrash();
+        SpawnTrash();
 
-		SpawnAllParts();
+        SpawnAllParts();
     }
 
-	public void SpawnTrash()
+    public void SpawnTrash()
     {
-		foreach (var element in trash)
+        foreach (var element in trash)
         {
-			var trashPart = Instantiate(element, Random.onUnitSphere * 5, transform.rotation);
+            var trashPart = Instantiate(element, Random.onUnitSphere * 5, transform.rotation);
 
         }
     }
 
-	public void SpawnAllParts()
-	{
-		var allParts = parts.Concat(trueParts);
+    public void SpawnAllParts()
+    {
+        var allParts = parts.Concat(trueParts);
 
-		foreach (var el in allParts)
-		{
-			var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
-
-			var shipPart = part.GetComponent<ShipPart>();
-
-			//shipPart.SubmitGlowMaterial(glowEffect);
-			shipPart.onClick += rocketComp.Handle;
-			shipPart.onClick += manager.HandleClick;
-		}
-	}
-
-
-	private void SpawnPlanet()
-	{
-		var plan = Instantiate(planet, Vector3.zero, transform.rotation);
-
-		var planComp = plan.GetComponent<Planet>();
-
-		Transform camTargetPlanet = plan.transform;
-
-		//Find right planet to look at
-		foreach(Transform child in plan.transform)
+        foreach (var el in allParts)
         {
-			if (child.tag == "Planet")
+            var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
+
+            var shipPart = part.GetComponent<ShipPart>();
+
+            //shipPart.SubmitGlowMaterial(glowEffect);
+            shipPart.onClick += rocketComp.Handle;
+            shipPart.onClick += manager.HandleClick;
+        }
+    }
+
+
+    private void SpawnPlanet()
+    {
+        var plan = Instantiate(planet, Vector3.zero, transform.rotation);
+
+        var planComp = plan.GetComponent<Planet>();
+
+        Transform camTargetPlanet = plan.transform;
+
+        //Find right planet to look at
+        foreach (Transform child in plan.transform)
+        {
+            if (child.tag == "Planet")
             {
-				camTargetPlanet = child;
+                camTargetPlanet = child;
             }
         }
 
-		rocketSpawnPosition = planComp.spawnRocketPostition;
+        rocketSpawnPosition = planComp.spawnRocketPostition;
 
-		planetSpawned?.Invoke(camTargetPlanet);
-	}
+        planetSpawned?.Invoke(camTargetPlanet);
+    }
 
-	private void SpawnRocket()
-	{
-		var rock = Instantiate(rocketObj, rocketSpawnPosition.position, transform.rotation);
-		DeactivateChildrens(rock);
-		rocketComp = rock.GetComponent<Rocket>();
-	}
+    private void SpawnRocket()
+    {
+        var rock = Instantiate(rocketObj, rocketSpawnPosition.position, transform.rotation);
+        DeactivateChildrens(rock);
+        rocketComp = rock.GetComponent<Rocket>();
+    }
 
-	private void DeactivateChildrens(GameObject go)
-	{
-		for (int j = 0; j < go.transform.childCount; j++)
-		{
-			go.transform.GetChild(j).gameObject.SetActive(false);
-		}
-	}
+    private void DeactivateChildrens(GameObject go)
+    {
+        for (int j = 0; j < go.transform.childCount; j++)
+        {
+            go.transform.GetChild(j).gameObject.SetActive(false);
+        }
+    }
 
-	public void LevelLoaded(Level level)
-	{
-		parts = level.modules;
+    public void LevelLoaded(Level level)
+    {
+        parts = level.modules;
 
-		trueParts = level.trueModules;
+        trueParts = level.trueModules;
 
-		rocketObj = level.rocket;
+        rocketObj = level.rocket;
 
-		planet = level.planet;
+        planet = level.planet;
 
-		SpawnLevel();
-	}
+        SpawnLevel();
+    }
 }

@@ -2,15 +2,15 @@
 
 namespace GitMerge
 {
-    using UnityEngine;
     using UnityEditor;
+    using UnityEngine;
 
     /// <summary>
     /// Struct representing a GameObject ID.
     /// Similar to GlobalObjectID, but used for robustness against changes to Unity's API.
     /// </summary>
     public struct ObjectID
-    {        
+    {
         public readonly ulong id;
         public readonly ulong prefabId;
 
@@ -19,7 +19,7 @@ namespace GitMerge
             this.id = id;
             this.prefabId = prefabId;
         }
-            
+
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
@@ -28,10 +28,10 @@ namespace GitMerge
             }
 
             var other = (ObjectID)obj;
-                
+
             return id == other.id && prefabId == other.prefabId;
         }
-            
+
         public override int GetHashCode()
         {
             return unchecked(id.GetHashCode() + prefabId.GetHashCode());

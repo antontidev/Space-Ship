@@ -1,5 +1,5 @@
-using System;
 using InputSamples.Controls;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

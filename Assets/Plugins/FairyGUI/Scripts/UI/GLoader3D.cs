@@ -1,5 +1,5 @@
-using UnityEngine;
 using FairyGUI.Utils;
+using UnityEngine;
 
 namespace FairyGUI
 {

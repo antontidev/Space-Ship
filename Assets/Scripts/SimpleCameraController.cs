@@ -1,4 +1,4 @@
-﻿ #if ENABLE_INPUT_SYSTEM && ENABLE_INPUT_SYSTEM_PACKAGE
+﻿#if ENABLE_INPUT_SYSTEM && ENABLE_INPUT_SYSTEM_PACKAGE
 #define USE_INPUT_SYSTEM
     using UnityEngine.InputSystem;
     using UnityEngine.InputSystem.Controls;
@@ -43,7 +43,7 @@ namespace UnityTemplateProjects
                 yaw = Mathf.Lerp(yaw, target.yaw, rotationLerpPct);
                 pitch = Mathf.Lerp(pitch, target.pitch, rotationLerpPct);
                 roll = Mathf.Lerp(roll, target.roll, rotationLerpPct);
-                
+
                 x = Mathf.Lerp(x, target.x, positionLerpPct);
                 y = Mathf.Lerp(y, target.y, positionLerpPct);
                 z = Mathf.Lerp(z, target.z, positionLerpPct);
@@ -55,7 +55,7 @@ namespace UnityTemplateProjects
                 t.position = new Vector3(x, y, z);
             }
         }
-        
+
         CameraState m_TargetCameraState = new CameraState();
         CameraState m_InterpolatingCameraState = new CameraState();
 
@@ -104,7 +104,7 @@ namespace UnityTemplateProjects
             }
             return direction;
         }
-        
+
         void Update()
         {
             Vector3 translation = Vector3.zero;
@@ -115,9 +115,9 @@ namespace UnityTemplateProjects
             if (Input.GetKey(KeyCode.Escape))
             {
                 Application.Quit();
-				#if UNITY_EDITOR
+#if UNITY_EDITOR
 				UnityEditor.EditorApplication.isPlaying = false; 
-				#endif
+#endif
             }
             // Hide and lock cursor when right mouse button pressed
             if (Input.GetMouseButtonDown(1))
@@ -156,7 +156,7 @@ namespace UnityTemplateProjects
             boost += Input.mouseScrollDelta.y * 0.2f;
             translation *= Mathf.Pow(2.0f, boost);
 
-#elif USE_INPUT_SYSTEM 
+#elif USE_INPUT_SYSTEM
             // TODO: make the new input system work
 #endif
 

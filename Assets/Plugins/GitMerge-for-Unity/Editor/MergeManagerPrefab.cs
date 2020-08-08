@@ -1,10 +1,10 @@
 ﻿
 namespace GitMerge
 {
-    using UnityEngine;
-    using UnityEditor;
     using System.Collections.Generic;
+    using UnityEditor;
     using UnityEditor.SceneManagement;
+    using UnityEngine;
 
     public class MergeManagerPrefab : MergeManager
     {
@@ -19,7 +19,7 @@ namespace GitMerge
         {
 
         }
-        
+
         public bool InitializeMerge(GameObject prefab)
         {
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
@@ -33,7 +33,7 @@ namespace GitMerge
             ObjectDictionaries.Clear();
 
             var filePath = AssetDatabase.GetAssetOrScenePath(prefab);
-            
+
             vcs.CheckoutOurs(filePath);
             CheckoutTheirVersionOf(filePath);
             AssetDatabase.Refresh();
@@ -46,13 +46,13 @@ namespace GitMerge
 
             // Instantiate our object in order to view it while merging.
             ourPrefabInstance = PrefabUtility.InstantiatePrefab(prefab) as GameObject;
-            
+
             var ourObjects = GetAllObjects(prefab);
 
             theirPrefab = AssetDatabase.LoadAssetAtPath(theirFilename, typeof(GameObject)) as GameObject;
             theirPrefab.hideFlags = HideFlags.HideAndDontSave;
             var theirObjects = GetAllObjects(theirPrefab);
-            
+
             BuildAllMergeActions(ourObjects, theirObjects);
 
             if (allMergeActions.Count == 0)
@@ -103,7 +103,7 @@ namespace GitMerge
 
             // TODO: Could we explicitly just save the prefab?
             AssetDatabase.SaveAssets();
-            
+
             vcs.MarkAsMerged(fileName);
 
             // Directly committing here might not be that smart, since there might be more conflicts.

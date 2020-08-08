@@ -1,6 +1,4 @@
-﻿using FairyGUI;
-using MyBox;
-using System.Collections;
+﻿using MyBox;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +24,7 @@ public class ShipPart : MonoBehaviour
     {
         glowEffect = glow;
     }
-    
+
     public void ClickOnObject(GameObject gameObj)
     {
         clickCount++;
@@ -38,7 +36,7 @@ public class ShipPart : MonoBehaviour
 
                 if (glowEffect != null)
                 {
-                   list.Add(glowEffect);
+                    list.Add(glowEffect);
                 }
 
                 renderer.materials = list.ToArray();

@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using FairyGUI.Utils;
+﻿using FairyGUI.Utils;
+using UnityEngine;
 
 namespace FairyGUI
 {
@@ -131,7 +131,7 @@ namespace FairyGUI
         override public void ConstructFromResource()
         {
             this.gameObjectName = packageItem.name;
-            
+
             PackageItem contentItem = packageItem.getBranch();
             sourceWidth = contentItem.width;
             sourceHeight = contentItem.height;

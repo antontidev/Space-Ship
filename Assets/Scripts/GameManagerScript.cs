@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using InputSamples.Gestures;
-using Cinemachine;
 
 public class IGameManager : MonoBehaviour
 {
@@ -57,7 +53,7 @@ public class GameManagerScript : IGameManager
     private void MakeDecision()
     {
         PlayCutscene();
-        ChangeLevel();
+      //  ChangeLevel();
     }
 
     private void PlayCutscene()

@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace GitMerge
+﻿namespace GitMerge
 {
     public static class ObjectExtensions
     {

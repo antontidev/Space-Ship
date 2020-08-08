@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using FairyGUI.Utils;
+﻿using FairyGUI.Utils;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace FairyGUI

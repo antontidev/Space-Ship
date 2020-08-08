@@ -1,10 +1,9 @@
 ﻿
 namespace GitMerge
 {
-    using UnityEngine;
-    using System.IO;
     using System.Collections.Generic;
-    using UnityEditor;
+    using System.IO;
+    using UnityEngine;
 
     public abstract class MergeManager
     {

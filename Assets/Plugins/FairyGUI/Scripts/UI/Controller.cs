@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using FairyGUI.Utils;
+﻿using FairyGUI.Utils;
 using System;
+using System.Collections.Generic;
 
 namespace FairyGUI
 {

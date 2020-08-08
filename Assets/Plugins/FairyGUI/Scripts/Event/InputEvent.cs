@@ -104,7 +104,7 @@ namespace FairyGUI
         /// </summary>
         public bool ctrl
         {
-             get
+            get
             {
                 return Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
             }

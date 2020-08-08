@@ -1,7 +1,7 @@
-﻿using System;
+﻿using FairyGUI.Utils;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using FairyGUI.Utils;
 #if FAIRYGUI_TOLUA
 using LuaInterface;
 #endif

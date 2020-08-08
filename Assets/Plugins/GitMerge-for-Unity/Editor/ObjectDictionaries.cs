@@ -1,8 +1,8 @@
 ﻿
 namespace GitMerge
 {
-    using UnityEngine;
     using System.Collections.Generic;
+    using UnityEngine;
 
     /// <summary>
     /// Dictionaries that categorize the scene's objects into our objects, their objects, and temporary

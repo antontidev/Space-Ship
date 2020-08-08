@@ -1,9 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
-using UnityEngine;
+﻿using System;
 using TMPro;
 using UniRx;
+using UnityEngine;
+
+/// <summary>
+/// For textMeshPro SubscribeWithText UniRx extension
+/// </summary>
+namespace UniRx
+{
+    public static class UnityUIExtensions
+    {
+        public static IDisposable SubscribeToText<T>(this IObservable<T> source, TextMeshProUGUI text)
+        {
+            return source.SubscribeWithState(text, (x, t) => t.text = x.ToString());
+        }
+    }
+}
 
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class TimerUI : MonoBehaviour
@@ -18,10 +30,6 @@ public class TimerUI : MonoBehaviour
     {
         timerText = GetComponent<TextMeshProUGUI>();
 
-        time.roundedTimer.Subscribe(x => {
-            UpdateText(x);
-        });
+        time.roundedTimer.SubscribeToText(timerText);
     }
-
-    void UpdateText(int timer) => timerText.text = timer.ToString();
 }

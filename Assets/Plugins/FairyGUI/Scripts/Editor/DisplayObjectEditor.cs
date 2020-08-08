@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using FairyGUI;
 using UnityEditor;
-using FairyGUI;
+using UnityEngine;
 
 namespace FairyGUIEditor
 {

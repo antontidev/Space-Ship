@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using FairyGUI;
+using System.Collections.Generic;
 using UnityEditor;
-using FairyGUI;
+using UnityEngine;
 
 namespace FairyGUIEditor
 {

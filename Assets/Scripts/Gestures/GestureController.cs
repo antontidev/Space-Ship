@@ -1,7 +1,7 @@
+using InputSamples.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using InputSamples.Drawing;
 using UnityEngine;
 using UnityEngine.UI;
 

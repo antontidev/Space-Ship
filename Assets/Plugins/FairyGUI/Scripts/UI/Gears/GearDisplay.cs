@@ -1,5 +1,5 @@
-﻿using System;
-using FairyGUI.Utils;
+﻿using FairyGUI.Utils;
+using System;
 
 namespace FairyGUI
 {

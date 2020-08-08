@@ -1,9 +1,6 @@
-﻿using UnityEngine;
-using Cinemachine;
-using UnityEngine.InputSystem.EnhancedTouch;
+﻿using Cinemachine;
 using InputSamples.Gestures;
-using System;
-using UnityEngine.InputSystem;
+using UnityEngine;
 
 [RequireComponent(typeof(CinemachineFreeLook))]
 public class FreeLookAddOn : MonoBehaviour
@@ -11,7 +8,7 @@ public class FreeLookAddOn : MonoBehaviour
     [SerializeField]
     private GestureController gestureController;
 
-    [Range(0f, 60f)] 
+    [Range(0f, 60f)]
     public float LookSpeed = 1f;
 
     public bool InvertY = false;

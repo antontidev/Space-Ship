@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using FairyGUI;
 using UnityEditor;
-using FairyGUI;
+using UnityEngine;
 
 namespace FairyGUIEditor
 {
@@ -31,7 +31,7 @@ namespace FairyGUIEditor
             serializedObject.Update();
 
             DrawPropertiesExcluding(serializedObject, propertyToExclude);
-            
+
             UIConfig config = (UIConfig)target;
 
             EditorGUILayout.BeginHorizontal();

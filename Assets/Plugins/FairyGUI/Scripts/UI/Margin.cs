@@ -10,7 +10,7 @@ namespace FairyGUI
         /// 
         /// </summary>
         public int left;
-        
+
         /// <summary>
         /// 
         /// </summary>

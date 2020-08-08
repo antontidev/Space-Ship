@@ -100,7 +100,7 @@ namespace FairyGUI
                 _frames = value;
                 _scale9Grid = null;
                 _scaleByTile = false;
-                
+
                 if (_frames == null)
                 {
                     _frameCount = 0;

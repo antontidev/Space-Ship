@@ -99,7 +99,7 @@ namespace FairyGUI
             {
                 if (this is GearXY)
                 {
-                    if(buffer.ReadBool())
+                    if (buffer.ReadBool())
                     {
                         ((GearXY)this).positionsInPercent = true;
                         for (int i = 0; i < cnt; i++)

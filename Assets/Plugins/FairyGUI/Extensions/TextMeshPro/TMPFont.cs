@@ -175,7 +175,7 @@ namespace FairyGUI
             }
 
             // Set Padding based on selected font style
-            #region Handle Style Padding
+#region Handle Style Padding
             if (((_style & FontStyles.Bold) == FontStyles.Bold)) // Checks for any combination of Bold Style.
             {
                 if (_material.HasProperty(ShaderUtilities.ID_GradientScale))
@@ -204,7 +204,7 @@ namespace FairyGUI
                 else
                     _stylePadding = 0;
             }
-            #endregion Handle Style Padding
+#endregion Handle Style Padding
         }
 
         override public void SetFormat(TextFormat format, float fontSizeScale)
@@ -308,7 +308,7 @@ namespace FairyGUI
             bottomLeft.x = topLeft.x;
             bottomLeft.y = bottomRight.y;
 
-            #region Handle Italic & Shearing
+#region Handle Italic & Shearing
             if (((_style & FontStyles.Italic) == FontStyles.Italic))
             {
                 // Shift Top vertices forward by half (Shear Value * height of character) and Bottom vertices back by same amount. 
@@ -321,7 +321,7 @@ namespace FairyGUI
                 topRight += topShear;
                 bottomRight += bottomShear;
             }
-            #endregion Handle Italics & Shearing
+#endregion Handle Italics & Shearing
 
             vertList.Add(bottomLeft);
             vertList.Add(topLeft);
@@ -390,7 +390,7 @@ namespace FairyGUI
                 segmentWidth = width / 2f;
 
             // UNDERLINE VERTICES FOR (3) LINE SEGMENTS
-            #region UNDERLINE VERTICES
+#region UNDERLINE VERTICES
 
             thickness = thickness * scale;
             if (thickness < 1)
@@ -438,10 +438,10 @@ namespace FairyGUI
             vertList.Add(topRight);
             vertList.Add(bottomRight);
 
-            #endregion
+#endregion
 
             // UNDERLINE UV0
-            #region HANDLE UV0
+#region HANDLE UV0
 
             // Calculate UV required to setup the 3 Quads for the Underline.
             Vector2 uv0 = new Vector2((_lineChar.glyph.glyphRect.x - _padding) / _fontAsset.atlasWidth, (_lineChar.glyph.glyphRect.y - _padding) / _fontAsset.atlasHeight);  // bottom left
@@ -471,10 +471,10 @@ namespace FairyGUI
             uvList.Add(uv6);
             uvList.Add(uv7);
 
-            #endregion
+#endregion
 
             // UNDERLINE UV2
-            #region HANDLE UV2 - SDF SCALE
+#region HANDLE UV2 - SDF SCALE
             // UV1 contains Face / Border UV layout.
             float segUv1 = segmentWidth / width;
             float segUv2 = 1 - segUv1;
@@ -497,16 +497,16 @@ namespace FairyGUI
             uv2List.Add(PackUV(1, 1, xScale));
             uv2List.Add(PackUV(1, 0, xScale));
 
-            #endregion
+#endregion
 
             // UNDERLINE VERTEX COLORS
-            #region
+#region
             // Alpha is the lower of the vertex color or tag color alpha used.
 
             for (int i = 0; i < 12; i++)
                 colList.Add(vertexColors[0]);
 
-            #endregion
+#endregion
 
             return 12;
         }

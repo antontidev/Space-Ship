@@ -1,8 +1,8 @@
 ﻿
 namespace GitMerge
 {
-    using UnityEngine;
     using UnityEditor;
+    using UnityEngine;
 
     /// <summary>
     /// Each MergeAction represents a single, specific merge conflict.

@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using UnityEditor;
-using UnityEngine.SceneManagement;
-using System;
-using System.Linq;
+﻿using GitMerge.Utilities;
 using System.Collections.Generic;
-using GitMerge.Utilities;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GitMerge
 {

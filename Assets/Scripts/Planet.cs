@@ -1,9 +1,4 @@
-﻿using InputSamples.Gestures;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using MyBox;
-using Zenject;
+﻿using UnityEngine;
 
 public class Planet : MonoBehaviour
 {

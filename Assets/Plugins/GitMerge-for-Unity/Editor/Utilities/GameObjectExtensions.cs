@@ -1,8 +1,8 @@
 ﻿
 namespace GitMerge
 {
-    using UnityEngine;
     using UnityEditor;
+    using UnityEngine;
 
     public static class GameObjectExtensions
     {

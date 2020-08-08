@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
 using UniRx;
+using UnityEngine;
 
 /// <summary>
 /// Timer which gets value from loaded level
@@ -22,33 +23,52 @@ public class Timer : MonoBehaviour
     private bool emitted = false;
 
     /// <summary>
+    /// Holds tiimer update observable
+    /// </summary>
+    private IDisposable timerUpdater;
+
+    /// <summary>
     /// Used to indicated that timer is actually up
     /// </summary>
-    /// <remarks>
-    /// In future it's better to use Action type instead of delegates
-    /// </remarks>
-    public TimerUp Up;
+    public Action Up;
 
-    private void Start() => roundedTimer = new ReactiveProperty<int>();
+    private void Start() 
+    { 
+        roundedTimer = new ReactiveProperty<int>();
 
-    /// <remarks>
-    /// I prefer to use Observable timer instead of checking for it's actual
-    /// value and then emmiting TimerUp Event
-    /// </remarks>
-    void Update()
-    {
-        if (timer > 0.0f)
+        timerUpdater = Observable.EveryUpdate().Subscribe(_ =>
         {
             timer -= Time.deltaTime;
 
             roundedTimer.Value = Mathf.FloorToInt(timer);
-        }
-        else if (!emitted)
+        });
+
+        Observable.EveryUpdate().Where(_ => timer < 0.0f).Subscribe(_ =>
         {
             Up?.Invoke();
-            emitted = true;
-        }
+            Debug.Log("close"); ;
+            timerUpdater.Dispose();
+        });
     }
+
+    ///// <remarks>
+    ///// I prefer to use Observable timer instead of checking for it's actual
+    ///// value and then emmiting TimerUp Event
+    ///// </remarks>
+    //void Update()
+    //{
+    //    if (timer > 0.0f)
+    //    {
+    //        timer -= Time.deltaTime;
+
+    //    }
+    //    else if (!emitted)
+    //    {
+    //        Up?.Invoke();
+    //        emitted = true;
+    //    }
+    //}
+
     /// <example>
     /// <code>
     /// LevelManager2 levelManager;

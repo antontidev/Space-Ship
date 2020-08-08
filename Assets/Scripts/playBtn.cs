@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine;
 
 public class playBtn : MonoBehaviour
 {
     [Scene]
     public string gameScene;
-  public void playGame()
+    public void playGame()
     {
         SceneManager.LoadScene(gameScene);
     }

@@ -1,11 +1,11 @@
 ﻿
 namespace GitMerge
 {
-    using UnityEngine;
-    using UnityEditor;
-    using UnityEngine.SceneManagement;
-    using UnityEditor.SceneManagement;
     using System.Collections.Generic;
+    using UnityEditor;
+    using UnityEditor.SceneManagement;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
 
     public class MergeManagerScene : MergeManager
     {
@@ -56,7 +56,7 @@ namespace GitMerge
                 var addedObjects = GetAllNewSceneObjects(ourObjects);
                 ObjectDictionaries.AddToTheirObjects(addedObjects);
                 BuildAllMergeActions(ourObjects, addedObjects);
-                
+
                 MoveGameObjectsToScene(theirScene.GetRootGameObjects(), activeScene);
             }
             finally
@@ -64,7 +64,7 @@ namespace GitMerge
                 EditorSceneManager.UnloadSceneAsync(theirScene);
                 AssetDatabase.DeleteAsset(theirFilename);
             }
-            
+
             if (allMergeActions.Count == 0)
             {
                 window.ShowNotification(new GUIContent("No conflict found for this scene."));
@@ -133,7 +133,7 @@ namespace GitMerge
         public override void AbortMerge(bool showNotification = true)
         {
             base.AbortMerge(showNotification);
-            
+
             EditorSceneManager.CloseScene(theirScene, true);
 
             EditorSceneManager.SaveScene(EditorSceneManager.GetActiveScene());

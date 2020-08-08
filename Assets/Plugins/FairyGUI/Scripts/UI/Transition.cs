@@ -1,6 +1,6 @@
-﻿using System;
+﻿using FairyGUI.Utils;
+using System;
 using System.Collections.Generic;
-using FairyGUI.Utils;
 using UnityEngine;
 
 namespace FairyGUI
@@ -715,12 +715,12 @@ namespace FairyGUI
                 {
                     if (item.tweenConfig != null)
                     {
-                        if(!item.tweenConfig.startValue.b3)
+                        if (!item.tweenConfig.startValue.b3)
                         {
                             item.tweenConfig.startValue.f1 += dx;
                             item.tweenConfig.startValue.f2 += dy;
                         }
-                        if(!item.tweenConfig.endValue.b3)
+                        if (!item.tweenConfig.endValue.b3)
                         {
                             item.tweenConfig.endValue.f1 += dx;
                             item.tweenConfig.endValue.f2 += dy;
@@ -728,7 +728,7 @@ namespace FairyGUI
                     }
                     else
                     {
-                        if(!((TValue)item.value).b3)
+                        if (!((TValue)item.value).b3)
                         {
                             ((TValue)item.value).f1 += dx;
                             ((TValue)item.value).f2 += dy;

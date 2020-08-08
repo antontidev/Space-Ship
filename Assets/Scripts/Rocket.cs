@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class Rocket : MonoBehaviour
 {
@@ -19,7 +17,7 @@ public class Rocket : MonoBehaviour
     private void Start()
     {
         ready = new Dictionary<string, bool>();
-        foreach(var el in trueParts)
+        foreach (var el in trueParts)
         {
             ready[el.tag] = false;
         }

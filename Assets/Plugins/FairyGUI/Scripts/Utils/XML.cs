@@ -284,7 +284,7 @@ namespace FairyGUI.Utils
         public void Parse(string aSource)
         {
             Reset();
-            
+
             XML lastOpenNode = null;
             sNodeStack.Clear();
 

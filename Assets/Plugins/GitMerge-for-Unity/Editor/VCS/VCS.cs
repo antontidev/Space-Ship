@@ -1,11 +1,11 @@
 ﻿
 namespace GitMerge
 {
-    using UnityEngine;
-    using UnityEditor;
-    using System.Diagnostics;
     using System.ComponentModel;
+    using System.Diagnostics;
     using System.IO;
+    using UnityEditor;
+    using UnityEngine;
 
     /// <summary>
     /// This abstract class represents a vcs interface.
@@ -16,7 +16,7 @@ namespace GitMerge
     {
         protected abstract string GetDefaultPath();
         protected abstract string EditorPrefsKey();
-        
+
         public abstract void CheckoutOurs(string path);
         public abstract void CheckoutTheirs(string path);
         public abstract void MarkAsMerged(string path);

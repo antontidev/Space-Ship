@@ -1,8 +1,8 @@
-﻿using System;
+﻿using FairyGUI.Utils;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
-using FairyGUI.Utils;
 
 namespace FairyGUI
 {

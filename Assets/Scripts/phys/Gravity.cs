@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Gravity : MonoBehaviour
 {
@@ -12,12 +10,12 @@ public class Gravity : MonoBehaviour
 
     [SerializeField]
     public float oxygen;
-    
+
     public void Attract(Transform body)
     {
         Vector3 centerDir = (body.position - transform.position).normalized;
         Vector3 bodyUpDir = body.up;
-        body.rotation = Quaternion.FromToRotation(bodyUpDir, centerDir)*body.rotation;
-        body.GetComponent<Rigidbody>().AddForce(centerDir*grav);
+        body.rotation = Quaternion.FromToRotation(bodyUpDir, centerDir) * body.rotation;
+        body.GetComponent<Rigidbody>().AddForce(centerDir * grav);
     }
 }

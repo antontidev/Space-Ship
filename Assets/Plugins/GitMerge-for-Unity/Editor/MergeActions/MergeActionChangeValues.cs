@@ -1,9 +1,9 @@
 ﻿
 namespace GitMerge
 {
-    using UnityEngine;
-    using UnityEditor;
     using System.Linq;
+    using UnityEditor;
+    using UnityEngine;
 
     /// <summary>
     /// The MergeAction allowing to merge the value of a single property of a Component.

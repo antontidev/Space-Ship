@@ -53,9 +53,9 @@ namespace InputSamples.Drawing
     // NOTE: In PointerControls, we are binding mouse and pen separately from touch. If we didn't care about multitouch,
     //       we wouldn't have to to that but could rather just bind `<Pointer>/position` etc. However, to source each touch
     //       as its own separate PointerInput source, we need to have multiple PointerInputComposites.
-    #if UNITY_EDITOR
+#if UNITY_EDITOR
     [InitializeOnLoad]
-    #endif
+#endif
     public class PointerInputComposite : InputBindingComposite<PointerInput>
     {
         [InputControl(layout = "Button")]
@@ -101,13 +101,13 @@ namespace InputSamples.Drawing
             };
         }
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         static PointerInputComposite()
         {
             Register();
         }
 
-        #endif
+#endif
 
         [RuntimeInitializeOnLoadMethod]
         private static void Register()

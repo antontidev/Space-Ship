@@ -1,6 +1,6 @@
+using InputSamples.Gestures;
 using UnityEngine;
 using Zenject;
-using InputSamples.Gestures;
 
 public class TestInstaller : MonoInstaller
 {

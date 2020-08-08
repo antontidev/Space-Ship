@@ -1,5 +1,5 @@
-﻿using UnityEditor;
-using FairyGUI;
+﻿using FairyGUI;
+using UnityEditor;
 
 namespace FairyGUIEditor
 {
