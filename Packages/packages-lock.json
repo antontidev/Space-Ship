@@ -7,15 +7,6 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
-    "com.unity.adaptiveperformance": {
-      "version": "1.1.9",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.subsystemregistration": "1.0.6"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.analytics": {
       "version": "3.3.2",
       "depth": 1,
@@ -76,15 +67,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.probuilder": {
-      "version": "4.3.1",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.settings-manager": "1.0.2"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.recorder": {
       "version": "2.2.0-preview.4",
       "depth": 0,
@@ -120,13 +102,6 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
-    "com.unity.settings-manager": {
-      "version": "1.0.2",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
     "com.unity.shadergraph": {
       "version": "8.2.0",
       "depth": 1,
@@ -135,13 +110,6 @@
         "com.unity.render-pipelines.core": "8.2.0",
         "com.unity.searcher": "4.0.9"
       },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.subsystemregistration": {
-      "version": "1.0.6",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {

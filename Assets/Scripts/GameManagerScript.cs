@@ -53,7 +53,7 @@ public class GameManagerScript : IGameManager
     private void MakeDecision()
     {
         PlayCutscene();
-      //  ChangeLevel();
+        ChangeLevel();
     }
 
     private void PlayCutscene()
