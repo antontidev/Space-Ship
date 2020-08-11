@@ -21,7 +21,7 @@ public class ClickManager : MonoBehaviour
         {
             var obj = activeObjects[tagString];
 
-            obj.transform.DetachChildren();
+            obj.transform.parent = null;
 
             obj.transform.position = Random.onUnitSphere * 1;
 
@@ -37,7 +37,7 @@ public class ClickManager : MonoBehaviour
 
         if (tagString == "Bottom")
         {
-            Instantiate(smokeEffect, gameO.transform, false);
+            Instantiate(smokeEffect, gameO.transform, true);
         }
 
         DeleteRigidBody(gameO);
@@ -48,7 +48,7 @@ public class ClickManager : MonoBehaviour
     private void AddRigidBody(GameObject go)
     {
         go.AddComponent<PhysObj>();
-        var meshC = go.AddComponent<BoxCollider>();
+        go.AddComponent<BoxCollider>();
     }
 
     private void DeleteRigidBody(GameObject go)

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Level1
   m_EditorClassIdentifier: 
   modules:
-  - {fileID: 1733660090443362901, guid: bb52acbadd8ceed4ab7e3410c68e29ec, type: 3}
-  - {fileID: 3908515796679238405, guid: 041167e5e7b1dc543ab59b3ea5d6a9ff, type: 3}
-  - {fileID: 7795734767763650916, guid: 2083aaab05453024c8af59cc51f92e60, type: 3}
+  - {fileID: 225938598826346103, guid: 441c167dc63d9294ba63c588be27fcc4, type: 3}
+  - {fileID: 1714514797277419293, guid: f503878abd386e2459c0d094e4f2392c, type: 3}
+  - {fileID: 8990852960573987316, guid: 2083aaab05453024c8af59cc51f92e60, type: 3}
   trueModules:
-  - {fileID: 6050157337320655169, guid: 18c851b33988531429a664074335e57a, type: 3}
-  - {fileID: 2393018511802942439, guid: bc20e9701c8389d458a23ece8977f809, type: 3}
-  - {fileID: 7279566945723813867, guid: 3fe61b7058f85be47bd09c0fb5186811, type: 3}
+  - {fileID: 4846649211500363813, guid: c88784671f69f3c458ac8c0471571d05, type: 3}
+  - {fileID: 2168737748040975920, guid: bc20e9701c8389d458a23ece8977f809, type: 3}
+  - {fileID: 9104764327691069580, guid: 3fe61b7058f85be47bd09c0fb5186811, type: 3}
   planet: {fileID: 3078006376644690614, guid: 5c53ef41f1c01fb4b8fa7c374cea0d64, type: 3}
-  rocket: {fileID: 2315045081873706374, guid: 2e9b2e1bb90933740a7c44a191d84adf, type: 3}
-  levelTime: 20
+  rocket: {fileID: 1388169694626016637, guid: f1e990ee1f0065a43b954ad1474580d7, type: 3}
+  levelTime: 60

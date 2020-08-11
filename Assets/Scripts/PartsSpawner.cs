@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 
 public class PartsSpawner : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class PartsSpawner : MonoBehaviour
     private Rocket rocketComp;
 
     private Transform rocketSpawnPosition;
+
+    [Inject]
+    private DiContainer _diContainer;
 
     [SerializeField]
     public List<GameObject> trash;
@@ -44,8 +48,8 @@ public class PartsSpawner : MonoBehaviour
     {
         foreach (var element in trash)
         {
-            var trashPart = Instantiate(element, Random.onUnitSphere * 5, transform.rotation);
-
+            _diContainer.InstantiatePrefab(element, Random.onUnitSphere * 5, transform.rotation, null);
+           // var trashPart = Instantiate(element, Random.onUnitSphere * 5, transform.rotation);
         }
     }
 
@@ -55,20 +59,23 @@ public class PartsSpawner : MonoBehaviour
 
         foreach (var el in allParts)
         {
-            var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
+            //var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
+
+            var part = _diContainer.InstantiatePrefab(el, Random.onUnitSphere * 5, transform.rotation, null);
 
             var shipPart = part.GetComponent<ShipPart>();
 
-            //shipPart.SubmitGlowMaterial(glowEffect);
-            shipPart.onClick += rocketComp.Handle;
-            shipPart.onClick += manager.HandleClick;
+            shipPart.onSecondClick += rocketComp.Handle;
+            shipPart.onSecondClick += manager.HandleClick;
         }
     }
 
 
     private void SpawnPlanet()
     {
-        var plan = Instantiate(planet, Vector3.zero, transform.rotation);
+        //var plan = Instantiate(planet, Vector3.zero, transform.rotation);
+
+        var plan = _diContainer.InstantiatePrefab(planet, Vector3.zero, transform.rotation, null);
 
         var planComp = plan.GetComponent<Planet>();
 
@@ -90,7 +97,10 @@ public class PartsSpawner : MonoBehaviour
 
     private void SpawnRocket()
     {
-        var rock = Instantiate(rocketObj, rocketSpawnPosition.position, transform.rotation);
+        //var rock = Instantiate(rocketObj, rocketSpawnPosition.position, transform.rotation);
+
+        var rock = _diContainer.InstantiatePrefab(rocketObj, rocketSpawnPosition.position, transform.rotation, null);
+        
         DeactivateChildrens(rock);
         rocketComp = rock.GetComponent<Rocket>();
     }

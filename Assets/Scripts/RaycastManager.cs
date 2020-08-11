@@ -43,7 +43,7 @@ public class RaycastManager : MonoBehaviour
 
             ShipPart shipPart = GetShipPart(gameObj);
 
-            shipPart.ClickOnObject(gameObj);
+            shipPart.ClickOnObject();
         }
     }
 

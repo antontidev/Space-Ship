@@ -1,45 +1,43 @@
-﻿using MyBox;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
+using Zenject;
 
+[RequireComponent(typeof(ModulePerk))]
 public class ShipPart : MonoBehaviour
 {
-    public Action<GameObject> onClick;
+    public Action<GameObject> onSecondClick;
 
     private int clickCount = 0;
 
-    private Material glowEffect;
+    [Inject]
+    public GlowManager glowManager;
 
-    private Material defaultMaterial;
+    [Inject]
+    public ActivePartManager activePartManager;
 
     private MeshRenderer meshRenderer;
 
-    public void Awake()
+    private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        defaultMaterial = meshRenderer.material;
     }
 
-    public void SubmitGlowMaterial(Material glow)
-    {
-        glowEffect = glow;
-    }
-
-    public void ClickOnObject(GameObject gameObj)
+    public void ClickOnObject()
     {
         clickCount++;
 
         switch (clickCount)
         {
             case 1:
-                meshRenderer.material = glowEffect;
+                glowManager.PutNewModule(meshRenderer.materials);
                 break;
 
             case 2:
-                onClick?.Invoke(gameObj);
+                onSecondClick?.Invoke(gameObject);
 
-                meshRenderer.material = defaultMaterial;
+                activePartManager.PutNewModule(gameObject);
+
+                glowManager.RestoreMaterials();
 
                 clickCount = 0;
 

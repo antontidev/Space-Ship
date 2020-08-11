@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
-    public delegate void OnReadyChange();
-    public OnReadyChange OnReadyModuleChange;
+    public Action OnReadyModuleChange;
 
     [SerializeField]
     public List<GameObject> trueParts;
@@ -21,11 +21,6 @@ public class Rocket : MonoBehaviour
         {
             ready[el.tag] = false;
         }
-    }
-
-    public void SubmitTrueParts(List<GameObject> list)
-    {
-        trueParts = list;
     }
 
     public bool IsReady
@@ -76,7 +71,7 @@ public class Rocket : MonoBehaviour
                 part.transform.position = positions[2].position;
                 break;
         }
-        part.transform.rotation = Quaternion.Euler(-90, 0, 0);
+        part.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         part.GetComponent<Rigidbody>().useGravity = false;
         part.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;

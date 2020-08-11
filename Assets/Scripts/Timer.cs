@@ -32,42 +32,36 @@ public class Timer : MonoBehaviour
     /// </summary>
     public Action Up;
 
-    private void Start() 
+    private void Awake() 
     { 
         roundedTimer = new ReactiveProperty<int>();
 
-        timerUpdater = Observable.EveryUpdate().Subscribe(_ =>
-        {
-            timer -= Time.deltaTime;
+        //timerUpdater = Observable.EveryUpdate().Subscribe(_ =>
+        //{
+        //    timer -= Time.deltaTime;
 
-            roundedTimer.Value = Mathf.FloorToInt(timer);
-        });
-
-        Observable.EveryUpdate().Where(_ => timer < 0.0f).Subscribe(_ =>
-        {
-            Up?.Invoke();
-            Debug.Log("close"); ;
-            timerUpdater.Dispose();
-        });
+        //    roundedTimer.Value = Mathf.FloorToInt(timer);
+        //});
     }
 
     ///// <remarks>
     ///// I prefer to use Observable timer instead of checking for it's actual
     ///// value and then emmiting TimerUp Event
     ///// </remarks>
-    //void Update()
-    //{
-    //    if (timer > 0.0f)
-    //    {
-    //        timer -= Time.deltaTime;
+    void Update()
+    {
+        if (timer > 0.0f)
+        {
+            timer -= Time.deltaTime;
 
-    //    }
-    //    else if (!emitted)
-    //    {
-    //        Up?.Invoke();
-    //        emitted = true;
-    //    }
-    //}
+            roundedTimer.Value = Mathf.FloorToInt(timer);
+        }
+        else if (!emitted)
+        {
+            Up?.Invoke();
+            emitted = true;
+        }
+    }
 
     /// <example>
     /// <code>
