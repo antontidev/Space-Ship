@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 
 namespace TMPro.Examples
@@ -57,6 +57,7 @@ namespace TMPro.Examples
                 //m_textMeshPro.enableShadows = false;
                 m_textMeshPro.enableKerning = false;
                 m_textMeshPro.text = string.Empty;
+                m_textMeshPro.isTextObjectScaleStatic = true;
 
                 StartCoroutine(DisplayTextMeshProFloatingText());
             }
@@ -101,7 +102,7 @@ namespace TMPro.Examples
 
         public IEnumerator DisplayTextMeshProFloatingText()
         {
-            float CountDuration = 2.0f; // How long is the countdown alive.    
+            float CountDuration = 2.0f; // How long is the countdown alive.
             float starting_Count = Random.Range(5f, 20f); // At what number is the counter starting at.
             float current_Count = starting_Count;
 
@@ -157,7 +158,7 @@ namespace TMPro.Examples
 
         public IEnumerator DisplayTextMeshFloatingText()
         {
-            float CountDuration = 2.0f; // How long is the countdown alive.    
+            float CountDuration = 2.0f; // How long is the countdown alive.
             float starting_Count = Random.Range(5f, 20f); // At what number is the counter starting at.
             float current_Count = starting_Count;
 

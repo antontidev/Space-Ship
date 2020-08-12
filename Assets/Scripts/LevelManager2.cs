@@ -9,7 +9,7 @@ public class LevelManager2 : MonoBehaviour
     public Level NextLevel()
     {
 #if UNITY_EDITOR 
-        level.levelTime = 5000f;
+        //level.levelTime = 5000f;
 #endif
         NextLevelLoaded?.Invoke(level);
         return level;

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 
 namespace TMPro.Examples
@@ -37,6 +38,7 @@ namespace TMPro.Examples
 
                     textMeshPro.color = new Color32(255, 255, 0, 255);
                     textMeshPro.text = "!";
+                    textMeshPro.isTextObjectScaleStatic = true;
 
                     // Spawn Floating Text
                     floatingText_Script = go.AddComponent<TextMeshProFloatingText>();
