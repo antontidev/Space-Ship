@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
+using UniRx;
 
 public class IGameManager : MonoBehaviour
 {
@@ -12,7 +15,13 @@ public class GameManagerScript : IGameManager
     public FreeLookAddOn freeLookCamera;
 
     [SerializeField]
+    private GamePresenter gamePresenter;
+
+    [SerializeField]
     public Timer timer;
+
+    [Inject]
+    private ActivePartManager activePartManager;
 
     [Scene]
     public string nextScene;
@@ -40,6 +49,7 @@ public class GameManagerScript : IGameManager
         levelManager.NextLevelLoaded += timer.LevelLoaded;
         timer.Up += MakeDecision;
         spawner.planetSpawned += freeLookCamera.SetTargetObject;
+        spawner.RocketSpawned += SubmitRocket;
     }
 
     private void OnDisable()
@@ -48,6 +58,17 @@ public class GameManagerScript : IGameManager
         levelManager.NextLevelLoaded -= timer.LevelLoaded;
         timer.Up -= MakeDecision;
         spawner.planetSpawned -= freeLookCamera.SetTargetObject;
+        spawner.RocketSpawned -= SubmitRocket;
+    }
+
+    private void SubmitRocket(Rocket rocket)
+    {
+        this.rocket = rocket;
+
+        rocket.IsReady.Where(x => x == true).Subscribe(x =>
+        {
+            MakeDecision();
+        });
     }
 
     private void MakeDecision()
@@ -63,9 +84,20 @@ public class GameManagerScript : IGameManager
 
     private void ChangeLevel()
     {
-        SceneManager.LoadScene(nextScene);
+        if (rocket.IsReady.Value && SceneManager.GetActiveScene().name != "Level3")
+        {
+            SceneManager.LoadScene(nextScene);
+        }
+        else
+        {
+            gamePresenter.ShowEndScreen();
+        }
     }
 
+    /// <summary>
+    /// Obsolete
+    /// </summary>
+    /// <param name="isReady"></param>
     private void GoToEndScene(bool isReady)
     {
         var go = new GameObject();

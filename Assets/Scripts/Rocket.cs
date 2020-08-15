@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 public class Rocket : MonoBehaviour
 {
     public Action OnReadyModuleChange;
 
-    [SerializeField]
     public List<GameObject> trueParts;
 
     [SerializeField]
@@ -14,44 +14,48 @@ public class Rocket : MonoBehaviour
 
     public Dictionary<string, bool> ready;
 
-    private void Start()
+    public ReactiveProperty<bool> IsReady
     {
-        ready = new Dictionary<string, bool>();
-        foreach (var el in trueParts)
-        {
-            ready[el.tag] = false;
-        }
+        get; private set;
     }
 
-    public bool IsReady
+    void Awake()
     {
-        get
+        ready = new Dictionary<string, bool>();
+        IsReady = new ReactiveProperty<bool>
         {
-            return ready.Count < trueParts.Count;
-        }
+            Value = false
+        };
     }
 
     public bool CheckPart(GameObject part)
     {
-        var namePart = part.name.Substring(0, part.name.IndexOf('('));
         foreach (var el in trueParts)
         {
-            if (el.name == namePart)
+            if (string.Format("{0}(Clone)", el.name) == part.name)
             {
                 ready[part.tag] = true;
+
+                IsReady.Value = CheckReady();
 
                 OnReadyModuleChange?.Invoke();
                 return true;
             }
-            else
-            {
-                ready[part.tag] = false;
+        }
+        return false;
+    }
 
-                OnReadyModuleChange?.Invoke();
+    private bool CheckReady()
+    {
+        foreach (var el in ready)
+        {
+            if (!el.Value)
+            {
                 return false;
             }
         }
-        return false;
+
+        return true;
     }
 
     public void Handle(GameObject part)
@@ -64,9 +68,11 @@ public class Rocket : MonoBehaviour
             case "Top":
                 part.transform.position = positions[0].position;
                 break;
+
             case "Middle":
                 part.transform.position = positions[1].position;
                 break;
+
             case "Bottom":
                 part.transform.position = positions[2].position;
                 break;
@@ -77,5 +83,20 @@ public class Rocket : MonoBehaviour
         part.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
         part.GetComponent<PhysObj>().enabled = false;
+    }
+
+    public void SubmitTrueParts(List<GameObject> trueParts)
+    {
+        this.trueParts = trueParts;
+
+        PopulateReadyDictionary(trueParts);
+    }
+
+    private void PopulateReadyDictionary(List<GameObject> trueParts)
+    {
+        foreach (var el in trueParts)
+        {
+            ready[el.tag] = false;
+        }
     }
 }

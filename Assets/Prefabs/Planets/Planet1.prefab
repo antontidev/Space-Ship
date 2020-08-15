@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2448998122898790412}
   - component: {fileID: 2493059743160805826}
+  - component: {fileID: 3366252575880725484}
   m_Layer: 0
   m_Name: Planet1
   m_TagString: Untagged
@@ -46,7 +47,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnRocketPostition: {fileID: 3009871340779720485}
-  gestureController: {fileID: 0}
+--- !u!114 &3366252575880725484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3078006376644690614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ad38d77777541449a5b18770d9d985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  planetName: "\u0417\u0435\u043C\u043B\u044F"
+  gravity: 9.81
+  temperature: 51
+  atmosphere: 1
 --- !u!1 &4247587939300802313
 GameObject:
   m_ObjectHideFlags: 0

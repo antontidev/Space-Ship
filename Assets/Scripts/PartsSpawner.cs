@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -8,6 +9,8 @@ public class PartsSpawner : MonoBehaviour
     public delegate void PlanetSpawned(Transform planetTransform);
 
     public PlanetSpawned planetSpawned;
+
+    public Action<Rocket> RocketSpawned;
 
     private List<GameObject> parts;
 
@@ -48,7 +51,7 @@ public class PartsSpawner : MonoBehaviour
     {
         foreach (var element in trash)
         {
-            _diContainer.InstantiatePrefab(element, Random.onUnitSphere * 5, transform.rotation, null);
+            _diContainer.InstantiatePrefab(element, UnityEngine.Random.onUnitSphere * 5, transform.rotation, null);
            // var trashPart = Instantiate(element, Random.onUnitSphere * 5, transform.rotation);
         }
     }
@@ -61,7 +64,7 @@ public class PartsSpawner : MonoBehaviour
         {
             //var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
 
-            var part = _diContainer.InstantiatePrefab(el, Random.onUnitSphere * 5, transform.rotation, null);
+            var part = _diContainer.InstantiatePrefab(el, UnityEngine.Random.onUnitSphere * 5, transform.rotation, null);
 
             var shipPart = part.GetComponent<ShipPart>();
 
@@ -103,6 +106,10 @@ public class PartsSpawner : MonoBehaviour
         
         DeactivateChildrens(rock);
         rocketComp = rock.GetComponent<Rocket>();
+
+        rocketComp.SubmitTrueParts(trueParts);
+
+        RocketSpawned?.Invoke(rocketComp);
     }
 
     private void DeactivateChildrens(GameObject go)

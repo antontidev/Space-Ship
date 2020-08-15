@@ -33,6 +33,13 @@ public class EndPresenter : IEndPresenter
     [Scene]
     public string gameScene;
 
+    void Awake()
+    {
+        var sceneScore = SceneManager.GetActiveScene().buildIndex - 1;
+
+        SetScore(sceneScore);
+    }
+
     /// <summary>
     /// Callbacl for UI ExitButton
     /// </summary>
