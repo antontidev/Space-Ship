@@ -35,7 +35,18 @@ public class EndPresenter : IEndPresenter
 
     void Awake()
     {
-        var sceneScore = SceneManager.GetActiveScene().buildIndex - 1;
+        var activeScene = SceneManager.GetActiveScene();
+
+        int sceneScore;
+
+        if (activeScene.name != "Level3") 
+        {
+            sceneScore = activeScene.buildIndex - 1;
+        }
+        else
+        {
+            sceneScore = activeScene.buildIndex;
+        }
 
         SetScore(sceneScore);
     }

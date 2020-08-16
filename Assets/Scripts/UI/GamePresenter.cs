@@ -1,6 +1,8 @@
-﻿using TMPro;
+﻿using System.Collections.Generic;
+using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 public abstract class IGamePresetner : MonoBehaviour
@@ -53,26 +55,64 @@ public class GamePresenter : IGamePresetner
     #endregion Planet Planet
 
     /// <summary>
-    /// Modules UI
+    /// Modules Image
     /// </summary>
     #region
 
     [Inject]
     private ModulesBridge modulesBridge;
 
-    [SerializeField]
-    private CanvasMesh bottom;
+    [Inject]
+    private ActivePartManager activePartManager;
 
     [SerializeField]
-    private CanvasMesh middle;
+    private Image bottom;
 
     [SerializeField]
-    private CanvasMesh top;
+    private Image middle;
+
+    [SerializeField]
+    private Image top;
+
+    private Dictionary<string, Image> moduleMap;
+
+    #endregion
+
+    /// <summary>
+    /// Modules Holder
+    /// </summary>
+    #region
+
+    [SerializeField]
+    private Image bottomHolder;
+
+    [SerializeField]
+    private Image middleHolder;
+
+    [SerializeField]
+    private Image topHolder;
+
+    private Dictionary<string, Image> holderMap;
 
     #endregion
 
     [SerializeField]
     private GameObject endScreen;
+
+    private void Awake()
+    {
+        holderMap = new Dictionary<string, Image>();
+
+        holderMap.Add(bottomHolder.tag, bottomHolder);
+        holderMap.Add(middleHolder.tag, middleHolder);
+        holderMap.Add(topHolder.tag, topHolder);
+
+        moduleMap = new Dictionary<string, Image>();
+
+        moduleMap.Add(bottom.tag, bottom);
+        moduleMap.Add(middle.tag, middle);
+        moduleMap.Add(top.tag, top);
+    }
 
     private void Start()
     {
@@ -88,34 +128,38 @@ public class GamePresenter : IGamePresetner
     {
         var observe = modulesBridge.modules.ObserveAdd();
 
-        CanvasMesh canvasMesh;
-        observe.Subscribe(x =>
+        var observeHolderReplace = activePartManager.ready.ObserveReplace();
+
+        observeHolderReplace.Subscribe(replaceEvent =>
         {
-            // This code smells
-            var pair = x.Value;
-            switch (pair.Key)
-            {
-                case "Bottom":
-                    canvasMesh = bottom;
-                    break;
+            var level = replaceEvent.Key;
 
-                case "Middle":
-                    canvasMesh = middle;
-                    break;
+            var image = holderMap[level];
 
-                default:
-                    canvasMesh = top;
-                    break;
-            }
-            // End of code that smells
-            var module = pair.Value;
-
-            var meshFilter = module.GetComponent<MeshFilter>();
-
-            var mesh = meshFilter.mesh;
-
-            canvasMesh.SubmitMesh(mesh);
+            ChangeColor(image, replaceEvent.NewValue);
         });
+
+        var observeModuleReplace = activePartManager.activeModules.ObserveReplace();
+
+        observeModuleReplace.Where(x => x.NewValue != null).Subscribe(replaceEvent =>
+        {
+            var level = replaceEvent.Key;
+
+            var image = moduleMap[level];
+
+            var shipPart = replaceEvent.NewValue;
+
+            image.sprite = shipPart.sprite;
+
+            image.color = Color.white;
+        });
+    }
+
+    private void ChangeColor(Image image, bool state)
+    {
+        var color = state ? Color.green : Color.red;
+
+        image.color = color;
     }
 
     /// <summary>

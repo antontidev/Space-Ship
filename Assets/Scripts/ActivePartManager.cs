@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 
 /// <summary>
@@ -6,11 +7,34 @@ using UnityEngine;
 /// </summary>
 public class ActivePartManager
 {
-    private Dictionary<string, GameObject> activeModules;
+    public ReactiveDictionary<string, ShipPart> activeModules;
+
+    public ReactiveDictionary<string, bool> ready;
+
+    private List<GameObject> trueParts;
 
     private Dictionary<int, ModuleComponents> cachedComponents;
 
     private GameObject clickedModule;
+
+    public ReactiveProperty<bool> IsReady
+    {
+        get; private set;
+    }
+
+    private ActivePartManager()
+    {
+        activeModules = new ReactiveDictionary<string, ShipPart>();
+
+        cachedComponents = new Dictionary<int, ModuleComponents>();
+
+        ready = new ReactiveDictionary<string, bool>();
+
+        IsReady = new ReactiveProperty<bool>
+        {
+            Value = false
+        };
+    }
 
     private struct ModuleComponents
     {
@@ -19,42 +43,50 @@ public class ActivePartManager
         public Rigidbody rigidbody;
     }
 
-    private ActivePartManager()
-    {
-        activeModules = new Dictionary<string, GameObject>();
-
-        cachedComponents = new Dictionary<int, ModuleComponents>();
-    }
-
     public void PutNewModule(GameObject module)
     {
         var moduleID = module.GetInstanceID();
 
+        var shipPart = module.GetComponent<ShipPart>();
+
         var level = module.tag;
 
-        // Check if there is actual part of rocket
-        if (activeModules.ContainsKey(level))
-        {
-            var previousModule = activeModules[level];
-
-            var previousModuleID = previousModule.GetInstanceID();
-
-            var previousModules = cachedComponents[previousModuleID];
-
-            ActivateModules(previousModules);
-        }
-
-        if (!cachedComponents.ContainsKey(moduleID))
-        {
-            var components = GetRequiredComponents(module);
-
-            cachedComponents[moduleID] = components;
-
-            DeactivateModules(components);
-        }
-
         // In all cases add or update link to active module
-        activeModules[level] = module;
+        activeModules[level] = shipPart;
+    }
+
+    public bool CheckPart(GameObject part)
+    {
+        foreach (var el in trueParts)
+        {
+            if (string.Format("{0}(Clone)", el.name) == part.name)
+            {
+                ready[part.tag] = true;
+
+                IsReady.Value = CheckReady();
+
+                return true;
+            }
+            if (el.tag == part.tag)
+            {
+                ready[part.tag] = false;
+                return false;
+            }
+        }
+        return false;
+    }
+
+    private bool CheckReady()
+    {
+        foreach (var el in ready)
+        {
+            if (!el.Value)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private ModuleComponents GetRequiredComponents(GameObject module)
@@ -73,6 +105,26 @@ public class ActivePartManager
         return moduleComponents;
     }
 
+    public void LevelLoaded(Level level)
+    {
+        var trueParts = level.trueModules;
+
+        this.trueParts = trueParts;
+
+        FillActivePartDictinary();
+
+        PopulateReadyDictionary();
+    }
+
+    private void FillActivePartDictinary()
+    {
+        foreach (var element in trueParts)
+        {
+            activeModules.Add(element.tag, null);
+        }
+
+    }
+
     private void ActivateModules(ModuleComponents modules)
     {
         modules.phys.enabled = true;
@@ -85,5 +137,13 @@ public class ActivePartManager
         modules.phys.enabled = false;
         modules.rigidbody.isKinematic = true;
         modules.collider.enabled = false;
+    }
+
+    private void PopulateReadyDictionary()
+    {
+        foreach (var el in trueParts)
+        {
+            ready[el.tag] = false;
+        }
     }
 }

@@ -66,7 +66,7 @@ public class ModulesBridge
     {
         var module = pair.Value;
 
-        UnityEngine.Object.Destroy(module);
+        //UnityEngine.Object.Destroy(module);
 
         modules.Remove(pair);
     }
@@ -75,6 +75,9 @@ public class ModulesBridge
 [RequireComponent(typeof(ModulePerk))]
 public class ShipPart : MonoBehaviour
 {
+    [SerializeField]
+    public Sprite sprite;
+
     public Action<GameObject> onSecondClick;
 
     private int clickCount = 0;
@@ -84,6 +87,9 @@ public class ShipPart : MonoBehaviour
 
     [Inject]
     private ModulesBridge modulesBridge;
+
+    [Inject]
+    private ActivePartManager activePartManager;
 
     private MeshRenderer meshRenderer;
 
@@ -106,6 +112,7 @@ public class ShipPart : MonoBehaviour
                 onSecondClick?.Invoke(gameObject);
 
                 modulesBridge.PutNewModule(gameObject);
+                activePartManager.PutNewModule(gameObject);
 
                 clickCount = 0;
 
@@ -115,5 +122,10 @@ public class ShipPart : MonoBehaviour
                 clickCount = 0;
                 break;
         }
+    }
+
+    public void DeactivateGlow()
+    {
+     
     }
 }

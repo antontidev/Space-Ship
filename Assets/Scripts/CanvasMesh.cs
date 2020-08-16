@@ -43,7 +43,12 @@ public class CanvasMesh : Graphic
     private Mesh Mesh = null;
 
 
-    public void SubmitMesh(Mesh mesh) => this.Mesh = mesh;
+    public void SubmitMesh(Mesh mesh)
+    {
+        Mesh = mesh;
+
+        SetAllDirty();
+    }
 
     /// <summary>
     /// Callback function when a UI element needs to generate vertices.

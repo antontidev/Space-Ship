@@ -47,6 +47,7 @@ public class GameManagerScript : IGameManager
     {
         levelManager.NextLevelLoaded += spawner.LevelLoaded;
         levelManager.NextLevelLoaded += timer.LevelLoaded;
+        levelManager.NextLevelLoaded += activePartManager.LevelLoaded;
         timer.Up += MakeDecision;
         spawner.planetSpawned += freeLookCamera.SetTargetObject;
         spawner.RocketSpawned += SubmitRocket;
@@ -56,6 +57,7 @@ public class GameManagerScript : IGameManager
     {
         levelManager.NextLevelLoaded -= spawner.LevelLoaded;
         levelManager.NextLevelLoaded -= timer.LevelLoaded;
+        levelManager.NextLevelLoaded -= activePartManager.LevelLoaded;
         timer.Up -= MakeDecision;
         spawner.planetSpawned -= freeLookCamera.SetTargetObject;
         spawner.RocketSpawned -= SubmitRocket;
@@ -65,7 +67,7 @@ public class GameManagerScript : IGameManager
     {
         this.rocket = rocket;
 
-        rocket.IsReady.Where(x => x == true).Subscribe(x =>
+        activePartManager.IsReady.Where(x => x == true).Subscribe(x =>
         {
             MakeDecision();
         });
@@ -84,7 +86,9 @@ public class GameManagerScript : IGameManager
 
     private void ChangeLevel()
     {
-        if (rocket.IsReady.Value && SceneManager.GetActiveScene().name != "Level3")
+        var isReady = activePartManager.IsReady.Value;
+
+        if (isReady && SceneManager.GetActiveScene().name != "Level3")
         {
             SceneManager.LoadScene(nextScene);
         }
@@ -92,24 +96,5 @@ public class GameManagerScript : IGameManager
         {
             gamePresenter.ShowEndScreen();
         }
-    }
-
-    /// <summary>
-    /// Obsolete
-    /// </summary>
-    /// <param name="isReady"></param>
-    private void GoToEndScene(bool isReady)
-    {
-        var go = new GameObject();
-
-        go.name = "Ready";
-
-        go.tag = "Ready";
-
-        go.AddComponent<IsReady>().isReady = isReady;
-
-        DontDestroyOnLoad(go);
-
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

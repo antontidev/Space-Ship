@@ -37,7 +37,9 @@ public class ClickManager : MonoBehaviour
 
         if (tagString == "Bottom")
         {
-            Instantiate(smokeEffect, gameO.transform, true);
+            var gameObjTransform = gameO.transform;
+
+            Instantiate(smokeEffect, gameObjTransform.position, gameObjTransform.rotation);
         }
 
         DeleteRigidBody(gameO);

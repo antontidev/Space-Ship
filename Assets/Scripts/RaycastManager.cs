@@ -14,6 +14,8 @@ public class RaycastManager : MonoBehaviour
     [Layer]
     public int tapLayer;
 
+    private ShipPart lastShipPart;
+
     private Dictionary<string, ShipPart> cachedShipParts;
 
     private void Start()
