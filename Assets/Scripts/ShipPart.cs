@@ -13,9 +13,15 @@ public class ModulesBridge
 
     public ReactiveCollection<Pair<string, GameObject>> modules;
 
+    public ReactiveProperty<string> levelModule;
+
+    public ReactiveProperty<string> moduleValue;
+
     public ModulesBridge()
     {
         modules = new ReactiveCollection<Pair<string, GameObject>>();
+        levelModule = new ReactiveProperty<string>();
+        moduleValue = new ReactiveProperty<string>();
     }
 
     public void PutNewModule(GameObject module)
@@ -80,7 +86,10 @@ public class ShipPart : MonoBehaviour
 
     public Action<GameObject> onSecondClick;
 
-    private int clickCount = 0;
+    public int ClickCount
+    {
+        get; set;
+    } = 0;
 
     [Inject]
     private GlowManager glowManager;
@@ -100,9 +109,9 @@ public class ShipPart : MonoBehaviour
 
     public void ClickOnObject()
     {
-        clickCount++;
+        ClickCount++;
 
-        switch (clickCount)
+        switch (ClickCount)
         {
             case 1:
                 glowManager.PutNewModule(gameObject);
@@ -114,12 +123,12 @@ public class ShipPart : MonoBehaviour
                 modulesBridge.PutNewModule(gameObject);
                 activePartManager.PutNewModule(gameObject);
 
-                clickCount = 0;
+                ClickCount = 0;
 
                 break;
 
             default:
-                clickCount = 0;
+                ClickCount = 0;
                 break;
         }
     }

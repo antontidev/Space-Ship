@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 0
   oxygen: 0
-  temperature: 0
+  temperature: -50
 --- !u!54 &1526408738283525776
 Rigidbody:
   m_ObjectHideFlags: 0

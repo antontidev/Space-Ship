@@ -9,7 +9,7 @@ public class ClickManager : MonoBehaviour
     public Dictionary<string, GameObject> activeObjects;
 
     [SerializeField]
-    public GameObject smokeEffect;
+    private List<GameObject> effects;
 
     void Start() => activeObjects = new Dictionary<string, GameObject>();
 
@@ -39,7 +39,11 @@ public class ClickManager : MonoBehaviour
         {
             var gameObjTransform = gameO.transform;
 
-            Instantiate(smokeEffect, gameObjTransform.position, gameObjTransform.rotation);
+            foreach (var element in effects)
+            {
+
+                Instantiate(element, gameObjTransform.position, gameObjTransform.rotation);
+            }
         }
 
         DeleteRigidBody(gameO);

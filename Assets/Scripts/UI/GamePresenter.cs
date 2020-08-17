@@ -2,6 +2,7 @@
 using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 
@@ -12,6 +13,8 @@ public abstract class IGamePresetner : MonoBehaviour
     public abstract void UnpauseGame();
 
     public abstract void ShowEndScreen();
+
+    public abstract void GoToMenu();
 }
 
 public class GamePresenter : IGamePresetner
@@ -30,6 +33,12 @@ public class GamePresenter : IGamePresetner
     /// </summary>
     [SerializeField]
     private GameObject pauseScreen;
+
+    /// <summary>
+    /// Audio sound
+    /// </summary>
+    [SerializeField]
+    private AudioSource gameSound;
 
     /// <summary>
     /// Planet text fields
@@ -98,6 +107,9 @@ public class GamePresenter : IGamePresetner
 
     [SerializeField]
     private GameObject endScreen;
+
+    [Scene]
+    public string menuScene;
 
     private void Awake()
     {
@@ -206,6 +218,7 @@ public class GamePresenter : IGamePresetner
     {
         Time.timeScale = 0f;
         pauseScreen.SetActive(true);
+        gameSound.mute = true;
     }
 
     /// <summary>
@@ -215,10 +228,16 @@ public class GamePresenter : IGamePresetner
     {
         Time.timeScale = 1f;
         pauseScreen.SetActive(false);
+        gameSound.mute = false;
     }
 
     public override void ShowEndScreen()
     {
         endScreen.SetActive(true);
+    }
+
+    public override void GoToMenu()
+    {
+        SceneManager.LoadScene(menuScene);
     }
 }

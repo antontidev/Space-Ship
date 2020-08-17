@@ -8,7 +8,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Smoke
-  m_Shader: {fileID: 4800000, guid: d056188a74d79ef44b4223bdf7db35a0, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: d056188a74d79ef44b4223bdf7db35a0,
+    type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -93,3 +94,4 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _TintColor: {r: 0.9716981, g: 0.4933886, b: 0, a: 0.5}
+  m_BuildTextureStacks: []

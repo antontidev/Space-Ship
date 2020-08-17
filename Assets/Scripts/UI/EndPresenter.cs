@@ -1,25 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-public class ScoreFinder
-{
-
-}
 
 public abstract class IEndPresenter : MonoBehaviour
 {
     public abstract void SetScore(int score);
+
     public abstract void RetryGame();
+
     public abstract void ExitToMenu();
 }
 
 public class EndPresenter : IEndPresenter
 {
     [SerializeField]
-    private TextMeshProUGUI scoreText; 
+    private TextMeshProUGUI scoreText;
 
     /// <summary>
     /// Menu scene name to load when user press exit
@@ -33,13 +28,16 @@ public class EndPresenter : IEndPresenter
     [Scene]
     public string gameScene;
 
-    void Awake()
+    [SerializeField]
+    private AudioSource gameSound;
+
+    private void Awake()
     {
         var activeScene = SceneManager.GetActiveScene();
 
         int sceneScore;
 
-        if (activeScene.name != "Level3") 
+        if (activeScene.name != "Level3")
         {
             sceneScore = activeScene.buildIndex - 1;
         }
@@ -48,11 +46,13 @@ public class EndPresenter : IEndPresenter
             sceneScore = activeScene.buildIndex;
         }
 
+        gameSound.mute = true;
+
         SetScore(sceneScore);
     }
 
     /// <summary>
-    /// Callbacl for UI ExitButton
+    /// Callback for UI ExitButton
     /// </summary>
     public override void ExitToMenu()
     {

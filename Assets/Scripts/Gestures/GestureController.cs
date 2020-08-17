@@ -30,7 +30,7 @@ namespace InputSamples.Gestures
 
         // Maximum duration of a press before it can no longer be considered a tap.
         [SerializeField]
-        private float maxTapDuration = 0.2f;
+        public float maxTapDuration = 0.2f;
 
         // Maximum distance in screen units that a tap can drift from its original position before
         // it is no longer considered a tap.

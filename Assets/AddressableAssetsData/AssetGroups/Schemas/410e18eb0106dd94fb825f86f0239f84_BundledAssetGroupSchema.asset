@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5d17a21594effb4e9591490b009e7aa, type: 3}
+  m_Name: 410e18eb0106dd94fb825f86f0239f84_BundledAssetGroupSchema
+  m_EditorClassIdentifier: 
+  m_Group: {fileID: 11400000, guid: 15b950cb21e02a84488c9eb04a29e872, type: 2}
+  m_Compression: 1
+  m_IncludeInBuild: 1
+  m_BundledAssetProviderType:
+    m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider
+  m_ForceUniqueProvider: 0
+  m_UseAssetBundleCache: 1
+  m_UseAssetBundleCrc: 1
+  m_Timeout: 0
+  m_ChunkedTransfer: 0
+  m_RedirectLimit: -1
+  m_RetryCount: 0
+  m_BuildPath:
+    m_Id: 13fc459c4e15d5a4da522f00cf82424a
+  m_LoadPath:
+    m_Id: 0ed830a2a0b243643be1e92a02e4c2b9
+  m_BundleMode: 0
+  m_AssetBundleProviderType:
+    m_AssemblyName: Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_ClassName: UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider
+  m_BundleNaming: 1

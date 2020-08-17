@@ -24,17 +24,22 @@ public class PartsSpawner : MonoBehaviour
 
     private Transform rocketSpawnPosition;
 
+    [Header("Rocket holder gameObject")]
+    [SerializeField]
+    private GameObject rocketHolder;
+
     [Inject]
     private DiContainer _diContainer;
 
+    [Header("All trash object")]
     [SerializeField]
     public List<GameObject> trash;
 
     [SerializeField]
-    public Material glowEffect;
+    private Material glowEffect;
 
     [SerializeField]
-    public ClickManager manager;
+    private ClickManager manager;
 
     public void SpawnLevel()
     {
@@ -91,19 +96,28 @@ public class PartsSpawner : MonoBehaviour
             {
                 camTargetPlanet = child;
             }
+            else if (child.tag == "Station")
+            {
+                SetRocketHolderPosition(child.transform);
+            }
         }
-
-        rocketSpawnPosition = planComp.spawnRocketPostition;
 
         planetSpawned?.Invoke(camTargetPlanet);
     }
 
+    private void SetRocketHolderPosition(Transform parentTransform)
+    {
+        rocketHolder.transform.position = parentTransform.position;
+    }
+
     private void SpawnRocket()
     {
-        //var rock = Instantiate(rocketObj, rocketSpawnPosition.position, transform.rotation);
+        //var rock = _diContainer.InstantiatePrefab(rocketObj, rocketSpawnPosition.position, transform.rotation, null);
 
-        var rock = _diContainer.InstantiatePrefab(rocketObj, rocketSpawnPosition.position, transform.rotation, null);
-        
+        var rock = _diContainer.InstantiatePrefab(rocketObj, rocketHolder.transform);
+
+        rock.transform.localPosition = Vector3.zero;
+
         DeactivateChildrens(rock);
         rocketComp = rock.GetComponent<Rocket>();
 

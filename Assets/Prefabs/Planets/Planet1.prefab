@@ -59,9 +59,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ad38d77777541449a5b18770d9d985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: "\u0417\u0435\u043C\u043B\u044F"
-  gravity: 9.81
-  temperature: 51
+  planetName: K8J5
+  gravity: 1
+  temperature: 0
   atmosphere: 1
 --- !u!1 &4247587939300802313
 GameObject:
@@ -76,8 +76,8 @@ GameObject:
   - component: {fileID: 6369709168856408599}
   - component: {fileID: 946279166658463495}
   m_Layer: 0
-  m_Name: Cube.000
-  m_TagString: Untagged
+  m_Name: Station
+  m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 1485177364}
   - component: {fileID: 4486691948018794969}
   m_Layer: 0
-  m_Name: planet
+  m_Name: Planet
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

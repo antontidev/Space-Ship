@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8037048615208052}
   - component: {fileID: 5150308212878726173}
   m_Layer: 0
-  m_Name: planet
+  m_Name: Planet
   m_TagString: Planet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -252,9 +252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1ad38d77777541449a5b18770d9d985, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planetName: "\u041C\u0430\u0440\u0441"
-  gravity: 5.64
-  temperature: 69
+  planetName: 89ZP
+  gravity: 9
+  temperature: 90
   atmosphere: 1
 --- !u!1 &9030975148808387553
 GameObject:
@@ -268,8 +268,8 @@ GameObject:
   - component: {fileID: 7359090253251748625}
   - component: {fileID: 8581580208118678213}
   m_Layer: 0
-  m_Name: "\u0421\u0442\u0430\u043D\u0446\u0438\u044F"
-  m_TagString: Untagged
+  m_Name: Station
+  m_TagString: Station
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

@@ -1,18 +1,27 @@
 ﻿using InputSamples.Gestures;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class RaycastManager : MonoBehaviour
 {
     [SerializeField]
-    public Camera cam;
+    private GameObject selectParticles;
 
     [SerializeField]
-    public GestureController gestureController;
+    private Camera cam;
+
+    [Inject]
+    private ModulesBridge modulesBridge;
+
+    [SerializeField]
+    private GestureController gestureController;
 
     [Header("Layer for raycasting")]
     [Layer]
     public int tapLayer;
+
+    private AudioSource clickSound;
 
     private ShipPart lastShipPart;
 
@@ -21,6 +30,8 @@ public class RaycastManager : MonoBehaviour
     private void Start()
     {
         cachedShipParts = new Dictionary<string, ShipPart>();
+
+        clickSound = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -46,6 +57,48 @@ public class RaycastManager : MonoBehaviour
             ShipPart shipPart = GetShipPart(gameObj);
 
             shipPart.ClickOnObject();
+
+            if (shipPart.ClickCount == 0)
+            {
+                clickSound.Play();
+                RemoveGlow();
+            }
+            if (shipPart.ClickCount == 1)
+            {
+                if (lastShipPart != null)
+                {
+                    if (lastShipPart.gameObject.GetInstanceID() != gameObj.GetInstanceID())
+                    {
+                        RemoveGlow();
+                    }
+                }
+
+                var glow = Instantiate(selectParticles, gameObj.transform);
+
+                glow.transform.localPosition = Vector3.zero;
+            }
+
+            lastShipPart = shipPart;
+        }
+        else
+        {
+            RemoveGlow();
+            if (lastShipPart != null)
+            {
+                lastShipPart.ClickCount = 0;
+            }
+        }
+    }
+
+    private void RemoveGlow()
+    {
+        if (lastShipPart != null)
+        {
+            foreach (Transform child in lastShipPart.transform)
+            {
+                child.gameObject.SetActive(false);
+                Destroy(child.gameObject);
+            }
         }
     }
 

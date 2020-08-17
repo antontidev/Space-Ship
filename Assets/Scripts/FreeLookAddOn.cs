@@ -26,12 +26,19 @@ public class FreeLookAddOn : MonoBehaviour
     private void OnEnable()
     {
         gestureController.Dragged += GestureController_Dragged;
+        gestureController.PotentiallySwiped += GestureController_PotentiallySwiped;
     }
+
     private void OnDisable()
     {
         gestureController.Dragged -= GestureController_Dragged;
+        gestureController.PotentiallySwiped -= GestureController_PotentiallySwiped;
+    }
+    private void GestureController_PotentiallySwiped(SwipeInput input)
+    {
     }
 
+    // Handle input if not just tupped
     private float HandleAxisInput(string axisName)
     {
         switch (axisName)
@@ -62,7 +69,10 @@ public class FreeLookAddOn : MonoBehaviour
     {
         var delta = input.EndPosition - input.PreviousPosition;
 
-        _lastX = delta.x;
-        _lastY = delta.y;
+        if (input.SwipeDuration > gestureController.maxTapDuration)
+        {
+            _lastX = delta.x;
+            _lastY = delta.y;
+        }
     }
 }
