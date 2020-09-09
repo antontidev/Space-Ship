@@ -6,6 +6,11 @@ using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public static class StaticFields
+{
+    public static string sensivity = "sensivity";
+}
+
 public class MenuButtons : MonoBehaviour
 {
     [Scene]
@@ -20,7 +25,17 @@ public class MenuButtons : MonoBehaviour
     [SerializeField]
     private GameObject mainMenu;
 
+    [SerializeField]
+    private Slider sensivitySlider;
+
     public TMP_Dropdown localeSelector;
+
+    private void Awake()
+    {
+        var sensivity = GetSensivity();
+
+        sensivitySlider.value = sensivity;
+    }
 
     private IEnumerator Start()
     {
@@ -50,6 +65,25 @@ public class MenuButtons : MonoBehaviour
     public void PlayGame()
     {
         SceneManager.LoadScene(gameScene);
+    }
+
+    public void SetSensivity(float sliderValue)
+    {
+        var sliderInverted = InvertFloat(sliderValue);
+
+        PlayerPrefs.SetFloat("sensivity", sliderInverted);
+    }
+
+    private float GetSensivity()
+    {
+        var sensivity = PlayerPrefs.GetFloat("sensivity", 1f);
+
+        return sensivity;
+    }
+
+    private float InvertFloat(float value)
+    {
+        return 1.0f - value;
     }
 
     public void QuitGame()

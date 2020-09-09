@@ -16,6 +16,9 @@ public class EndPresenter : IEndPresenter
     [SerializeField]
     private TextMeshProUGUI scoreText;
 
+    [SerializeField]
+    private GamePresenter gamePresenter;
+
     /// <summary>
     /// Menu scene name to load when user press exit
     /// </summary>
@@ -64,6 +67,7 @@ public class EndPresenter : IEndPresenter
     /// </summary>
     public override void RetryGame()
     {
+        gamePresenter.FadeScene();
         SceneManager.LoadScene(gameScene);
     }
 

@@ -31,9 +31,13 @@ public class PartsSpawner : MonoBehaviour
     [Inject]
     private DiContainer _diContainer;
 
-    [Header("All trash object")]
+    [Header("All trash objects")]
     [SerializeField]
-    public List<GameObject> trash;
+    private List<GameObject> trash;
+
+    [Header("Rocks objects")]
+    [SerializeField]
+    private List<GameObject> rocks;
 
     [SerializeField]
     private Material glowEffect;
@@ -49,6 +53,8 @@ public class PartsSpawner : MonoBehaviour
 
         SpawnTrash();
 
+        SpawnRocks();
+
         SpawnAllParts();
     }
 
@@ -57,7 +63,14 @@ public class PartsSpawner : MonoBehaviour
         foreach (var element in trash)
         {
             _diContainer.InstantiatePrefab(element, UnityEngine.Random.onUnitSphere * 5, transform.rotation, null);
-           // var trashPart = Instantiate(element, Random.onUnitSphere * 5, transform.rotation);
+        }
+    }
+
+    public void SpawnRocks()
+    {
+        foreach (var element in rocks)
+        {
+            _diContainer.InstantiatePrefab(element, UnityEngine.Random.onUnitSphere * 5, transform.rotation, null);
         }
     }
 
@@ -67,8 +80,6 @@ public class PartsSpawner : MonoBehaviour
 
         foreach (var el in allParts)
         {
-            //var part = Instantiate(el, Random.onUnitSphere * 5, transform.rotation);
-
             var part = _diContainer.InstantiatePrefab(el, UnityEngine.Random.onUnitSphere * 5, transform.rotation, null);
 
             var shipPart = part.GetComponent<ShipPart>();
@@ -78,11 +89,8 @@ public class PartsSpawner : MonoBehaviour
         }
     }
 
-
     private void SpawnPlanet()
     {
-        //var plan = Instantiate(planet, Vector3.zero, transform.rotation);
-
         var plan = _diContainer.InstantiatePrefab(planet, Vector3.zero, transform.rotation, null);
 
         var planComp = plan.GetComponent<Planet>();
@@ -105,15 +113,8 @@ public class PartsSpawner : MonoBehaviour
         planetSpawned?.Invoke(camTargetPlanet);
     }
 
-    private void SetRocketHolderPosition(Transform parentTransform)
-    {
-        rocketHolder.transform.position = parentTransform.position;
-    }
-
     private void SpawnRocket()
     {
-        //var rock = _diContainer.InstantiatePrefab(rocketObj, rocketSpawnPosition.position, transform.rotation, null);
-
         var rock = _diContainer.InstantiatePrefab(rocketObj, rocketHolder.transform);
 
         rock.transform.localPosition = Vector3.zero;
@@ -124,6 +125,10 @@ public class PartsSpawner : MonoBehaviour
         rocketComp.SubmitTrueParts(trueParts);
 
         RocketSpawned?.Invoke(rocketComp);
+    }
+    private void SetRocketHolderPosition(Transform parentTransform)
+    {
+        rocketHolder.transform.position = parentTransform.position;
     }
 
     private void DeactivateChildrens(GameObject go)

@@ -54,7 +54,7 @@ public class ClickManager : MonoBehaviour
     private void AddRigidBody(GameObject go)
     {
         go.AddComponent<PhysObj>();
-        go.AddComponent<BoxCollider>();
+        //go.AddComponent<BoxCollider>();
     }
 
     private void DeleteRigidBody(GameObject go)
@@ -65,6 +65,6 @@ public class ClickManager : MonoBehaviour
 
         Destroy(physObj);
         Destroy(rigidGameO);
-        Destroy(meshC);
+        //Destroy(meshC);
     }
 }

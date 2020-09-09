@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7343084923379130911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 567526744768207956}
+  - component: {fileID: 690987111304140646}
+  m_Layer: 0
+  m_Name: TimelineManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &567526744768207956
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343084923379130911}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0097568035, y: -0.49827033, z: 0.89204764}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &690987111304140646
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343084923379130911}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
+  m_InitialState: 0
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: -7443334238325259127, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 0}
+    value: {fileID: 919132149155446097, guid: 756787cdb04b6d543935e87c42d78c3b, type: 3}
+  - key: {fileID: 5979445509087154004, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 3326864643208405733, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3103033178137761808, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
+    value: {fileID: 0}
+  m_ExposedReferences:
+    m_References:
+    - 08070ff81709eb84cb38fe4837de089a: {fileID: 0}
+    - 00cf4635a952dfb4fa3eccbbef8be738: {fileID: 0}
+    - 6d67e416ef0167849aff52496954b136: {fileID: 0}
+    - 3ab9362b7b94c34459c7dece2b900ed9: {fileID: 0}
+    - 449e58ed3c91fee46aa61d1db9275702: {fileID: 0}
+    - 2e6cbf2dffc408e40b5bd6c8012fec1f: {fileID: 0}

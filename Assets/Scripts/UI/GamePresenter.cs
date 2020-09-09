@@ -8,13 +8,15 @@ using Zenject;
 
 public abstract class IGamePresetner : MonoBehaviour
 {
-    public abstract void PauseGame();
-
-    public abstract void UnpauseGame();
-
     public abstract void ShowEndScreen();
 
-    public abstract void GoToMenu();
+    public abstract void FadeScene();
+
+    public abstract void SubscribeTimer();
+
+    public abstract void SubscribeModules();
+
+    public abstract void SubscribePlanet();
 }
 
 public class GamePresenter : IGamePresetner
@@ -22,23 +24,14 @@ public class GamePresenter : IGamePresetner
     [SerializeField]
     private Timer timer;
 
+    [SerializeField]
+    private FadeManager fadeManager;
+
     /// <summary>
     /// Reading actual timer value
     /// </summary>
     [SerializeField]
     private TextMeshProUGUI timerText;
-
-    /// <summary>
-    /// Shows up when you press pause button
-    /// </summary>
-    [SerializeField]
-    private GameObject pauseScreen;
-
-    /// <summary>
-    /// Audio sound
-    /// </summary>
-    [SerializeField]
-    private AudioSource gameSound;
 
     /// <summary>
     /// Planet text fields
@@ -108,9 +101,6 @@ public class GamePresenter : IGamePresetner
     [SerializeField]
     private GameObject endScreen;
 
-    [Scene]
-    public string menuScene;
-
     private void Awake()
     {
         holderMap = new Dictionary<string, Image>();
@@ -128,15 +118,15 @@ public class GamePresenter : IGamePresetner
 
     private void Start()
     {
-        InitializeTimer();
-        InitializePlanet();
-        InitializeModules();
+        SubscribeTimer();
+        SubscribePlanet();
+        SubscribeModules();
     }
 
     /// <summary>
     /// Bind modules to UI
     /// </summary>
-    private void InitializeModules()
+    public override void SubscribeModules()
     {
         var observe = modulesBridge.modules.ObserveAdd();
 
@@ -177,7 +167,7 @@ public class GamePresenter : IGamePresetner
     /// <summary>
     /// Subscribe planet to UI
     /// </summary>
-    private void InitializePlanet()
+    public override void SubscribePlanet()
     {
         planetBridge.atmosphere.Subscribe(x =>
         {
@@ -203,7 +193,7 @@ public class GamePresenter : IGamePresetner
     /// <summary>
     /// Subscribe UI to Timer
     /// </summary>
-    private void InitializeTimer()
+    public override void SubscribeTimer()
     {
         timer.roundedTimer.Where(x => x >= 0).Subscribe(x =>
         {
@@ -211,33 +201,13 @@ public class GamePresenter : IGamePresetner
         });
     }
 
-    /// <summary>
-    /// Callback for OnClick event on PauseScreen
-    /// </summary>
-    public override void PauseGame()
-    {
-        Time.timeScale = 0f;
-        pauseScreen.SetActive(true);
-        gameSound.mute = true;
-    }
-
-    /// <summary>
-    /// Callback for OnClick event on PauseScreen
-    /// </summary>
-    public override void UnpauseGame()
-    {
-        Time.timeScale = 1f;
-        pauseScreen.SetActive(false);
-        gameSound.mute = false;
-    }
-
     public override void ShowEndScreen()
     {
         endScreen.SetActive(true);
     }
 
-    public override void GoToMenu()
+    public override void FadeScene()
     {
-        SceneManager.LoadScene(menuScene);
+        fadeManager.FadeScene();
     }
 }

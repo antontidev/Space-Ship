@@ -10,5 +10,6 @@ public class ModuleInstaller : MonoInstaller
         Container.Bind<ActivePartManager>().AsCached().NonLazy();
         Container.Bind<PlanetBridge>().AsCached().NonLazy();
         Container.Bind<ModulesBridge>().AsCached().NonLazy();
+        Container.Bind<LevelLoader>().AsCached().NonLazy();
     }
 }

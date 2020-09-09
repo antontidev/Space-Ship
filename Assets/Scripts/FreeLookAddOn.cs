@@ -2,17 +2,20 @@
 using InputSamples.Gestures;
 using UnityEngine;
 
-[RequireComponent(typeof(CinemachineFreeLook))]
 public class FreeLookAddOn : MonoBehaviour
 {
     [SerializeField]
     private GestureController gestureController;
 
-    [Range(0f, 60f)]
+    [Range(0.1f, 1f)]
     public float LookSpeed = 1f;
+
+    [Range(1f, 2f)]
+    public float TouchIdle = 2f;
 
     public bool InvertY = false;
 
+    [SerializeField]
     private CinemachineFreeLook _freeLookComponent;
 
     private float _lastX;
@@ -20,9 +23,18 @@ public class FreeLookAddOn : MonoBehaviour
 
     void Awake()
     {
-        _freeLookComponent = GetComponent<CinemachineFreeLook>();
         CinemachineCore.GetInputAxis = HandleAxisInput;
+
+        LookSpeed = GetSensivity();
     }
+
+    private float GetSensivity()
+    {
+        var sensivity = PlayerPrefs.GetFloat("sensivity");
+
+        return sensivity;
+    }
+
     private void OnEnable()
     {
         gestureController.Dragged += GestureController_Dragged;
@@ -44,11 +56,11 @@ public class FreeLookAddOn : MonoBehaviour
         switch (axisName)
         {
             case "Mouse X":
-                var mov = _lastX / LookSpeed;
+                var mov = _lastX / LookSpeed * Time.deltaTime;
                 _lastX = 0.0f;
                 return mov;
             case "Mouse Y":
-                var mov1 = _lastY / LookSpeed;
+                var mov1 = _lastY / LookSpeed * Time.deltaTime;
                 _lastY = 0.0f;
                 return mov1;
             default:
@@ -69,7 +81,7 @@ public class FreeLookAddOn : MonoBehaviour
     {
         var delta = input.EndPosition - input.PreviousPosition;
 
-        if (input.SwipeDuration > gestureController.maxTapDuration)
+        if (input.SwipeDuration > gestureController.maxTapDuration / TouchIdle)
         {
             _lastX = delta.x;
             _lastY = delta.y;

@@ -40,6 +40,9 @@ public class GameManagerScript : IGameManager
     [Inject]
     private ActivePartManager activePartManager;
 
+    [Inject]
+    private LevelLoader levelLoader;
+
     [Scene]
     public string nextScene;
 
@@ -56,7 +59,6 @@ public class GameManagerScript : IGameManager
         levelManager.NextLevelLoaded += timer.LevelLoaded;
         levelManager.NextLevelLoaded += activePartManager.LevelLoaded;
         timer.Up += MakeDecision;
-        timelineManager.stopped += OnCutsceneEnded;
         spawner.planetSpawned += freeLookCamera.SetTargetObject;
         spawner.RocketSpawned += SubmitRocket;
     }
@@ -89,7 +91,8 @@ public class GameManagerScript : IGameManager
     }
 
     private void PlayCutscene()
-    { 
+    {
+        timelineManager.stopped += OnCutsceneEnded;
         var isReady = activePartManager.IsReady.Value;
         if (isReady)
         {
@@ -117,9 +120,11 @@ public class GameManagerScript : IGameManager
     {
         var isReady = activePartManager.IsReady.Value;
 
-        if (isReady && SceneManager.GetActiveScene().name != "Level3")
+        if (isReady && !levelLoader.IsLastLevel)
         {
-            SceneManager.LoadScene(nextScene);
+            gamePresenter.FadeScene();
+
+            levelLoader.LoadLevel(nextScene);
         }
         else
         {

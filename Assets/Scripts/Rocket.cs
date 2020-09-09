@@ -35,8 +35,8 @@ public class Rocket : MonoBehaviour
         }
         part.transform.rotation = Quaternion.Euler(0, 0, 0);
 
-        part.GetComponent<Rigidbody>().useGravity = false;
-        part.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+       // part.GetComponent<Rigidbody>().useGravity = false;
+        //part.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 
         part.GetComponent<PhysObj>().enabled = false;
     }

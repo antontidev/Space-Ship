@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 3009871340779720485}
   - component: {fileID: 734056779542054872}
   - component: {fileID: 6369709168856408599}
-  - component: {fileID: 946279166658463495}
+  - component: {fileID: 1536598742005421808}
   m_Layer: 0
   m_Name: Station
   m_TagString: Station
@@ -89,13 +89,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4247587939300802313}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.062102683, y: 2.007865, z: -0.069287166}
+  m_LocalRotation: {x: 0, y: 0.7072302, z: 0.7069834, w: 0}
+  m_LocalPosition: {x: -0.062102683, y: 1.996, z: -0.069}
   m_LocalScale: {x: 0.40073836, y: 0.40073836, z: 0.054118384}
   m_Children: []
   m_Father: {fileID: 2448998122898790412}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -89.98, y: 180, z: 0}
 --- !u!33 &734056779542054872
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -148,8 +148,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &946279166658463495
-BoxCollider:
+--- !u!64 &1536598742005421808
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -158,9 +158,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 1.9999998, z: 2.6030471}
-  m_Center: {x: 0, y: -2.7704439e-16, z: -0.15136793}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5611087096184871397, guid: 2d61d0f370fe7064ba0e1514d8bcf00c, type: 3}
 --- !u!1 &9158921825379437530
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,7 +174,7 @@ GameObject:
   - component: {fileID: 674352649109160996}
   - component: {fileID: 7638129334615453526}
   - component: {fileID: 1485177364}
-  - component: {fileID: 4486691948018794969}
+  - component: {fileID: 1758932428324635186}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -263,8 +264,8 @@ MonoBehaviour:
   grav: -1
   temperature: 0
   oxygen: 1
---- !u!135 &4486691948018794969
-SphereCollider:
+--- !u!64 &1758932428324635186
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -273,6 +274,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 8.885661
-  m_Center: {x: -0.033902165, y: -0.08449458, z: 0.5280103}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4444728127320036556, guid: 2d61d0f370fe7064ba0e1514d8bcf00c, type: 3}

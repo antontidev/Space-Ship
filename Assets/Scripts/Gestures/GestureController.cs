@@ -1,7 +1,10 @@
 using InputSamples.Drawing;
+using MyBox;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -57,8 +60,23 @@ namespace InputSamples.Gestures
         [SerializeField]
         private float minScaleDistance = 10.0f;
 
+        public enum LabelType
+        {
+            TextMeshPro,
+            Text
+        }
+
+        [Tooltip("Used to select of from label Type")]
+        public LabelType labelType;
+
         [Header("Debug"), SerializeField]
-        private Text label;
+        [Tooltip("When you use TextMeshPro instead of unity Text")]
+        [ConditionalField("labelType", false, LabelType.TextMeshPro)]
+        public TextMeshProUGUI label;
+
+        [Tooltip("When you use unity Text instead of TextMeshPro")]
+        [ConditionalField("labelType", false, LabelType.Text)]
+        public Text labelText;
 
         // Mapping of input IDs to their active gesture tracking objects.
         private readonly Dictionary<int, ActiveGesture> activeGestures = new Dictionary<int, ActiveGesture>();
@@ -87,6 +105,11 @@ namespace InputSamples.Gestures
         /// Event fired when a user performs a tap gesture, on releasing.
         /// </summary>
         public event Action<TapInput> Tapped;
+
+        /// <summary>
+        /// Event fired when a user released his finger
+        /// </summary>
+        public event Action<SwipeInput> SwipeEnded;
 
         /// <summary>
         /// Dictionary of current fingers on screen
@@ -143,7 +166,7 @@ namespace InputSamples.Gestures
 
             var mult = Vector2.Dot(dir[0], dir[1]);
 
-            Debug.Log(mult);
+            UnityEngine.Debug.Log(mult);
             //Using dot product of two vectors from dictionary
             return false;
         }
@@ -159,7 +182,7 @@ namespace InputSamples.Gestures
 
         private void OnPressed(PointerInput input, double time)
         {
-            Debug.Assert(!activeGestures.ContainsKey(input.InputId));
+            UnityEngine.Debug.Assert(!activeGestures.ContainsKey(input.InputId));
 
             var newGesture = new ActiveGesture(input.InputId, input.Position, time);
             activeGestures.Add(input.InputId, newGesture);
@@ -211,6 +234,8 @@ namespace InputSamples.Gestures
             activeFingers.Remove(input.InputId);
             existingGesture.SubmitPoint(input.Position, time);
 
+            SwipeEnded?.Invoke(new SwipeInput(existingGesture));
+
             if (IsValidSwipe(ref existingGesture))
             {
                 Swiped?.Invoke(new SwipeInput(existingGesture));
@@ -226,7 +251,7 @@ namespace InputSamples.Gestures
 
         private void DebugInfo(ActiveGesture gesture)
         {
-            if (label == null) return;
+            if (label == null && labelText == null) return;
 
             var builder = new StringBuilder();
 
@@ -251,7 +276,16 @@ namespace InputSamples.Gestures
             builder.AppendFormat("Ending Timestamp: {0}", gesture.EndTime);
             builder.AppendLine();
 
-            label.text = builder.ToString();
+            labelText.text = builder.ToString();
+
+            if (label != null)
+            {
+                label.text = builder.ToString();
+            }
+            else if (labelText != null)
+            {
+                labelText.text = builder.ToString();
+            }
 
             var worldStart = Camera.main.ScreenToWorldPoint(gesture.StartPosition);
             var worldEnd = Camera.main.ScreenToWorldPoint(gesture.EndPosition);

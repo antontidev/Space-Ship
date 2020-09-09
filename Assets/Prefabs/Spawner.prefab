@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8727145359937008086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8727145359937008084}
+  - component: {fileID: 8727145359937008087}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8727145359937008084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727145359937008086}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 15.812961, y: 2.4349196, z: -3.4957023}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8727145359937008087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8727145359937008086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f71f2b1d40ed824fb4d453f61cfeab9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocketHolder: {fileID: 0}
+  trash:
+  - {fileID: 7504500674138586896, guid: eae560c47aa9c2a48b82ee0e855556ae, type: 3}
+  - {fileID: 4710313217320542931, guid: 22c19444aaf17664da71468aafcba207, type: 3}
+  - {fileID: 7714276830686208863, guid: 235c65717ca0b354d818499dd72a6d96, type: 3}
+  - {fileID: 2010235100685108766, guid: 67492097a1bd4d947993ebfd1d344c53, type: 3}
+  rocks:
+  - {fileID: 128935683, guid: 8d931b3fb82717949a490ba2479926c4, type: 3}
+  - {fileID: 2023517905, guid: 1d7cf80ff985b3d4da86a46d77ed1a1e, type: 3}
+  - {fileID: 945401805, guid: a9b2c2ea8472caa40b47a88cf3badc04, type: 3}
+  - {fileID: 2095414199, guid: a60a8f0bf6c2c2e43959578425ce1015, type: 3}
+  - {fileID: 1605025214, guid: 345663e86a7f60545b8ec4a8ef734d07, type: 3}
+  - {fileID: 1288633026, guid: d052e3fbbc0929a408e720b491187572, type: 3}
+  - {fileID: 785666640, guid: 40cdb1261502c5147946ac48cebac02b, type: 3}
+  - {fileID: 114526028, guid: f0b038078591d7441bbc6586bbc421d2, type: 3}
+  - {fileID: 1687137008, guid: 087932bfd0e7db149b7e604943e47caf, type: 3}
+  - {fileID: 1084553192, guid: 2934d248fbf71ae43908c5dba87ac6e5, type: 3}
+  - {fileID: 410661016, guid: 5f392814e5dcb6a45b0380e07be63338, type: 3}
+  - {fileID: 446987712, guid: a01382f4fef9dda44bfc417604e578b8, type: 3}
+  - {fileID: 207891145, guid: 20ae9eb2042a9a649bd7d5567eadd2fc, type: 3}
+  - {fileID: 243653980, guid: 52e86cf63f5a28643b9ff6c47eec24cf, type: 3}
+  - {fileID: 2138394885, guid: bd427175c8c6e874cb6cd18814401491, type: 3}
+  - {fileID: 1605112317, guid: 7f29d7b2a9defc84392ee3f65ac49455, type: 3}
+  glowEffect: {fileID: 2100000, guid: 70c1ee9156114b64d8142af0b023144a, type: 2}
+  manager: {fileID: 0}
