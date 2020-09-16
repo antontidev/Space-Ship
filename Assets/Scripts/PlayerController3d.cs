@@ -1,115 +1,143 @@
 ﻿using InputSamples.Gestures;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using LeoLuz.PlugAndPlayJoystick;
+using System;
 using UniRx;
-using Unity.Burst;
+using UnityEngine;
+using Zenject;
 
-[System.Serializable]
-public class PlayerChecker3d
+/// <summary>
+/// Abstract class for player movement
+/// </summary>
+public abstract class PlayerMove
 {
-    Camera cam;
+    private float moveSpeed;
 
-    public bool isOnPlayer;
-
-    public PlayerChecker3d(Camera cam)
+    public PlayerMove(float moveSpeed)
     {
-        this.cam = cam;
-        isOnPlayer = false;
+        this.moveSpeed = moveSpeed;
     }
 
-    public bool CheckPoint(Vector2 fingerContactPoint)
+    public abstract void Move(Vector2 movementDelta); 
+    
+    public Vector3 CalculateSpeed(Vector2 frameMovement)
     {
-        var worldPoint = cam.ScreenToWorldPoint(fingerContactPoint);
+        var speedMovement = frameMovement * Time.fixedDeltaTime * moveSpeed;
 
-        RaycastHit hit;
+        return new Vector3(speedMovement.x, 0.0f, speedMovement.y);
+    }
+}
 
-        Physics.Raycast(worldPoint, cam.transform.forward, out hit);
+/// <summary>
+/// Player Movement via transform.Translate method
+/// </summary>
+public class PlayerMoveTranslate : PlayerMove
+{
+    private Transform transform;
 
-        if (hit.collider != null)
-        {
-            isOnPlayer = hit.collider.gameObject.tag == "Player";
-        }
-        else
-        {
-            isOnPlayer = false;
-        }
+    private Space space;
 
-        return isOnPlayer;
+    public PlayerMoveTranslate(Transform transform, 
+                               float moveSpeed, 
+                               Space space = Space.World) : base(moveSpeed)
+    {
+        this.transform = transform;
+        this.space = space;
+    }
+
+    /// <summary>
+    /// Ignores physics and  shape of ground
+    /// </summary>
+    /// <param name="movementDelta"></param>
+    public override void Move(Vector2 movementDelta)
+    {
+        var movement = CalculateSpeed(movementDelta);
+
+        transform.Translate(movement, space);
+    }
+}
+
+/// <summary>
+/// Moves player via physics engine
+/// </summary>
+public class PlayerMoveForce : PlayerMove
+{
+    private Rigidbody rigidbody;
+
+    public PlayerMoveForce(Rigidbody rigidbody, 
+                           float moveSpeed) : base(moveSpeed)
+    {
+        this.rigidbody = rigidbody;
+    }
+
+    /// <summary>
+    /// Moves player by rigidbody RelativeForce which helps a lot in such case
+    /// when player moves around sphere. Sometimes player stucks in shape edges
+    /// </summary>
+    /// <param name="frameMovement"></param>
+    [Obsolete("Use MovePlayerTranslate instead")]
+    public override void Move(Vector2 movementDelta)
+    {
+        var movement = CalculateSpeed(movementDelta);
+
+        rigidbody.AddRelativeForce(movement);
     }
 }
 
 public class PlayerController3d : MonoBehaviour
 {
-    public enum Health
+    /// <summary>
+    /// I need two types of input in my DI container
+    /// </summary>
+    [Inject]
+    private IJoystickInput playerInput;
+
+    #region Move type
+    public enum MoveType
     {
-        Alive,
-        Died
+        Rigidbody,
+        Translate
     }
 
+    [Header("Movement")]
     [SerializeField]
-    private GestureController gestureController;
+    private ReactiveProperty<MoveType> moveType;
 
-    public ReactiveProperty<Health> health;
+    private PlayerMove moveTypeDelegate;
+    #endregion
 
-    public float moveSpeed = 0.5f;
+    public GameObject groundCheck;
 
-    public Camera cam;
-
-    public PlayerChecker3d playerChecker;
+    public float moveSpeed = 500f;
 
     private Rigidbody rb;
 
     private void Awake()
     {
-        health = new ReactiveProperty<Health>(Health.Alive);
         rb = GetComponent<Rigidbody>();
-
-        playerChecker = new PlayerChecker3d(cam);
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        gestureController.Dragged += PlayerDragged;
-        gestureController.Pressed += PlayerPressed;
-    }
-
-    private void OnDisable()
-    {
-        gestureController.Dragged -= PlayerDragged;
-    }
-
-    private void PlayerPressed(SwipeInput input)
-    {
-        var fingerContact = input.EndPosition;
-
-        var isOnPlayer = playerChecker.CheckPoint(fingerContact);
-
-        if (isOnPlayer)
+        moveType.Subscribe(x =>
         {
-            gestureController.SwipeEnded += PlayerReleased;
-        }
-    }
+            switch (moveType.Value)
+            {
+                case MoveType.Rigidbody:
+                    moveTypeDelegate = new PlayerMoveForce(rb, moveSpeed);
+                    break;
+                case MoveType.Translate:
+                    moveTypeDelegate = new PlayerMoveTranslate(transform, moveSpeed, Space.Self);
+                    break;
+            }
+        });
 
-    private void PlayerDragged(SwipeInput input)
-    {
-        var frameMovement = input.EndPosition - input.PreviousPosition;
-        var speedMovement = frameMovement * Time.fixedDeltaTime * moveSpeed;
+        var stream = Observable.EveryUpdate().Where(_ => !playerInput.released.Value);
 
-        Vector3 movement = new Vector3(speedMovement.x, 0.0f, speedMovement.y);
-
-        rb.AddRelativeForce(movement);
-    }
-
-    private void PlayerReleased(SwipeInput input)
-    {
-        health.Value = Health.Died;
-
-        var isOnPlayer = playerChecker.isOnPlayer;
-
-        if (isOnPlayer)
+        stream.Subscribe(_ =>
         {
-            gestureController.SwipeEnded -= PlayerReleased;
-        }
+            var movement = playerInput.screenInput.Value;
+
+            moveTypeDelegate.Move(movement);
+        });
     }
 }

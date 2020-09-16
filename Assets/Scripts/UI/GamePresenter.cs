@@ -12,8 +12,6 @@ public abstract class IGamePresetner : MonoBehaviour
 
     public abstract void FadeScene();
 
-    public abstract void SubscribeTimer();
-
     public abstract void SubscribeModules();
 
     public abstract void SubscribePlanet();
@@ -22,16 +20,7 @@ public abstract class IGamePresetner : MonoBehaviour
 public class GamePresenter : IGamePresetner
 {
     [SerializeField]
-    private Timer timer;
-
-    [SerializeField]
     private FadeManager fadeManager;
-
-    /// <summary>
-    /// Reading actual timer value
-    /// </summary>
-    [SerializeField]
-    private TextMeshProUGUI timerText;
 
     /// <summary>
     /// Planet text fields
@@ -118,7 +107,6 @@ public class GamePresenter : IGamePresetner
 
     private void Start()
     {
-        SubscribeTimer();
         SubscribePlanet();
         SubscribeModules();
     }
@@ -187,17 +175,6 @@ public class GamePresenter : IGamePresetner
         planetBridge.planetName.Subscribe(x =>
         {
             planetName.text = x.ToString();
-        });
-    }
-
-    /// <summary>
-    /// Subscribe UI to Timer
-    /// </summary>
-    public override void SubscribeTimer()
-    {
-        timer.roundedTimer.Where(x => x >= 0).Subscribe(x =>
-        {
-            timerText.text = x.ToString();
         });
     }
 

@@ -23,7 +23,7 @@ public class Timer : MonoBehaviour
     private bool emitted = false;
 
     /// <summary>
-    /// Holds tiimer update observable
+    /// Holds timer update observable
     /// </summary>
     private IDisposable timerUpdater;
 

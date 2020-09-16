@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using LeoLuz.PlugAndPlayJoystick;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -11,5 +12,6 @@ public class ModuleInstaller : MonoInstaller
         Container.Bind<PlanetBridge>().AsCached().NonLazy();
         Container.Bind<ModulesBridge>().AsCached().NonLazy();
         Container.Bind<LevelLoader>().AsCached().NonLazy();
+        Container.Bind<IJoystickInput>().AsCached().NonLazy();
     }
 }
