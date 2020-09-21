@@ -6,22 +6,62 @@ using UnityEngine;
 using Zenject;
 
 /// <summary>
+/// Set abstract class for player debug information.
+/// You don't need to override this method if you don't
+/// need to draw debug information.
+/// Works only in debug mode because in basic PlayerMove class placed in #if #endif
+/// UNITY_DEBUG constant.
+/// </summary>
+public abstract class PlayerMoveDebug
+{
+    public virtual void DrawGizmos(Transform transform, Vector3 lastForward) { }
+}
+
+/// <summary>
 /// Abstract class for player movement
 /// </summary>
 public abstract class PlayerMove
 {
-    private float moveSpeed;
-
-    public PlayerMove(float moveSpeed)
+    public abstract string MoveName
     {
-        this.moveSpeed = moveSpeed;
+        get;
     }
 
-    public abstract void Move(Vector2 movementDelta); 
-    
-    public Vector3 CalculateSpeed(Vector2 frameMovement)
+    protected float moveSpeed;
+
+    protected float lastValue;
+
+    protected Vector3 lastForward;
+
+    protected Transform transform;
+
+    public PlayerMove(Transform transform, float moveSpeed)
     {
-        var speedMovement = frameMovement * Time.fixedDeltaTime * moveSpeed;
+        this.moveSpeed = moveSpeed;
+        this.transform = transform;
+
+        lastForward = Vector3.zero;
+        lastValue = 0.0f;
+    }
+
+    public abstract void Move(Vector2 movementDelta);
+
+#if UNITY_EDITOR_WIN || UNITY_EDITOR
+    protected PlayerMoveDebug playerMoveDebug;
+
+    public virtual void _Move(Vector3 lookRotation) 
+    {
+    }
+
+    public void DrawMoveDebug()
+    {
+        playerMoveDebug?.DrawGizmos(transform, lastForward);
+    }
+#endif
+
+    public virtual Vector3 CalculateSpeed(Vector2 frameMovement)
+    {
+        var speedMovement = lastForward = frameMovement * Time.fixedDeltaTime * moveSpeed;
 
         return new Vector3(speedMovement.x, 0.0f, speedMovement.y);
     }
@@ -32,18 +72,23 @@ public abstract class PlayerMove
 /// </summary>
 public class PlayerMoveTranslate : PlayerMove
 {
-    private Transform transform;
-
     private Space space;
 
     public PlayerMoveTranslate(Transform transform, 
                                float moveSpeed, 
-                               Space space = Space.World) : base(moveSpeed)
+                               Space space = Space.World) : base(transform, 
+                                                                 moveSpeed)
     {
-        this.transform = transform;
         this.space = space;
     }
 
+    public override string MoveName
+    {
+        get
+        {
+            return "Translate";
+        }
+    }
     /// <summary>
     /// Ignores physics and  shape of ground
     /// </summary>
@@ -63,12 +108,21 @@ public class PlayerMoveForce : PlayerMove
 {
     private Rigidbody rigidbody;
 
-    public PlayerMoveForce(Rigidbody rigidbody, 
-                           float moveSpeed) : base(moveSpeed)
+    public PlayerMoveForce(Transform transform,
+                           Rigidbody rigidbody, 
+                           float moveSpeed) : base(transform, 
+                                                   moveSpeed)
     {
         this.rigidbody = rigidbody;
     }
 
+    public override string MoveName
+    {
+        get
+        {
+            return "Rigidbody";
+        }
+    }
     /// <summary>
     /// Moves player by rigidbody RelativeForce which helps a lot in such case
     /// when player moves around sphere. Sometimes player stucks in shape edges
@@ -105,9 +159,9 @@ public class PlayerController3d : MonoBehaviour
     private PlayerMove moveTypeDelegate;
     #endregion
 
-    public GameObject groundCheck;
-
     public float moveSpeed = 500f;
+
+    public AnimationCurve speedByMagnitude;
 
     private Rigidbody rb;
 
@@ -123,14 +177,20 @@ public class PlayerController3d : MonoBehaviour
             switch (moveType.Value)
             {
                 case MoveType.Rigidbody:
-                    moveTypeDelegate = new PlayerMoveForce(rb, moveSpeed);
+                    moveTypeDelegate = new PlayerMoveForce(transform, 
+                                                           rb, 
+                                                           moveSpeed);
                     break;
                 case MoveType.Translate:
-                    moveTypeDelegate = new PlayerMoveTranslate(transform, moveSpeed, Space.Self);
+                    moveTypeDelegate = new PlayerMoveTranslate(transform, 
+                                                               moveSpeed, 
+                                                               Space.Self);
                     break;
             }
         });
 
+        // I need to place code below to the Zenject input container
+        // because i use this events in several places, so i don't need to copy/paste the code
         var stream = Observable.EveryUpdate().Where(_ => !playerInput.released.Value);
 
         stream.Subscribe(_ =>

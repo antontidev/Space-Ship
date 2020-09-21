@@ -18,8 +18,8 @@ public class AnimationController : MonoBehaviour
     {
         joystickInput.screenInput.Subscribe(movement =>
         {
-            animator.SetFloat("MovementX", movement.x);
-            animator.SetFloat("MovemntY", movement.y);
+            var magnitude = movement.magnitude;
+            animator.SetFloat("Magnitude", magnitude);
         });
     }
 }

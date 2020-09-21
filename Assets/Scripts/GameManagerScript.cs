@@ -59,8 +59,9 @@ public class GameManagerScript : IGameManager
         levelManager.NextLevelLoaded += timer.LevelLoaded;
         levelManager.NextLevelLoaded += activePartManager.LevelLoaded;
         timer.Up += MakeDecision;
-        spawner.planetSpawned += freeLookCamera.SetTargetObject;
         spawner.RocketSpawned += SubmitRocket;
+        // Obsolete call  planet already exist
+        //spawner.planetSpawned += freeLookCamera.SetTargetObject;
     }
 
     private void OnDisable()
@@ -70,8 +71,9 @@ public class GameManagerScript : IGameManager
         levelManager.NextLevelLoaded -= activePartManager.LevelLoaded;
         timer.Up -= MakeDecision;
         timelineManager.stopped -= OnCutsceneEnded;
-        spawner.planetSpawned -= freeLookCamera.SetTargetObject;
         spawner.RocketSpawned -= SubmitRocket;
+        // Obsolete call planet already exist
+        //spawner.planetSpawned -= freeLookCamera.SetTargetObject;
     }
 
     private void SubmitRocket(Rocket rocket)

@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2095414201}
   - component: {fileID: -434112056532862151}
   - component: {fileID: 3364162379664142884}
-  - component: {fileID: -8528320070572470435}
-  m_Layer: 0
+  - component: {fileID: -8276857955762488105}
+  m_Layer: 10
   m_Name: Rock4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2095414199}
   m_LocalRotation: {x: 0.000000081460335, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -10.427166, y: -13.064599, z: -0.46821594}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ba460920fd9c8479a22f962327279b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!64 &-8528320070572470435
-MeshCollider:
+--- !u!65 &-8276857955762488105
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -122,7 +122,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 08746d293fd827e429733f5c209aee54, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 1.3708076, y: 1.3872393, z: 1.2802609}
+  m_Center: {x: -0.041086968, y: 0.6108063, z: -0.014517396}

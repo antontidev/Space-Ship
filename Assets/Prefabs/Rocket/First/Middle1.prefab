@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 9149906653257524026}
   - component: {fileID: 8410871074186258733}
   - component: {fileID: 2984125055045350617}
+  - component: {fileID: -8910684435397949799}
   m_Layer: 8
   m_Name: Middle1
   m_TagString: Middle
@@ -144,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9bbaac595735448db8caa40ade5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PartValue: 1
   sprite: {fileID: 21300000, guid: e7df05d8f09f0a54186deff26ac36acb, type: 3}
 --- !u!65 &9149906653257524026
 BoxCollider:
@@ -196,3 +198,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2, y: 0.3, z: 0.14}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8910684435397949799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2168737748040975920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 0

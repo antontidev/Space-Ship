@@ -139,7 +139,7 @@ public class GamePresenter : IGamePresetner
 
             var shipPart = replaceEvent.NewValue;
 
-            image.sprite = shipPart.sprite;
+            //image.sprite = shipPart.sprite;
 
             image.color = Color.white;
         });
