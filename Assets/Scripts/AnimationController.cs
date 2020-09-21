@@ -1,9 +1,7 @@
 ﻿using LeoLuz.PlugAndPlayJoystick;
-using System.Collections;
-using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using Zenject;
-using UniRx;
 
 public class AnimationController : MonoBehaviour
 {

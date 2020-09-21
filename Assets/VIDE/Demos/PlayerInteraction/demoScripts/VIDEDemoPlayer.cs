@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using VIDE_Data;
 
 public class VIDEDemoPlayer : MonoBehaviour
@@ -94,7 +93,8 @@ public class VIDEDemoPlayer : MonoBehaviour
             if (assigned.alias == "QuestUI")
             {
                 questUI.Interact(); //Begins interaction with Quest Chart
-            } else
+            }
+            else
             {
                 diagUI.Interact(assigned); //Begins interaction
             }

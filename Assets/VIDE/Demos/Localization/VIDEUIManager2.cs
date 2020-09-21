@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using VIDE_Data;
 
@@ -44,15 +44,15 @@ public class VIDEUIManager2 : MonoBehaviour
         VD.nodeData.commentIndex = choice; //Set commentIndex as it acts as the picked choice
         if (VD.nodeData.extraVars.ContainsKey("loadLang"))
         {
-            if (VD.nodeData.commentIndex < (int) VD.nodeData.extraVars["loadLang"]) //Don't count index 3 as language
-			{
-				VD.OnLanguageChange += UpdateWithNewLanguage;
-				VD.SetCurrentLanguage(VD.GetLanguages()[VD.nodeData.commentIndex]); 
-			}
-			else 
-			{
-				VD.Next(); 
-			}
+            if (VD.nodeData.commentIndex < (int)VD.nodeData.extraVars["loadLang"]) //Don't count index 3 as language
+            {
+                VD.OnLanguageChange += UpdateWithNewLanguage;
+                VD.SetCurrentLanguage(VD.GetLanguages()[VD.nodeData.commentIndex]);
+            }
+            else
+            {
+                VD.Next();
+            }
         }
     }
 
@@ -64,7 +64,8 @@ public class VIDEUIManager2 : MonoBehaviour
 
     //This will trigger with the OnLanguageChange event
     //It will make sure the current text being displayed will be updated with the new localization
-    void UpdateWithNewLanguage() {
+    void UpdateWithNewLanguage()
+    {
         npcText.text = VD.GetNodeData(0).comments[0];
         flag.sprite = VD.GetNodeData(0).sprite;
         SetPlayerChoices();

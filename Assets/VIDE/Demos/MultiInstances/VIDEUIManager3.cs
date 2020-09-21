@@ -1,6 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using VIDE_Data; //<--- Import to use VD2 class
 
@@ -13,7 +13,7 @@ using VIDE_Data; //<--- Import to use VD2 class
 public class VIDEUIManager3 : MonoBehaviour
 {
     public Text[] npcText; //References to UI elements
-    IEnumerator[] textAnim = new IEnumerator[4]; 
+    IEnumerator[] textAnim = new IEnumerator[4];
     public int animatingText = -1; //With this we'll know if and what we are animating
 
     //A list that will contain instances of VD2, which will handle dialogue data
@@ -43,7 +43,8 @@ public class VIDEUIManager3 : MonoBehaviour
             {
                 CutTextAnim();
                 return;
-            } else
+            }
+            else
             {
                 data.Next();
                 //Next for that instance
@@ -88,7 +89,7 @@ public class VIDEUIManager3 : MonoBehaviour
 
     //OnEnd will trigger this which will end the conversation for that instance
     void End(VD2 data)
-    {       
+    {
         //You can use the returned VD2 to find it within a list and get its index.
         npcText[dialogueDataInstances.IndexOf(data)].text = string.Empty;
         data.OnEnd -= End;

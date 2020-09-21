@@ -1,8 +1,8 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Linq;
+using System.Text.RegularExpressions;
+using UnityEngine;
 
 namespace VIDE_Data
 {
@@ -362,7 +362,7 @@ namespace VIDE_Data
                 isEnd = false;
                 extraVars = new Dictionary<string, object>();
                 nodeID = -1;
-                commentIndex = 0;               
+                commentIndex = 0;
             }
 
             public NodeData(NodeData nd)
@@ -460,7 +460,7 @@ namespace VIDE_Data
             }
         }
 
-        public static VIDE_Localization.VLanguage dflset 
+        public static VIDE_Localization.VLanguage dflset
         {
             get
             {

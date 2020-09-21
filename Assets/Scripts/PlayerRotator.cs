@@ -1,7 +1,5 @@
 ﻿using LeoLuz.PlugAndPlayJoystick;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -11,8 +9,8 @@ using Zenject;
 /// </summary>
 public class NoneRotator : PlayerMove
 {
-    public NoneRotator(Transform transform, 
-                       float rotateSpeed) : base(transform, 
+    public NoneRotator(Transform transform,
+                       float rotateSpeed) : base(transform,
                                                  rotateSpeed)
     {
     }
@@ -59,9 +57,9 @@ public class TransformRotateRotator : PlayerMove
 /// </summary>
 public class MathRotator : PlayerMove
 {
-    public MathRotator(Transform transform, 
-                       float moveSpeed) : base(transform, 
-                                               moveSpeed) 
+    public MathRotator(Transform transform,
+                       float moveSpeed) : base(transform,
+                                               moveSpeed)
     {
     }
 
@@ -101,16 +99,16 @@ public class MathRotator : PlayerMove
 /// </summary>
 public class QuaternionRotator : PlayerMove
 {
-    public QuaternionRotator(Transform transform, 
-                             float rotateSpeed) : base(transform, 
-                                                       rotateSpeed) 
+    public QuaternionRotator(Transform transform,
+                             float rotateSpeed) : base(transform,
+                                                       rotateSpeed)
     {
 #if UNITY_EDITOR
         playerMoveDebug = new QuaternionRotateDebug();
 #endif
     }
 
-    public override string MoveName 
+    public override string MoveName
     {
         get
         {
@@ -196,7 +194,7 @@ public class PlayerRotator : MonoBehaviour
 
     [SerializeField]
     private float rotationSpeed = 1f;
-    
+
     public ReactiveProperty<RotationType> rotationType;
 
     private PlayerMove rotatorDelegate;

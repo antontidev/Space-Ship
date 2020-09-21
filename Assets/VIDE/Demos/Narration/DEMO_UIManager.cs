@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI; //Import this to quickly access Unity's UI classes
 using VIDE_Data; //Import this to use VIDE Dialogue's VD class
 
-public class DEMO_UIManager : MonoBehaviour {
+public class DEMO_UIManager : MonoBehaviour
+{
 
     public Text NPC_text; //References
     public Text[] PLAYER_text; //References
@@ -12,7 +11,8 @@ public class DEMO_UIManager : MonoBehaviour {
 
     private bool keyDown = false;
 
-    void Start () {
+    void Start()
+    {
         //Disable UI when starting just in case
         NPC_text.gameObject.SetActive(false);
         foreach (Text t in PLAYER_text)
@@ -22,7 +22,7 @@ public class DEMO_UIManager : MonoBehaviour {
         VD.OnNodeChange += UpdateUI;
         VD.OnEnd += End;
         VD.BeginDialogue(GetComponent<VIDE_Assign>()); //This is the first most important method when using VIDE
-	}
+    }
 
     //Check if a dialogue is active and if we are NOT in a player node in order to continue
     void Update()
@@ -34,12 +34,14 @@ public class DEMO_UIManager : MonoBehaviour {
                 if (keyDown)
                 {
                     keyDown = false;
-                } else
+                }
+                else
                 {
                     VD.Next(); //Second most important method when using VIDE
                 }
             }
-        } else
+        }
+        else
         {
             if (Input.GetKeyUp(continueButton))
             {
@@ -55,17 +57,19 @@ public class DEMO_UIManager : MonoBehaviour {
         VD.nodeData.commentIndex = playerChoice; //Setting this when on a player node will decide which node we go next
         VD.Next();
     }
-	
+
     //Every time VD.nodeData is updated, this method will be called. (Because we subscribed it to OnNodeChange event)
-	void UpdateUI (VD.NodeData data) {
+    void UpdateUI(VD.NodeData data)
+    {
 
         WipeAll(); //Turn stuff off first
 
-		if (!data.isPlayer) //For NPC. Activate text gameobject and set its text
+        if (!data.isPlayer) //For NPC. Activate text gameobject and set its text
         {
             NPC_text.gameObject.SetActive(true);
             NPC_text.text = data.comments[data.commentIndex];
-        } else //For Player. It will activate the required Buttons and set their text
+        }
+        else //For Player. It will activate the required Buttons and set their text
         {
             for (int i = 0; i < PLAYER_text.Length; i++)
             {
@@ -73,7 +77,8 @@ public class DEMO_UIManager : MonoBehaviour {
                 {
                     PLAYER_text[i].transform.parent.gameObject.SetActive(true);
                     PLAYER_text[i].text = data.comments[i];
-                } else
+                }
+                else
                 {
                     PLAYER_text[i].transform.parent.gameObject.SetActive(false);
                 }
@@ -81,7 +86,7 @@ public class DEMO_UIManager : MonoBehaviour {
                 PLAYER_text[0].transform.parent.GetComponent<Button>().Select();
             }
         }
-	}
+    }
 
     //Set all UI references off
     void WipeAll()

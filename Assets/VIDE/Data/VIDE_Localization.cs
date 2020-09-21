@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using MiniJSON_VIDE;
 using System.Collections.Generic;
-using MiniJSON_VIDE;
 using System.IO;
+using UnityEngine;
 
 public class VIDE_Localization
 {
@@ -19,7 +18,7 @@ public class VIDE_Localization
     public delegate void OnSaveLoad(bool save, bool all);
 
     [System.Serializable]
-    public class VLanguage 
+    public class VLanguage
     {
         public bool enabled;
         public bool selected;
@@ -304,7 +303,8 @@ public class VIDE_Localization
             {
                 dict = SerializeHelper.ReadFromFile("LocalizationSettings" + ".json") as Dictionary<string, object>;
             }
-        } else
+        }
+        else
         {
             return null;
         }

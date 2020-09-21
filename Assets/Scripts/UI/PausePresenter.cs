@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 public abstract class IPause : MonoBehaviour
@@ -26,7 +24,7 @@ public class PausePresenter : IPause
 
     [Inject]
     private LevelLoader levelLoader;
-   
+
     [SerializeField]
     private FadeManager fadeManager;
 

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Zenject;
 
 public class GlowManager
 {
@@ -7,7 +6,7 @@ public class GlowManager
 
     public void PutNewModule(GameObject module)
     {
-        
+
     }
 
     private void MakeGlow()

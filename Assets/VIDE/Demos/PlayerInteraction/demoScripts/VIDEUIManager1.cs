@@ -8,9 +8,9 @@
  *  Need help programming your own UI Manager? Check out the scripting tutorial: https://videdialogues.wordpress.com/tutorial/
  */
 
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using VIDE_Data; //<--- Import to use easily call VD class
 
@@ -53,7 +53,7 @@ public class VIDEUIManager1 : MonoBehaviour
 
     void Awake()
     {
-       // VD.LoadDialogues(); //Load all dialogues to memory so that we dont spend time doing so later
+        // VD.LoadDialogues(); //Load all dialogues to memory so that we dont spend time doing so later
         //An alternative to this can be preloading dialogues from the VIDE_Assign component!
 
         //Loads the saved state of VIDE_Assigns and dialogues.
@@ -72,10 +72,11 @@ public class VIDEUIManager1 : MonoBehaviour
         if (!VD.isActive)
         {
             Begin(dialogue);
-        } else
+        }
+        else
         {
             CallNext();
-        }      
+        }
     }
 
     //This begins the conversation
@@ -106,9 +107,10 @@ public class VIDEUIManager1 : MonoBehaviour
         if (animatingText) { CutTextAnim(); return; }
 
         if (!dialoguePaused) //Only if
-        {       
+        {
             VD.Next(); //We call the next node and populate nodeData with new data. Will fire OnNodeChange.
-        } else
+        }
+        else
         {
             //Disable item popup and disable pause
             if (itemPopUp.activeSelf)
@@ -116,7 +118,7 @@ public class VIDEUIManager1 : MonoBehaviour
                 dialoguePaused = false;
                 itemPopUp.SetActive(false);
             }
-        }   
+        }
     }
 
     //Input related stuff (scroll through player choices and update highlight)
@@ -247,7 +249,7 @@ public class VIDEUIManager1 : MonoBehaviour
             newOp.GetComponent<UnityEngine.UI.Text>().text = choices[i];
             newOp.SetActive(true);
 
-            currentChoices.Add(newOp.GetComponent<UnityEngine.UI.Text>()); 
+            currentChoices.Add(newOp.GetComponent<UnityEngine.UI.Text>());
         }
     }
 
@@ -275,7 +277,7 @@ public class VIDEUIManager1 : MonoBehaviour
         VD.OnNodeChange -= UpdateUI;
         VD.OnEnd -= EndDialogue;
         if (dialogueContainer != null)
-        dialogueContainer.SetActive(false);
+            dialogueContainer.SetActive(false);
         VD.EndDialogue();
     }
 
@@ -342,7 +344,8 @@ public class VIDEUIManager1 : MonoBehaviour
                 }
 
             }
-        } else //Stuff we do right before the dialogue begins
+        }
+        else //Stuff we do right before the dialogue begins
         {
             //Get the item from CrazyCap to trigger this one on Charlie
             if (dialogue.alias == "Charlie")
@@ -470,7 +473,7 @@ public class VIDEUIManager1 : MonoBehaviour
 
     #endregion
 
-	//Utility note: If you're on MonoDevelop. Go to Tools > Options > General and enable code folding.
-	//That way you can exapnd and collapse the regions and methods
+    //Utility note: If you're on MonoDevelop. Go to Tools > Options > General and enable code folding.
+    //That way you can exapnd and collapse the regions and methods
 
 }

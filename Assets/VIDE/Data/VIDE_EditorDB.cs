@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
 {
@@ -119,8 +118,8 @@ public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
         public bool expand;
         public List<string> vars = new List<string>();
         public List<string> varKeys = new List<string>();
-		
-		
+
+
 
         public DialogueNode()
         {
@@ -154,8 +153,8 @@ public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
                 comment.Add(new Comment());
         }
     }
-	
-	public class NodeSelection
+
+    public class NodeSelection
     {
         public VIDE_EditorDB.DialogueNode dNode;
         public VIDE_EditorDB.ActionNode aNode;
@@ -168,8 +167,8 @@ public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
         {
             aNode = d;
         }
-		
-		   public NodeSelection()
+
+        public NodeSelection()
         {
             dNode = null;
             aNode = null;
@@ -208,11 +207,11 @@ public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
             extraData = "ExtraData";
         }
     }
-     
+
     public List<DialogueNode> playerDiags = new List<DialogueNode>();
     public List<ActionNode> actionNodes = new List<ActionNode>();
     public List<NodeSelection> selectedNodes = new List<NodeSelection>();
-	
+
     public void CopyLastActionNode(object copy)
     {
         ActionNode ac = actionNodes[actionNodes.Count - 1];
@@ -266,7 +265,7 @@ public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
 
             dn.comment[i].text = c.comment[i].text;
             dn.comment[i].extraData = c.comment[i].extraData;
-            dn.comment[i].inputSet =  dn;
+            dn.comment[i].inputSet = dn;
             dn.comment[i].outNode = c.comment[i].outNode;
             dn.comment[i].outAction = c.comment[i].outAction;
             dn.comment[i].outRect = c.comment[i].outRect;
@@ -378,7 +377,7 @@ public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
         public AudioClip audios;
         public bool visible;
     }
-	[Serializable]
+    [Serializable]
     public struct Serialized_selNodes
     {
         public VIDE_EditorDB.DialogueNode dNode;
@@ -462,8 +461,8 @@ public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
         }
         S_actionNodes = S_actionNode;
     }
-	
-	void selSerialize()
+
+    void selSerialize()
     {
         List<Serialized_selNodes> S_selNode = new List<Serialized_selNodes>();
         foreach (var child in selectedNodes)
@@ -471,7 +470,7 @@ public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
             Serialized_selNodes np = new Serialized_selNodes()
             {
                 dNode = child.dNode,
-                aNode = child.aNode,			
+                aNode = child.aNode,
             };
             S_selNode.Add(np);
         }
@@ -540,15 +539,15 @@ public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
 
         return temp_actionNodes;
     }
-	
-	List<NodeSelection> selDeserialize()
+
+    List<NodeSelection> selDeserialize()
     {
         List<NodeSelection> temp_selNodes = new List<NodeSelection>();
         foreach (var child in S_selNodes)
         {
             temp_selNodes.Add(new NodeSelection());
             var x = temp_selNodes[temp_selNodes.Count - 1];
-			
+
             x.dNode = child.dNode;
             x.aNode = child.aNode;
         }
@@ -588,7 +587,7 @@ public class VIDE_EditorDB : MonoBehaviour, ISerializationCallbackReceiver
                 actionNodes[i].outAction = actionNodes[S_actionNodes[i].outActionIndex];
             else
                 actionNodes[i].outAction = null;
-        } 
+        }
 
     }
 

@@ -142,7 +142,7 @@ public class AstronautInventory : IInventory
     /// <param name="itemType">
     /// Always ItemType.Astronaut
     /// </param>
-    public void PutItem(GameObject item, 
+    public void PutItem(GameObject item,
                         ItemType itemType = ItemType.Modules)
     {
         if (!inventory.Contains(item))
@@ -267,16 +267,16 @@ public class RocketInventory : IInventory
 
             backToGlobalInventory.Add(oldObject);
 
-            var changedArgs = new InventoryEventArgs<string>(moduleTag, 
-                                                             item, 
+            var changedArgs = new InventoryEventArgs<string>(moduleTag,
+                                                             item,
                                                              oldObject);
 
             ItemChanged?.Invoke(this, changedArgs);
         }
         else
         {
-            var addedArgs = new InventoryEventArgs<ItemType>(itemType, 
-                                                             item, 
+            var addedArgs = new InventoryEventArgs<ItemType>(itemType,
+                                                             item,
                                                              null);
 
             ItemAdded?.Invoke(this, addedArgs);
@@ -293,7 +293,7 @@ public class RocketInventory : IInventory
     /// </summary>
     /// <param name="item"></param>
     /// <param name="itemType"></param>
-    public void Delete(GameObject item, 
+    public void Delete(GameObject item,
                        ItemType itemType = ItemType.Modules)
     {
         backToGlobalInventory.Remove(item);
@@ -359,8 +359,8 @@ public class GlobalInventory : IInventory
 
             list.Add(item);
 
-            var addedEventArgs = new InventoryEventArgs<ItemType>(ItemType.Modules, 
-                                                                  item, 
+            var addedEventArgs = new InventoryEventArgs<ItemType>(ItemType.Modules,
+                                                                  item,
                                                                   null);
 
             ItemAdded?.Invoke(this, addedEventArgs);
@@ -374,7 +374,7 @@ public class GlobalInventory : IInventory
     /// </summary>
     /// <param name="item"></param>
     /// <param name="itemType"></param>
-    public void Delete(GameObject item, 
+    public void Delete(GameObject item,
                        ItemType itemType = ItemType.Modules)
     {
         var list = inventory[itemType];
@@ -412,7 +412,7 @@ public class GlobalInventory : IInventory
     /// <param name="itemType">
     /// Type of item from ItemType Enum
     /// </param>
-    public void PutItem(GameObject item, 
+    public void PutItem(GameObject item,
                         ItemType itemType)
     {
         Debug.Log("You picked" + item.name);
@@ -444,7 +444,7 @@ public class GlobalInventory : IInventory
             listType.Add(item);
         }
 
-        var addedEventArgs = new InventoryEventArgs<ItemType>(itemType, 
+        var addedEventArgs = new InventoryEventArgs<ItemType>(itemType,
                                                               item,
                                                               null);
 

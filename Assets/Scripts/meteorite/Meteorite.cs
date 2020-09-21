@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Meteorite : MonoBehaviour
 {
@@ -8,7 +6,7 @@ public class Meteorite : MonoBehaviour
 
     public GameObject moveSystem;
 
-   void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         collisionSystem.SetActive(true);
 

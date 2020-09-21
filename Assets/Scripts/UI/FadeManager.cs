@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UniRx;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
 public abstract class IFader : MonoBehaviour
 {

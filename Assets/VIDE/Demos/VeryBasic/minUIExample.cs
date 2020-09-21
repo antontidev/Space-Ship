@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using VIDE_Data;
 
-public class minUIExample : MonoBehaviour {
+public class minUIExample : MonoBehaviour
+{
 
     void Start()
     {
@@ -13,8 +14,9 @@ public class minUIExample : MonoBehaviour {
         VD.EndDialogue();
     }
 
-    void OnGUI () {
-	    if (VD.isActive)
+    void OnGUI()
+    {
+        if (VD.isActive)
         {
             var data = VD.nodeData; //Quick reference
             if (data.isPlayer) // If it's a player node, let's show all of the available options as buttons
@@ -27,24 +29,27 @@ public class minUIExample : MonoBehaviour {
                         VD.Next();
                     }
                 }
-            } else //if it's a NPC node, Let's show the comment and add a button to continue
+            }
+            else //if it's a NPC node, Let's show the comment and add a button to continue
             {
                 GUILayout.Label(data.comments[data.commentIndex]);
 
-                if (GUILayout.Button(">")){
+                if (GUILayout.Button(">"))
+                {
                     VD.Next();
                 }
             }
-			if (data.isEnd) // If it's the end, let's just call EndDialogue
-                {
-                    VD.EndDialogue();
-                }
-        } else // Add a button to begin conversation if it isn't started yet
+            if (data.isEnd) // If it's the end, let's just call EndDialogue
+            {
+                VD.EndDialogue();
+            }
+        }
+        else // Add a button to begin conversation if it isn't started yet
         {
             if (GUILayout.Button("Start Convo"))
             {
                 VD.BeginDialogue(GetComponent<VIDE_Assign>()); //We've attached a VIDE_Assign to this same gameobject, so we just call the component
             }
         }
-	}
+    }
 }

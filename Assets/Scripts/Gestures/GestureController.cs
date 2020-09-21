@@ -2,7 +2,6 @@ using InputSamples.Drawing;
 using MyBox;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Text;
 using TMPro;
 using UnityEngine;

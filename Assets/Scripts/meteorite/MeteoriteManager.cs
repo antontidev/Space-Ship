@@ -1,10 +1,10 @@
 ﻿using System;
-using UnityEngine;
 using UniRx;
+using UnityEngine;
 
 public class MeteoriteManager : MonoBehaviour
 {
-    [Header ("Meteorite prefab")]
+    [Header("Meteorite prefab")]
     public GameObject meteoritePrefab;
 
     public float spawnDelta = 5f;
@@ -30,9 +30,9 @@ public class MeteoriteManager : MonoBehaviour
     {
         var spawnPosition = UnityEngine.Random.onUnitSphere * spawnDistance;
 
-        Instantiate(meteoritePrefab, 
-                    spawnPosition, 
-                    transform.rotation, 
+        Instantiate(meteoritePrefab,
+                    spawnPosition,
+                    transform.rotation,
                     null);
     }
 }

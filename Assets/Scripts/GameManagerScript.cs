@@ -1,11 +1,9 @@
-﻿using System;
+﻿using UniRx;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Zenject;
-using UniRx;
 using UnityEngine.Playables;
-using System.Collections;
+using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
+using Zenject;
 
 public class IGameManager : MonoBehaviour
 {

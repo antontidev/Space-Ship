@@ -1,5 +1,4 @@
-﻿using InputSamples.Gestures;
-using LeoLuz.PlugAndPlayJoystick;
+﻿using LeoLuz.PlugAndPlayJoystick;
 using System;
 using UniRx;
 using UnityEngine;
@@ -49,7 +48,7 @@ public abstract class PlayerMove
 #if UNITY_EDITOR_WIN || UNITY_EDITOR
     protected PlayerMoveDebug playerMoveDebug;
 
-    public virtual void _Move(Vector3 lookRotation) 
+    public virtual void _Move(Vector3 lookRotation)
     {
     }
 
@@ -74,9 +73,9 @@ public class PlayerMoveTranslate : PlayerMove
 {
     private Space space;
 
-    public PlayerMoveTranslate(Transform transform, 
-                               float moveSpeed, 
-                               Space space = Space.World) : base(transform, 
+    public PlayerMoveTranslate(Transform transform,
+                               float moveSpeed,
+                               Space space = Space.World) : base(transform,
                                                                  moveSpeed)
     {
         this.space = space;
@@ -109,8 +108,8 @@ public class PlayerMoveForce : PlayerMove
     private Rigidbody rigidbody;
 
     public PlayerMoveForce(Transform transform,
-                           Rigidbody rigidbody, 
-                           float moveSpeed) : base(transform, 
+                           Rigidbody rigidbody,
+                           float moveSpeed) : base(transform,
                                                    moveSpeed)
     {
         this.rigidbody = rigidbody;
@@ -177,13 +176,13 @@ public class PlayerController3d : MonoBehaviour
             switch (moveType.Value)
             {
                 case MoveType.Rigidbody:
-                    moveTypeDelegate = new PlayerMoveForce(transform, 
-                                                           rb, 
+                    moveTypeDelegate = new PlayerMoveForce(transform,
+                                                           rb,
                                                            moveSpeed);
                     break;
                 case MoveType.Translate:
-                    moveTypeDelegate = new PlayerMoveTranslate(transform, 
-                                                               moveSpeed, 
+                    moveTypeDelegate = new PlayerMoveTranslate(transform,
+                                                               moveSpeed,
                                                                Space.Self);
                     break;
             }

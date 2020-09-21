@@ -32,8 +32,8 @@ public class Timer : MonoBehaviour
     /// </summary>
     public Action Up;
 
-    private void Awake() 
-    { 
+    private void Awake()
+    {
         roundedTimer = new ReactiveProperty<int>();
 
         //timerUpdater = Observable.EveryUpdate().Subscribe(_ =>

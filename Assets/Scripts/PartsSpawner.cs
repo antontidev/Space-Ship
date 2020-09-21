@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 using Zenject;
@@ -56,9 +55,9 @@ public class PartsSpawner : MonoBehaviour
     {
         foreach (var element in trash)
         {
-            Instantiate(element, 
-                        UnityEngine.Random.onUnitSphere * 5, 
-                        transform.rotation, 
+            Instantiate(element,
+                        UnityEngine.Random.onUnitSphere * 5,
+                        transform.rotation,
                         null);
         }
     }
@@ -67,9 +66,9 @@ public class PartsSpawner : MonoBehaviour
     {
         foreach (var element in rocks)
         {
-            Instantiate(element, 
-                        UnityEngine.Random.onUnitSphere * 5, 
-                        transform.rotation, 
+            Instantiate(element,
+                        UnityEngine.Random.onUnitSphere * 5,
+                        transform.rotation,
                         null);
         }
     }
@@ -80,9 +79,9 @@ public class PartsSpawner : MonoBehaviour
 
         foreach (var el in allParts)
         {
-            var part = Instantiate(el, 
-                                   UnityEngine.Random.onUnitSphere * 5, 
-                                   transform.rotation, 
+            var part = Instantiate(el,
+                                   UnityEngine.Random.onUnitSphere * 5,
+                                   transform.rotation,
                                    null);
 
             //var shipPart = part.GetComponent<ShipPart>();
@@ -94,7 +93,7 @@ public class PartsSpawner : MonoBehaviour
 
     private void SpawnRocket()
     {
-        var rock = Instantiate(rocketObj, 
+        var rock = Instantiate(rocketObj,
                                rocketHolder.transform.position,
                                transform.rotation);
 

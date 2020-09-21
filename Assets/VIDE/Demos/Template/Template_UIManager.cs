@@ -8,9 +8,9 @@
  *  You are NOT limited to what this script can do. This script is only for convenience. You are completely free to write your own manager or build from this one.
  */
 
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 using VIDE_Data; //<--- Import to use VD class
 
@@ -99,7 +99,7 @@ public class Template_UIManager : MonoBehaviour
 
         dialogueContainer.SetActive(true); //Let's make our dialogue container visible
     }
-    
+
     //Calls next node in the dialogue
     public void CallNext()
     {
@@ -241,11 +241,12 @@ public class Template_UIManager : MonoBehaviour
                 //This coroutine animates the NPC text instead of displaying it all at once
                 TextAnimator = AnimateNPCText(data.comments[data.commentIndex]);
                 StartCoroutine(TextAnimator);
-            } else
+            }
+            else
             {
                 NPC_Text.text = data.comments[data.commentIndex];
             }
-            
+
             if (data.audios[data.commentIndex] != null)
             {
                 audioSource.clip = data.audios[data.commentIndex];
@@ -277,7 +278,8 @@ public class Template_UIManager : MonoBehaviour
             //This coroutine animates the Player choices instead of displaying it all at once
             TextAnimator = AnimatePlayerText(choices);
             StartCoroutine(TextAnimator);
-        } else
+        }
+        else
         {
             for (int i = 0; i < choices.Length; i++)
             {
@@ -328,11 +330,12 @@ public class Template_UIManager : MonoBehaviour
             {
 
             }
-        } else
+        }
+        else
         {
 
         }
-        
+
         return false;
     }
 
@@ -359,7 +362,8 @@ public class Template_UIManager : MonoBehaviour
             {
                 NPC_Text.fontSize = 14;
             }
-        } else
+        }
+        else
         {
 
         }
@@ -468,7 +472,7 @@ public class Template_UIManager : MonoBehaviour
         StopCoroutine(TextAnimator);
         if (VD.nodeData.isPlayer)
         {
-                availableChoices = 0;
+            availableChoices = 0;
             for (int i = 0; i < VD.nodeData.comments.Length; i++)
             {
                 maxPlayerChoices[i].transform.GetChild(0).GetComponent<Text>().text = VD.nodeData.comments[i]; //Assumes first child of button gameobject is text gameobject
