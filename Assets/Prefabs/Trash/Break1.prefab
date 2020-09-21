@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1427347827404357968}
   - component: {fileID: 8282858642516294377}
   - component: {fileID: 7728196377331167244}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Break1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7504500674138586896}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.06226231, y: 0.04035643, z: -0.00003322959}
-  m_LocalScale: {x: 0.00385866, y: 0.009750821, z: 0.0082068965}
+  m_LocalPosition: {x: -0.23365, y: 0.038403, z: 0.0040719}
+  m_LocalScale: {x: 0.014057012, y: 0.035522025, z: 0.02989754}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -58,6 +58,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,6 +84,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &-1427347827404357968
 Rigidbody:
   m_ObjectHideFlags: 0

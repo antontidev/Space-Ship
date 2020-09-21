@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 8928091402595351119}
   - component: {fileID: 7750212166817885896}
   - component: {fileID: 6206790314512765479}
+  - component: {fileID: 4321442478682385476}
+  - component: {fileID: 6672800009996105234}
   m_Layer: 8
   m_Name: Bottom1
   m_TagString: Bottom
@@ -115,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9bbaac595735448db8caa40ade5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PartValue: 1
   sprite: {fileID: 21300000, guid: 2733cb6849f494e43a9d800954c53af9, type: 3}
 --- !u!54 &8748476467740597806
 Rigidbody:
@@ -168,5 +171,43 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.3, y: 0.5, z: 0.4}
-  m_Center: {x: 0.00014627725, y: 0.032233812, z: 0.0011681169}
+  m_Size: {x: 0.3, y: 0.48612937, z: 0.23624349}
+  m_Center: {x: 0.0001462698, y: 0.039169118, z: 0.01085484}
+--- !u!114 &4321442478682385476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104764327691069580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 0
+--- !u!114 &6672800009996105234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9104764327691069580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1cd926bb9d510543847bc79ae7379f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Preset: 0
+  CustomWireColor: {r: 0, g: 0, b: 0, a: 0}
+  CustomFillColor: {r: 0, g: 0, b: 0, a: 0}
+  CustomCenterColor: {r: 0, g: 0, b: 0, a: 0}
+  Alpha: 1
+  WireColor: {r: 0.6, g: 0.6, b: 1, a: 0.5}
+  FillColor: {r: 0.6, g: 0.7, b: 1, a: 0.1}
+  CenterColor: {r: 0.6, g: 0.7, b: 1, a: 0.7}
+  DrawFill: 1
+  DrawWire: 1
+  DrawCenter: 0
+  CenterMarkerRadius: 1
+  IncludeChildColliders: 0

@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
 /// <summary>
 /// In future it's better to use this class with Zenject dependency injection framework
 /// </summary>
+[Obsolete("Use RocketInventory instead")]
 public class ActivePartManager
 {
     public ReactiveDictionary<string, ShipPart> activeModules;
@@ -111,12 +113,12 @@ public class ActivePartManager
 
         this.trueParts = trueParts;
 
-        FillActivePartDictinary();
+        FillActivePartDictionary();
 
         PopulateReadyDictionary();
     }
 
-    private void FillActivePartDictinary()
+    private void FillActivePartDictionary()
     {
         foreach (var element in trueParts)
         {

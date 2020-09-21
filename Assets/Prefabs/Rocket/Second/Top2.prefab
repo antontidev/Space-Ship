@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 4188732136407498840}
   - component: {fileID: 4802809008801636626}
   - component: {fileID: 4218920011732843354}
+  - component: {fileID: -3182080222936077271}
   m_Layer: 8
   m_Name: Top2
   m_TagString: Top
@@ -157,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9bbaac595735448db8caa40ade5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PartValue: 2
   sprite: {fileID: 21300000, guid: d83d9f8b92f0b474dadfb416f79e64ce, type: 3}
 --- !u!114 &4802809008801636626
 MonoBehaviour:
@@ -196,3 +198,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.2156058, y: 0.518172, z: 0.2023434}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3182080222936077271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8411329096063260735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 0

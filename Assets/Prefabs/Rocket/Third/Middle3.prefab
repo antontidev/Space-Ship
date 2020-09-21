@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4845698626068087281}
   - component: {fileID: 4218131796893507277}
   - component: {fileID: 1926279387825229798}
+  - component: {fileID: -6190480174087061951}
   m_Layer: 8
   m_Name: Middle3
   m_TagString: Middle
@@ -156,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9bbaac595735448db8caa40ade5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PartValue: 3
   sprite: {fileID: 21300000, guid: d52a3c8511fd1e5428352e2784545c74, type: 3}
 --- !u!114 &1926279387825229798
 MonoBehaviour:
@@ -182,3 +184,16 @@ MonoBehaviour:
   DrawCenter: 0
   CenterMarkerRadius: 1
   IncludeChildColliders: 0
+--- !u!114 &-6190480174087061951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7516953377866876699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 2

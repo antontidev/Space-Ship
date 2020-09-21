@@ -3,6 +3,10 @@ using UniRx;
 using UnityEngine;
 using Zenject;
 
+/// <summary>
+/// Used for UI modules
+/// </summary>
+[Obsolete("No longer needed")]
 public class ModulesBridge
 {
     public struct Pair<T, T1>
@@ -82,14 +86,21 @@ public class ModulesBridge
 public class ShipPart : MonoBehaviour
 {
     [SerializeField]
+    public float PartValue;
+
+    #region Obsolete
+    [SerializeField]
+    [HideInInspector]
+    [Obsolete("This is no longer needed")]
     public Sprite sprite;
 
-    public Action<GameObject> onSecondClick;
-
+    [Obsolete("Now parts installed automatically")]
     public int ClickCount
     {
         get; set;
     } = 0;
+
+    public Action<GameObject> onSecondClick;
 
     [Inject]
     private GlowManager glowManager;
@@ -100,15 +111,17 @@ public class ShipPart : MonoBehaviour
     [Inject]
     private ActivePartManager activePartManager;
 
-    private MeshRenderer meshRenderer;
-
-    private void Awake()
-    {
-        meshRenderer = GetComponent<MeshRenderer>();
-    }
-
+    /// <summary>
+    /// Don't now that is it exactly
+    /// </summary>
+    [Obsolete("Use RaycastManager instead")]
     public void ClickOnObject()
     {
+        onSecondClick?.Invoke(gameObject);
+
+        modulesBridge.PutNewModule(gameObject);
+        activePartManager.PutNewModule(gameObject);
+
         ClickCount++;
 
         switch (ClickCount)
@@ -132,9 +145,5 @@ public class ShipPart : MonoBehaviour
                 break;
         }
     }
-
-    public void DeactivateGlow()
-    {
-     
-    }
+    #endregion
 }
