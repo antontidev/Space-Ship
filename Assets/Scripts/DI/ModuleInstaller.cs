@@ -14,8 +14,10 @@ public class ModuleInstaller : MonoInstaller
         Container.Bind<PlanetBridge>().AsCached().NonLazy();
         Container.Bind<LevelLoader>().AsCached().NonLazy();
         Container.Bind<IJoystickInput>().AsCached().NonLazy();
+
         Container.Bind<RocketInventory>().AsCached().NonLazy();
         Container.Bind<GlobalInventory>().AsCached().NonLazy();
+        Container.Bind<AstronautInventory>().AsCached().NonLazy();
     }
 
     #region Obsolere

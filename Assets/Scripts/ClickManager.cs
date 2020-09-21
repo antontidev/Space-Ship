@@ -113,6 +113,84 @@ public interface IInventory
 }
 
 /// <summary>
+/// Inventory for all astronauts. It will be used for future
+/// Chaser system.
+/// </summary>
+public class AstronautInventory : IInventory
+{
+    /// <summary>
+    /// List of all astronauts
+    /// </summary>
+    public List<GameObject> inventory;
+
+    /// <summary>
+    /// Astronaut added event
+    /// </summary>
+    public event EventHandler<InventoryEventArgs<ItemType>> ItemAdded;
+
+    /// <summary>
+    /// Used for indicate that astronaut is dead
+    /// </summary>
+    public event EventHandler<InventoryEventArgs<ItemType>> ItemDeleted;
+
+    /// <summary>
+    /// Adds astronaut to the band
+    /// </summary>
+    /// <param name="item">
+    /// Possible newbee for this band
+    /// </param>
+    /// <param name="itemType">
+    /// Always ItemType.Astronaut
+    /// </param>
+    public void PutItem(GameObject item, 
+                        ItemType itemType = ItemType.Modules)
+    {
+        if (!inventory.Contains(item))
+        {
+            inventory.Add(item);
+
+            var addedEventArgs = new InventoryEventArgs<ItemType>(ItemType.Astrounaut,
+                                                                  item,
+                                                                  null);
+
+            ItemAdded?.Invoke(this, addedEventArgs);
+        }
+    }
+
+    /// <summary>
+    /// Deletes astrounaut from band
+    /// </summary>
+    /// <param name="item">
+    /// Astronaut that you will delete
+    /// </param>
+    /// <param name="itemType">
+    /// Don't use this parameter because it's not used anywere
+    /// </param>
+    public void Delete(GameObject item,
+                     ItemType itemType = ItemType.Modules)
+    {
+        if (inventory.Contains(item))
+        {
+            var deletedEventArgs = new InventoryEventArgs<ItemType>(ItemType.Astrounaut,
+                                                                    item,
+                                                                    null);
+            ItemDeleted?.Invoke(this, deletedEventArgs);
+
+            inventory.Remove(item);
+        }
+    }
+
+    /// <summary>
+    /// Not supported by astronaut inventory
+    /// </summary>
+    /// <param name="module"></param>
+    void IInventory.PlaceToRocket(GameObject module)
+    {
+        throw new NotSupportedException();
+    }
+}
+
+/// <summary>
 /// Inventory for rocket GameObject. Holds rocket modules.
 /// </summary>
 public class RocketInventory : IInventory
@@ -236,6 +314,8 @@ public class GlobalInventory : IInventory
 
     private RocketInventory rocketInventory;
 
+    private AstronautInventory astronautInventory;
+
     public event EventHandler<InventoryEventArgs<ItemType>> ItemAdded;
 
     /// <summary>
@@ -246,9 +326,12 @@ public class GlobalInventory : IInventory
     /// Injected RocketInventory object created by Zenject
     /// </param>
     [Inject]
-    public GlobalInventory(RocketInventory rocketInventory)
+    public GlobalInventory(RocketInventory rocketInventory,
+                           AstronautInventory astronautInventory)
     {
         this.rocketInventory = rocketInventory;
+
+        this.astronautInventory = astronautInventory;
 
         inventory = new Dictionary<ItemType, List<GameObject>>();
 
@@ -312,6 +395,15 @@ public class GlobalInventory : IInventory
     }
 
     /// <summary>
+    /// Tries to add new astronaut to the band
+    /// </summary>
+    /// <param name="astrounaut"></param>
+    public void PlaceAstrounaut(GameObject astrounaut)
+    {
+        astronautInventory.PutItem(astrounaut, ItemType.Astrounaut);
+    }
+
+    /// <summary>
     /// Pust item to global inventory
     /// </summary>
     /// <param name="item">
@@ -328,6 +420,13 @@ public class GlobalInventory : IInventory
         if (itemType == ItemType.Modules)
         {
             PlaceToRocket(item);
+
+            return;
+        }
+
+        if (itemType == ItemType.Astrounaut)
+        {
+            PlaceAstrounaut(item);
 
             return;
         }

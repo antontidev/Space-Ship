@@ -88,6 +88,8 @@ public class RaycastManager : MonoBehaviour
                 RightCollisionWithRightObjects(gameObj);
 
                 globalInventory.PutItem(gameObj, item);
+
+                return;
             }
         }
     }

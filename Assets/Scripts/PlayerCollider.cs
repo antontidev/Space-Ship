@@ -16,11 +16,4 @@ public class PlayerCollider : MonoBehaviour
 
         raycastManager.CollisionWithObject(gameObj);
     }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        var gameObj = collision.gameObject;
-
-        raycastManager.CollisionWithObject(gameObj);
-    }
 }
