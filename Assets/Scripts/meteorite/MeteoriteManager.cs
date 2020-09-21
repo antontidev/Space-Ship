@@ -1,28 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UniRx;
 
 public class MeteoriteManager : MonoBehaviour
 {
     [Header ("Meteorite prefab")]
     public GameObject meteoritePrefab;
 
-    private bool envoked = false;
+    public float spawnDelta = 5f;
 
-    void Update()
+    public float spawnDistance = 5f;
+
+    private IDisposable _update;
+
+    private void Start()
     {
-        if (envoked == false)
+        _update = Observable.Interval(TimeSpan.FromSeconds(spawnDelta)).Subscribe(x =>
         {
-            Invoke("spawnMeteorite", 5);
-            envoked = true;
-        }
-
+            SpawnMeteorite();
+        });
     }
 
-    void spawnMeteorite()
+    private void OnDestroy()
     {
-        Instantiate(meteoritePrefab, UnityEngine.Random.onUnitSphere * 5, transform.rotation, null);
-        envoked = false;
+        _update.Dispose();
+    }
+
+    void SpawnMeteorite()
+    {
+        var spawnPosition = UnityEngine.Random.onUnitSphere * spawnDistance;
+
+        Instantiate(meteoritePrefab, 
+                    spawnPosition, 
+                    transform.rotation, 
+                    null);
     }
 }
