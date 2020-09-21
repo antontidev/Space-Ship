@@ -6,6 +6,9 @@ public class Gravity : MonoBehaviour
     public float grav = -10f;
 
     [SerializeField]
+    public float playerGrav = -5f;
+
+    [SerializeField]
     public float temperature;
 
     [SerializeField]

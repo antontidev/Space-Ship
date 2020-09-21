@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rocket Flame
+  m_Shader: {fileID: -6465566751694194690, guid: 795bda26f130bfe4887ae58ee8b8e9bd,
+    type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - Texture2D_84FE7B41:
+        m_Texture: {fileID: 2800000, guid: afaca5f99257a05438f00c35f11d73ea, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_E399D8B:
+        m_Texture: {fileID: 2800000, guid: a062d9fe413f7424c9d67813fff33def, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - Vector1_D614E1A3: 2
+    m_Colors:
+    - Color_469D9FA: {r: 29.508846, g: 3.2444282, b: 0, a: 1}
+    - Vector2_5461B735: {r: 0, g: 0.09, b: 0, a: 0}
+    - Vector2_C95E0D45: {r: -0.04, g: 0.26, b: 0, a: 0}
+  m_BuildTextureStacks: []
