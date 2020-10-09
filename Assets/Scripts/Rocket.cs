@@ -39,6 +39,11 @@ public class Rocket : MonoBehaviour
     /// </param>
     private void RocketInventory_ItemChanged(object _, InventoryEventArgs<string> e)
     {
+        var module = e.Item;
+
+        module.transform.parent = transform;
+
+        module.SetActive(false);
     }
 
     /// <summary>

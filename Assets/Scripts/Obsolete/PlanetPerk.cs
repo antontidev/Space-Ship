@@ -1,7 +1,9 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
+[Obsolete("No longer needed")]
 public class PlanetBridge
 {
     public ReactiveProperty<string> planetName;

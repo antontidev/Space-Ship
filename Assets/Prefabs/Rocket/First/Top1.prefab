@@ -117,6 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceb9bbaac595735448db8caa40ade5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  perkModule:
+    price: 10
   PartValue: 1
   sprite: {fileID: 21300000, guid: 229f56fdaaa34274e9f4c445e4cf260b, type: 3}
 --- !u!54 &3056862000671085943

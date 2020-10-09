@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1491480268364583157}
   - component: {fileID: 2475840421750256940}
   - component: {fileID: -4202174716763668045}
+  - component: {fileID: 7652898540452999995}
+  - component: {fileID: 9173018850991742984}
   m_Layer: 10
   m_Name: Stalagmite4
   m_TagString: Untagged
@@ -125,3 +127,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7218865, y: 8.728372, z: 1.4929551}
   m_Center: {x: -0.0031943617, y: 4.097446, z: 0.020809798}
+--- !u!114 &7652898540452999995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138394885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ddf68e664042b438461180e32847a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perkRock:
+    price: 1
+--- !u!114 &9173018850991742984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138394885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 0

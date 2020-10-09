@@ -28,6 +28,11 @@ public class PausePresenter : IPause
     [SerializeField]
     private FadeManager fadeManager;
 
+    private void Awake()
+    {
+        UnpauseGame();
+    }
+
     /// <summary>
     /// Callback for OnClick event on PauseScreen
     /// </summary>
@@ -50,6 +55,7 @@ public class PausePresenter : IPause
     public override void GoToMenu()
     {
         fadeManager.FadeScene();
+        UnpauseGame();
         levelLoader.LoadLevel(menuScene);
     }
 }

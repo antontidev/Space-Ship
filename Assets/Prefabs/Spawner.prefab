@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8727145359937008086}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 15.812961, y: 2.4349196, z: -3.4957023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f71f2b1d40ed824fb4d453f61cfeab9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rocketSpawnPosition: {fileID: 0}
+  spawnDelta: 10
   rocketHolder: {fileID: 0}
   trash:
   - {fileID: 7504500674138586896, guid: eae560c47aa9c2a48b82ee0e855556ae, type: 3}
@@ -67,4 +69,4 @@ MonoBehaviour:
   - {fileID: 2138394885, guid: bd427175c8c6e874cb6cd18814401491, type: 3}
   - {fileID: 1605112317, guid: 7f29d7b2a9defc84392ee3f65ac49455, type: 3}
   glowEffect: {fileID: 2100000, guid: 70c1ee9156114b64d8142af0b023144a, type: 2}
-  manager: {fileID: 0}
+  manager: {fileID: 615708033474029955, guid: 04eda9e28a0bb43478d3d1ef734e2342, type: 3}

@@ -1,7 +1,9 @@
 ﻿using Cinemachine;
 using InputSamples.Gestures;
+using System;
 using UnityEngine;
 
+[Obsolete("Don't make such gameplay where you need to rotate camera by mouse")]
 public class FreeLookAddOn : MonoBehaviour
 {
     [SerializeField]

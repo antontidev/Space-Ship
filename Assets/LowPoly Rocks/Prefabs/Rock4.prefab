@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -434112056532862151}
   - component: {fileID: 3364162379664142884}
   - component: {fileID: -8276857955762488105}
+  - component: {fileID: 1388684285185133146}
+  - component: {fileID: -7477703847216634302}
   m_Layer: 10
   m_Name: Rock4
   m_TagString: Untagged
@@ -125,3 +127,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3708076, y: 1.3872393, z: 1.2802609}
   m_Center: {x: -0.041086968, y: 0.6108063, z: -0.014517396}
+--- !u!114 &1388684285185133146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095414199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ddf68e664042b438461180e32847a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perkRock:
+    price: 1
+--- !u!114 &-7477703847216634302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2095414199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 0

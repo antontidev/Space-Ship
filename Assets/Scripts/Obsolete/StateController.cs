@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
+[Obsolete("No longer needed")]
 public class StateController : MonoBehaviour
 {
     public GameObject lose;

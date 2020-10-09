@@ -12,9 +12,6 @@ public class IGameManager : MonoBehaviour
 public class GameManagerScript : IGameManager
 {
     [SerializeField]
-    private FreeLookAddOn freeLookCamera;
-
-    [SerializeField]
     private GamePresenter gamePresenter;
 
     [SerializeField]

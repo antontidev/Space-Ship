@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: -4985965879834959181}
   - component: {fileID: 9040671002118991053}
   - component: {fileID: -5876101668271206984}
+  - component: {fileID: -139447975407048345}
+  - component: {fileID: 30540830663806744}
   m_Layer: 10
   m_Name: Rock11
   m_TagString: Untagged
@@ -125,3 +127,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.8264621, y: 2.493802, z: 1.7530583}
   m_Center: {x: 0.029083759, y: 1.097276, z: 0.1777574}
+--- !u!114 &-139447975407048345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410661016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ddf68e664042b438461180e32847a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perkRock:
+    price: 1
+--- !u!114 &30540830663806744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410661016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 0

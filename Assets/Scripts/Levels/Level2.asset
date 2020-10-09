@@ -23,6 +23,6 @@ MonoBehaviour:
   - {fileID: 8411329096063260735, guid: bb52acbadd8ceed4ab7e3410c68e29ec, type: 3}
   - {fileID: 8990852960573987316, guid: 2083aaab05453024c8af59cc51f92e60, type: 3}
   - {fileID: 225938598826346103, guid: 441c167dc63d9294ba63c588be27fcc4, type: 3}
-  planet: {fileID: 71276477441399801, guid: c3d4005474528d046a1dbab06032e3c5, type: 3}
   rocket: {fileID: 3251015309549534233, guid: 7345ee7d74ce20e4ca1bba493450e44f, type: 3}
   levelTime: 40
+  astronautCount: 5

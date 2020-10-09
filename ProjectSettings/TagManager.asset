@@ -17,6 +17,7 @@ TagManager:
   - Ready
   - Manager
   - Station
+  - Astronaut
   layers:
   - Default
   - TransparentFX
@@ -30,9 +31,9 @@ TagManager:
   - Post Processing
   - Rock
   - Trash
-  - 
-  - 
-  - 
+  - Player
+  - Astronaut
+  - Summon
   - 
   - 
   - 

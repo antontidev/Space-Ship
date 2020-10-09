@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 1386173847622255044}
   - component: {fileID: -1654819385997695055}
   - component: {fileID: 207189756353194135}
+  - component: {fileID: -2312634870221082620}
+  - component: {fileID: -3143862410790486573}
   m_Layer: 10
   m_Name: Rock2
   m_TagString: Untagged
@@ -125,3 +127,30 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.007
   m_Center: {x: 0.00034798216, y: -0.002064139, z: 0.004861991}
+--- !u!114 &-2312634870221082620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023517905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ddf68e664042b438461180e32847a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perkRock:
+    price: 1
+--- !u!114 &-3143862410790486573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023517905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 0

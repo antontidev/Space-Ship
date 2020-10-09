@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using LeoLuz.PropertyAttributes;
 using UniRx;
 using Zenject;
+using System;
 
 namespace LeoLuz.PlugAndPlayJoystick
 {
@@ -15,11 +16,16 @@ namespace LeoLuz.PlugAndPlayJoystick
 
         public BoolReactiveProperty released;
 
+        public IObservable<long> onPress;
+
         public IJoystickInput()
         {
             screenInput = new ReactiveProperty<Vector2>(Vector2.zero);
 
             released = new BoolReactiveProperty(true);
+
+            onPress = Observable.EveryUpdate().Where(_ => !released.Value);
+
         }
     }
 

@@ -4,41 +4,76 @@ using System.Linq;
 using UnityEngine;
 using Zenject;
 
+public class SummonSpawner
+{
+    List<GameObject> summons;
+
+    float spawnDelta;
+
+    public SummonSpawner(List<GameObject> summons, float spawnDelta)
+    {
+        this.summons = summons;
+        this.spawnDelta = spawnDelta;
+    }
+
+    /// <summary>
+    /// For test purposes
+    /// </summary>
+    public void SpawnOne()
+    {
+        var summon = UnityEngine.Object.Instantiate(summons[0],
+                    UnityEngine.Random.onUnitSphere * spawnDelta,
+                    Quaternion.identity,
+                    null);
+
+        summon.SetActive(true);
+    }
+
+    public void SpawnAll()
+    {
+        throw new NotImplementedException();
+    }
+}
+
 public class PartsSpawner : MonoBehaviour
 {
     public Action<Rocket> RocketSpawned;
 
-    private List<GameObject> parts;
+    #region Parts and rocket
 
-    private List<GameObject> trueParts;
+    [Header("Parts")]
+    public GameObject rocketHolder;
+
+    public List<GameObject> trash;
+
+    public  List<GameObject> rocks;
+
+    public Transform rocketSpawnPosition;
+
+    private List<GameObject> parts;
 
     private GameObject rocketObj;
 
     private Rocket rocketComp;
 
-    public Transform rocketSpawnPosition;
+    #endregion
 
-    [Header("Rocket holder gameObject")]
-    [SerializeField]
-    private GameObject rocketHolder;
+    #region Spawn
 
-    [Inject]
-    [Obsolete("Use ZenAutoInjecter instead")]
-    private DiContainer _diContainer;
+    [Header("Spawn parameters")]
+    public float spawnDelta = 10f;
 
-    [Header("All trash objects")]
-    [SerializeField]
-    private List<GameObject> trash;
+    #endregion
 
-    [Header("Rocks objects")]
-    [SerializeField]
-    private List<GameObject> rocks;
+    #region Summons
 
-    [SerializeField]
-    private Material glowEffect;
+    [Header("Summons")]
 
-    [SerializeField]
-    private ClickManager manager;
+    public List<GameObject> summons;
+
+    private int summonCount;
+
+    #endregion
 
     public void SpawnLevel()
     {
@@ -49,6 +84,21 @@ public class PartsSpawner : MonoBehaviour
         SpawnRocks();
 
         SpawnAllParts();
+
+        SpawnSummons();
+    }
+
+    /// <summary>
+    /// Hides logic of spawning summons
+    /// </summary>
+    private void SpawnSummons()
+    {
+        var summonSpawner = new SummonSpawner(summons, spawnDelta);
+
+        for (int i = 0; i < summonCount; i++)
+        {
+            summonSpawner.SpawnOne();
+        }
     }
 
     public void SpawnTrash()
@@ -56,7 +106,7 @@ public class PartsSpawner : MonoBehaviour
         foreach (var element in trash)
         {
             Instantiate(element,
-                        UnityEngine.Random.onUnitSphere * 5,
+                        UnityEngine.Random.onUnitSphere * spawnDelta,
                         transform.rotation,
                         null);
         }
@@ -67,7 +117,7 @@ public class PartsSpawner : MonoBehaviour
         foreach (var element in rocks)
         {
             Instantiate(element,
-                        UnityEngine.Random.onUnitSphere * 5,
+                        UnityEngine.Random.onUnitSphere * spawnDelta,
                         transform.rotation,
                         null);
         }
@@ -77,32 +127,26 @@ public class PartsSpawner : MonoBehaviour
     {
         var allParts = parts.Concat(trueParts);
 
-        foreach (var el in allParts)
+        foreach (var element in allParts)
         {
-            var part = Instantiate(el,
-                                   UnityEngine.Random.onUnitSphere * 5,
-                                   transform.rotation,
-                                   null);
-
-            //var shipPart = part.GetComponent<ShipPart>();
-
-            //shipPart.onSecondClick += rocketComp.Handle;
-            //shipPart.onSecondClick += manager.HandleClick;
+            Instantiate(element,
+                        UnityEngine.Random.onUnitSphere * spawnDelta,
+                        transform.rotation,
+                        null);
         }
     }
 
     private void SpawnRocket()
     {
+        rocketHolder.transform.position = rocketSpawnPosition.position;
+
         var rock = Instantiate(rocketObj,
-                               rocketHolder.transform.position,
-                               transform.rotation);
+                               rocketHolder.transform);
 
         rock.transform.localPosition = Vector3.zero;
 
         DeactivateChildrens(rock);
         rocketComp = rock.GetComponent<Rocket>();
-
-        rocketComp.SubmitTrueParts(trueParts);
 
         RocketSpawned?.Invoke(rocketComp);
     }
@@ -121,12 +165,27 @@ public class PartsSpawner : MonoBehaviour
 
         trueParts = level.trueModules;
 
+        summonCount = level.astronautCount;
+
         rocketObj = level.rocket;
 
         SpawnLevel();
     }
 
-    #region Obsolete
+    #region Obsolete   
+    [Obsolete("Don't used")]
+    private List<GameObject> trueParts;
+
+    [SerializeField]
+    private Material glowEffect;
+
+    [SerializeField]
+    private ClickManager manager;
+
+    [Inject]
+    [Obsolete("Use ZenAutoInjecter component instead")]
+    private DiContainer _diContainer;
+
     [Obsolete("Planet already exist")]
     private GameObject planet;
 

@@ -7,7 +7,7 @@ using Zenject;
 public enum ItemType : int
 {
     Modules,
-    Astrounaut,
+    Astronaut,
     Trash,
     Rock
 }
@@ -134,6 +134,17 @@ public class AstronautInventory : IInventory
     public event EventHandler<InventoryEventArgs<ItemType>> ItemDeleted;
 
     /// <summary>
+    /// Count of astronauts
+    /// </summary>
+    public ReactiveProperty<int> astronautCount;
+
+    public AstronautInventory()
+    {
+        inventory = new List<GameObject>();
+        astronautCount = new ReactiveProperty<int>(0);
+    }
+
+    /// <summary>
     /// Adds astronaut to the band
     /// </summary>
     /// <param name="item">
@@ -149,7 +160,9 @@ public class AstronautInventory : IInventory
         {
             inventory.Add(item);
 
-            var addedEventArgs = new InventoryEventArgs<ItemType>(ItemType.Astrounaut,
+            astronautCount.Value++;
+
+            var addedEventArgs = new InventoryEventArgs<ItemType>(ItemType.Astronaut,
                                                                   item,
                                                                   null);
 
@@ -171,9 +184,11 @@ public class AstronautInventory : IInventory
     {
         if (inventory.Contains(item))
         {
-            var deletedEventArgs = new InventoryEventArgs<ItemType>(ItemType.Astrounaut,
+            var deletedEventArgs = new InventoryEventArgs<ItemType>(ItemType.Astronaut,
                                                                     item,
                                                                     null);
+            astronautCount.Value--;
+
             ItemDeleted?.Invoke(this, deletedEventArgs);
 
             inventory.Remove(item);
@@ -197,7 +212,7 @@ public class RocketInventory : IInventory
 {
     private Dictionary<string, GameObject> inventory;
 
-    private Dictionary<string, float> inventoryPrice;
+    private Dictionary<string, ShipPart> inventoryPrice;
 
     public ReactiveCollection<GameObject> backToGlobalInventory;
 
@@ -209,7 +224,7 @@ public class RocketInventory : IInventory
     {
         backToGlobalInventory = new ReactiveCollection<GameObject>();
         inventory = new Dictionary<string, GameObject>();
-        inventoryPrice = new Dictionary<string, float>();
+        inventoryPrice = new Dictionary<string, ShipPart>();
     }
 
     /// <summary>
@@ -220,17 +235,15 @@ public class RocketInventory : IInventory
     /// <param name="module"></param>
     public void PlaceToRocket(GameObject module)
     {
-        var shipPart = module.GetComponent<ShipPart>();
-
-        var newPrice = shipPart.PartValue;
+        var newModule = module.GetComponent<ShipPart>();
 
         var moduleTag = module.tag;
 
         if (inventoryPrice.ContainsKey(moduleTag))
         {
-            var currentLevelModulePrice = inventoryPrice[moduleTag];
+            var currentModule = inventoryPrice[moduleTag];
 
-            if (newPrice >= currentLevelModulePrice)
+            if (currentModule.IsBetter(newModule))
             {
                 PutItem(module);
             }
@@ -257,9 +270,7 @@ public class RocketInventory : IInventory
 
         var moduleTag = item.tag;
 
-        var shipPart = item.GetComponent<ShipPart>();
-
-        var modulePrice = shipPart.PartValue;
+        var newModule = item.GetComponent<ShipPart>();
 
         if (inventory.ContainsKey(moduleTag))
         {
@@ -284,7 +295,7 @@ public class RocketInventory : IInventory
 
         inventory[moduleTag] = item;
 
-        inventoryPrice[moduleTag] = modulePrice;
+        inventoryPrice[moduleTag] = newModule;
     }
 
     /// <summary>
@@ -400,7 +411,7 @@ public class GlobalInventory : IInventory
     /// <param name="astrounaut"></param>
     public void PlaceAstrounaut(GameObject astrounaut)
     {
-        astronautInventory.PutItem(astrounaut, ItemType.Astrounaut);
+        astronautInventory.PutItem(astrounaut, ItemType.Astronaut);
     }
 
     /// <summary>
@@ -424,7 +435,7 @@ public class GlobalInventory : IInventory
             return;
         }
 
-        if (itemType == ItemType.Astrounaut)
+        if (itemType == ItemType.Astronaut)
         {
             PlaceAstrounaut(item);
 

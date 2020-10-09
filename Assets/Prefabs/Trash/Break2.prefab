@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 547186803135871062}
   - component: {fileID: 6186292916345126768}
   - component: {fileID: 8093821708494986687}
+  - component: {fileID: -7098004062676727811}
+  - component: {fileID: 4467643407277651753}
   m_Layer: 11
   m_Name: Break2
   m_TagString: Untagged
@@ -125,3 +127,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.0000002, y: 2.0000021, z: 9.745506}
   m_Center: {x: 0.0000001788139, y: -0.00000095367415, z: 3.8189323}
+--- !u!114 &-7098004062676727811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4710313217320542931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572c1f80e2eae3241b26bcd68234e037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perkBreak:
+    price: 0
+--- !u!114 &4467643407277651753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4710313217320542931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717a02054ef2699498e6bd4234fd7995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _containerSource: 0

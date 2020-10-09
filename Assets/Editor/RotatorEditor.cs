@@ -17,11 +17,6 @@ public class RotatorEditor : Editor
         axisVector = new Vector3(0.0f, degree, 0.0f);
 
         playerRotator = (PlayerRotator)target;
-
-        playerRotator.rotationType.Subscribe(x =>
-        {
-            playerRotator.ChangeRotator(x);
-        });
     }
 
     public override void OnInspectorGUI()

@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
+[Obsolete("Use perk base class and inherit ItemPart class")]
 public class ModulePerk : MonoBehaviour
 {
     [SerializeField]
