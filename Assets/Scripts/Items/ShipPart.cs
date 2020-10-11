@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -17,16 +18,157 @@ public class PerkModule : Perks
     }
 }
 
+public enum ModuleState
+{
+    Planet,
+    Rocket,
+    Inventory
+}
+
+public interface State
+{
+    void OnStateActions();
+}
+
+public abstract class ModuleStateBase : State
+{
+    protected Rigidbody rb;
+
+    protected PhysObj phys;
+
+    protected BoxCollider collider;
+
+    public ModuleStateBase(Rigidbody rb,
+                           PhysObj phys, 
+                           BoxCollider collider)
+    {
+        this.rb = rb;
+        this.phys = phys;
+        this.collider = collider;
+    }
+
+    public abstract void OnStateActions();
+}
+
+public class PlanetState : ModuleStateBase
+{
+    public PlanetState(Rigidbody rb,
+                       PhysObj phys,
+                       BoxCollider collider) : base(rb, phys, collider)
+    {
+    }
+
+    public override void OnStateActions()
+    {
+        collider.enabled = true;
+
+        phys.Active = true;
+    }
+}
+
+public class InventoryState : ModuleStateBase
+{
+    public InventoryState(Rigidbody rb,
+                          PhysObj phys,
+                          BoxCollider collider) : base(rb, phys, collider)
+    {
+    }
+
+    public override void OnStateActions()
+    {
+        rb.gameObject.SetActive(false);
+    }
+}
+
+public class RocketState : ModuleStateBase
+{
+    public RocketState(Rigidbody rb,
+                       PhysObj phys,
+                       BoxCollider collider) : base(rb, phys, collider)
+    {
+    }
+
+    public override void OnStateActions()
+    {
+        collider.enabled = false;
+
+        phys.Active = false;
+    }
+}
+
+[Serializable]
+public class ModuleStateController
+{
+    public Dictionary<ModuleState, ModuleStateBase> states;
+
+    public ReactiveProperty<ModuleState> state;
+
+    private IDisposable _update;
+
+    public ModuleStateController(ModuleState defaultState)
+    {
+        states = new Dictionary<ModuleState, ModuleStateBase>();
+
+        state = new ReactiveProperty<ModuleState>();
+
+        state.Value = defaultState;
+    }
+
+    ~ModuleStateController()
+    {
+        _update.Dispose();
+    }
+
+
+    private void StateChanged(ModuleState state)
+    {
+        var newState = states[state];
+
+        newState.OnStateActions();
+    }
+
+    public void CreateStates(Rigidbody rb, 
+                             PhysObj phys,
+                             BoxCollider collider)
+    {
+        var planetState = new PlanetState(rb, phys, collider);
+
+        var rocketState = new RocketState(rb, phys, collider);
+
+        var inventoryState = new InventoryState(rb, phys, collider);
+
+        states.Add(ModuleState.Planet, planetState);
+
+        states.Add(ModuleState.Rocket, rocketState);
+
+        states.Add(ModuleState.Inventory, inventoryState);
+
+
+        _update = state.Subscribe(x =>
+        {
+            StateChanged(x);
+        });
+    }
+}
+
 /// <summary>
 /// Module item class holding information about price
 /// </summary>
-public class ShipPart : ItemPart
+public class ShipPart : ItemPart<PerkModule>
 {
-    public PerkModule perkModule;
+    public ModuleStateController stateController;
 
-    public override float GetPrice()
+    private void Start()
     {
-        return perkModule.GetPrice();
+        stateController = new ModuleStateController(ModuleState.Planet);
+
+        var rb = GetComponent<Rigidbody>();
+
+        var phys = GetComponent<PhysObj>();
+
+        var collider = GetComponent<BoxCollider>();
+
+        stateController.CreateStates(rb, phys, collider);
     }
 
     #region Obsolete

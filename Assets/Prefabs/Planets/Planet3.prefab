@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1758595858621275073}
   - component: {fileID: 7257346593555421306}
   - component: {fileID: 8037048615208052}
-  - component: {fileID: 5150308212878726173}
+  - component: {fileID: 3668840712695934393}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -96,10 +96,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grav: -9
+  playerGrav: -5
   temperature: 90
   oxygen: 1
---- !u!135 &5150308212878726173
-SphereCollider:
+--- !u!64 &3668840712695934393
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -108,9 +109,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.98724765
-  m_Center: {x: 0.010217129, y: 0.0019965763, z: -0.030791782}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 289301614986012343, guid: 3c703b204f8c4944699d53929710a475, type: 3}
 --- !u!1 &807117192728450750
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +194,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &2004733448231496335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6218047326931683273}
+  m_Layer: 0
+  m_Name: RocketSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6218047326931683273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004733448231496335}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.03255135, y: 2.251, z: 0.93211246}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4570153331511469795}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3758151159320116313
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,11 +251,12 @@ Transform:
   m_GameObject: {fileID: 3758151159320116313}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.2299852, y: -3.6100163, z: 7.8293796}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_Children:
   - {fileID: 7670175056833889273}
   - {fileID: 9209580722206292452}
   - {fileID: 4948135733960704445}
+  - {fileID: 6218047326931683273}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -239,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8460283e171e064abe4a337b3c3ec93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRocketPostition: {fileID: 4948135733960704445}
+  spawnRocketPostition: {fileID: 6218047326931683273}
 --- !u!114 &6135225272674554234
 MonoBehaviour:
   m_ObjectHideFlags: 0

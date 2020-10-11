@@ -301,6 +301,7 @@ GameObject:
   - component: {fileID: 5690584115418771517}
   - component: {fileID: 793634742562340188}
   - component: {fileID: 7870150782828608249}
+  - component: {fileID: 8241473707939903079}
   m_Layer: 13
   m_Name: Summon
   m_TagString: Astronaut
@@ -352,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99ba460920fd9c8479a22f962327279b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Active: 0
 --- !u!114 &1505935462228796727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,33 +366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d7f3112a0a29d4fab3cc786fb3295f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animationController: {fileID: 0}
   moveType:
     value: 2
   moveSpeed: 2
-  speedByMagnitude:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.047180176
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!136 &1505935461941885698
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -446,6 +425,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerRotator: {fileID: 1721574907164122652}
   playerController: {fileID: 1505935462228796727}
+--- !u!114 &8241473707939903079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504830702280198691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e995071a09654a546a72491aeea07b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationController: {fileID: 8258385252357447313}
+  rotator: {fileID: 1721574907164122652}
+  controller: {fileID: 1505935462228796727}
+  material: {fileID: 2100000, guid: 8d1814fbda15c5f4989a8a106855241f, type: 2}
+  renderer: {fileID: 2968831533673368860}
+  initialSummonState: 0
+  controlLayer: 14
 --- !u!1 &1504841502904837423
 GameObject:
   m_ObjectHideFlags: 0
@@ -983,7 +981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 1
   rotationType:
-    value: 0
+    value: 1
 --- !u!114 &8258385252357447313
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-﻿using LeoLuz.PropertyAttributes;
+﻿using MyBox;
 using System;
 
 [Serializable]
@@ -16,12 +16,6 @@ public class PerkRock : Perks
 /// <summary>
 /// Class with logic of Rocks and it's price
 /// </summary>
-class RockPart : ItemPart
+class RockPart : ItemPart<PerkRock>
 {
-    public PerkRock perkRock;
-
-    public override float GetPrice()
-    {
-        return perkRock.GetPrice();
-    }
 }

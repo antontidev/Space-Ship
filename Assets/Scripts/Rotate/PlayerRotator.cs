@@ -17,6 +17,8 @@ public class PlayerRotator : MonoBehaviour
     [Inject]
     private IJoystickInput playerInput;
 
+    private IDisposable _update;
+
     #region Rotation type
     public enum RotationType
     {
@@ -42,7 +44,7 @@ public class PlayerRotator : MonoBehaviour
         });
 
         
-        playerInput.onPress.Subscribe(_ =>
+        _update = playerInput.OnPress.Subscribe(_ =>
         {
             var movement = playerInput.screenInput.Value;
 
@@ -50,6 +52,7 @@ public class PlayerRotator : MonoBehaviour
         });
     }
 
+#if UNITY_EDITOR_WIN || UNITY_EDITOR
     /// <summary>
     /// Draws move debug information
     /// </summary>
@@ -57,6 +60,7 @@ public class PlayerRotator : MonoBehaviour
     {
         rotatorDelegate?.DrawMoveDebug();
     }
+#endif
 
     /// <summary>
     /// Callback for changing rotator
@@ -91,6 +95,11 @@ public class PlayerRotator : MonoBehaviour
         rotatorDelegate.Move(lookRotation);
     }
 #endif
+
+    private void OnDestroy()
+    {
+        _update.Dispose();
+    }
 
     #region Obsolete
     /// <summary>

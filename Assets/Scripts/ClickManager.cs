@@ -214,17 +214,32 @@ public class RocketInventory : IInventory
 
     private Dictionary<string, ShipPart> inventoryPrice;
 
+    private int onRocketParts;
+
     public ReactiveCollection<GameObject> backToGlobalInventory;
 
     public event EventHandler<InventoryEventArgs<ItemType>> ItemAdded;
 
     public event EventHandler<InventoryEventArgs<string>> ItemChanged;
 
+    public bool Full
+    {
+        get 
+        {
+            return inventory.Count == onRocketParts;
+        }
+    }
+
     public RocketInventory()
     {
         backToGlobalInventory = new ReactiveCollection<GameObject>();
         inventory = new Dictionary<string, GameObject>();
         inventoryPrice = new Dictionary<string, ShipPart>();
+    }
+
+    public void SubmitOnRocketParts(int onRocketParts)
+    {
+        this.onRocketParts = onRocketParts;
     }
 
     /// <summary>

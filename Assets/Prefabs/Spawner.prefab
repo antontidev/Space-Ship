@@ -68,5 +68,9 @@ MonoBehaviour:
   - {fileID: 243653980, guid: 52e86cf63f5a28643b9ff6c47eec24cf, type: 3}
   - {fileID: 2138394885, guid: bd427175c8c6e874cb6cd18814401491, type: 3}
   - {fileID: 1605112317, guid: 7f29d7b2a9defc84392ee3f65ac49455, type: 3}
+  rocketSpawnPosition: {fileID: 0}
+  spawnDelta: 10
+  summons:
+  - {fileID: 1504830702280198691, guid: f5ae38854879549419bc98028e2eb7e1, type: 3}
   glowEffect: {fileID: 2100000, guid: 70c1ee9156114b64d8142af0b023144a, type: 2}
   manager: {fileID: 615708033474029955, guid: 04eda9e28a0bb43478d3d1ef734e2342, type: 3}

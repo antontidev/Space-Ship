@@ -37,7 +37,7 @@ public class QuaternionRotator : PlayerMove
 
         if (vectorizedRotation != Vector3.zero)
         {
-            transform.rotation = Quaternion.LookRotation(vectorizedRotation, transform.root.up);
+            transform.rotation = Quaternion.LookRotation(vectorizedRotation, transform.up);
 
             //var lerpedRotation = Quaternion.Slerp(transform.rotation,
             //                                      rotation,

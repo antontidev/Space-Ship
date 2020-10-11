@@ -1,4 +1,5 @@
 ﻿using LeoLuz.PlugAndPlayJoystick;
+using System;
 using UniRx;
 using UnityEngine;
 using Zenject;
@@ -10,6 +11,16 @@ public class PlayerController3d : MonoBehaviour
     /// </summary>
     [Inject]
     private IJoystickInput playerInput;
+
+    /// <summary>
+    /// Used to pass player Transform to summons
+    /// for LookAt operations
+    /// </summary>
+    [Inject]
+    private PlayerTransform playerTransform;
+
+    [SerializeField]
+    private AnimationController animationController;
 
     #region Move type
     public enum MoveType
@@ -27,13 +38,15 @@ public class PlayerController3d : MonoBehaviour
 
     public float moveSpeed;
 
-    public AnimationCurve speedByMagnitude;
-
     private Rigidbody rb;
+
+    private IDisposable _update;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        playerTransform.playerTransform = transform;
     }
 
     private void Start()
@@ -43,6 +56,7 @@ public class PlayerController3d : MonoBehaviour
             switch (x)
             {
                 case MoveType.Translate:
+                    animationController.SubscribeAnimation();
                     moveTypeDelegate = new PlayerMoveTranslate(transform,
                                                                moveSpeed,
                                                                Space.Self);
@@ -58,11 +72,16 @@ public class PlayerController3d : MonoBehaviour
             }
         });
 
-        playerInput.onPress.Subscribe(_ =>
+        _update = playerInput.OnPress.Subscribe(_ =>
         {
             var movement = playerInput.screenInput.Value;
 
             moveTypeDelegate.Move(movement);
         });
+    }
+
+    private void OnDestroy()
+    {
+        _update.Dispose();
     }
 }

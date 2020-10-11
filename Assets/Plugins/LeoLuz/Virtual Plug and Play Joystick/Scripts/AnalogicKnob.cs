@@ -16,7 +16,7 @@ namespace LeoLuz.PlugAndPlayJoystick
 
         public BoolReactiveProperty released;
 
-        public IObservable<long> onPress;
+        public IObservable<long> OnPress;
 
         public IJoystickInput()
         {
@@ -24,7 +24,7 @@ namespace LeoLuz.PlugAndPlayJoystick
 
             released = new BoolReactiveProperty(true);
 
-            onPress = Observable.EveryUpdate().Where(_ => !released.Value);
+            OnPress = Observable.EveryUpdate().Where(_ => !released.Value);
 
         }
     }

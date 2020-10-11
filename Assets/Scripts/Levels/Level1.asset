@@ -23,3 +23,4 @@ MonoBehaviour:
   rocket: {fileID: 1388169694626016637, guid: f1e990ee1f0065a43b954ad1474580d7, type: 3}
   levelTime: 60
   astronautCount: 3
+  onRocketParts: 3

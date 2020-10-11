@@ -3,9 +3,17 @@
 /// <summary>
 /// Base class for type of items you can peek
 /// </summary>
-public abstract class ItemPart : MonoBehaviour
+public abstract class ItemPart<T> : MonoBehaviour where T : Perks, new()
 {
-    public virtual bool IsBetter(ItemPart another)
+    [SerializeField]
+    private T perks;
+
+    public ItemPart()
+    {
+        perks = new T();
+    }
+
+    public virtual bool IsBetter(ItemPart<T> another)
     {
         var price = GetPrice();
 
@@ -14,5 +22,8 @@ public abstract class ItemPart : MonoBehaviour
         return anotherPrice > price;
     }
 
-    public abstract float GetPrice();
+    public virtual float GetPrice()
+    {
+        return perks.GetPrice();
+    }
 }

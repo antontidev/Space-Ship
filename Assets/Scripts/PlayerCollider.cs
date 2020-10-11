@@ -1,17 +1,23 @@
 using UnityEngine;
+using Zenject;
 
-public class PlayerCollider : MonoBehaviour
+public class PersonCollider : MonoBehaviour
 {
     /// <summary>
     /// Used for object colliding
     /// </summary>
-    [SerializeField]
-    private RaycastManager raycastManager;
+    [Inject]
+    protected RaycastManager raycastManager;
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
         var gameObj = other.gameObject;
 
         raycastManager.CollisionWithObject(gameObj);
     }
+}
+
+public class PlayerCollider : PersonCollider
+{
+    
 }

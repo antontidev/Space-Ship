@@ -29,6 +29,7 @@ public class MathRotator : PlayerMove
 
                 transform.Rotate(0, rotateDelta * moveSpeed, 0, Space.Self);
             }
+
             lastValue = angle;
         }
     }

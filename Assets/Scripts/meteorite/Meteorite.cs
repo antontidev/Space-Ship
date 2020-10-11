@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Meteorite : MonoBehaviour
 {
@@ -7,33 +9,47 @@ public class Meteorite : MonoBehaviour
 
     public GameObject moveSystem;
 
+    /// <summary>
+    /// Used to indicate that happened not destroyable collision
+    /// </summary>
+    public Action<GameObject, Transform> OnPlainCollision;
+
+    /// <summary>
+    /// Collision with object that killable
+    /// </summary>
+    public Action<int, Transform> OnCertainCollision;
+
     private List<int> collisionLayers;
+
+    [Inject]
+    private Gravity planet;
+
+    [Inject]
+    private KillableObjects killableObjectsLayers;
 
     private void Start()
     {
-        var playerLayer = LayerMask.NameToLayer("Player");
+        collisionLayers = killableObjectsLayers.enumLayerList;
 
-        var summonLayer = LayerMask.NameToLayer("Summon");
+        var planetTransform = planet.transform;
 
-        collisionLayers = new List<int>(){ playerLayer,
-                                           summonLayer };
+        transform.LookAt(planetTransform);
     }
 
     void OnCollisionEnter(Collision collision)
     {
         OnCollisionEffect();
 
-        var collisionLayer = collision.gameObject.layer;
+        var collisionObject = collision.gameObject;
 
-        foreach (var element in collisionLayers)
+        var collisionLayer = collisionObject.layer;
+
+        if (collisionLayers.Contains(collisionLayer))
         {
-            if (collisionLayer == element)
-            {
-
-            }
+            OnCertainCollision?.Invoke(collisionLayer, collisionObject.transform);
         }
 
-        Destroy(gameObject, 2);
+        OnPlainCollision?.Invoke(gameObject, collisionObject.transform);
     }
 
     void OnCollisionEffect()

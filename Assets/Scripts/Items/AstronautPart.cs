@@ -18,12 +18,6 @@ public class PerkAstronaut : Perks
     }
 }
 
-public class AstronautPart : ItemPart
+public class AstronautPart : ItemPart<PerkAstronaut>
 {
-    public PerkAstronaut perkAstronaut;
-
-    public override float GetPrice()
-    {
-        return perkAstronaut.GetPrice();
-    }
 }

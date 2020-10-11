@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2799081205147347375}
   m_Layer: 0
   m_Name: Top3
-  m_TagString: Untagged
+  m_TagString: Top
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 2614960185167415042}
   m_Layer: 0
   m_Name: Bottom3
-  m_TagString: Untagged
+  m_TagString: Bottom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,11 +211,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c56cf4a78316c149853640df212da3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trueParts: []
   positions:
   - {fileID: 7250277456442556194}
   - {fileID: 5467478721084967126}
   - {fileID: 4878831540565987959}
+  trueParts: []
 --- !u!114 &-8078694115797355827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 7874585668902435089}
   m_Layer: 0
   m_Name: Middle3
-  m_TagString: Untagged
+  m_TagString: Middle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -177,9 +177,11 @@ public class PartsSpawner : MonoBehaviour
     private List<GameObject> trueParts;
 
     [SerializeField]
+    [HideInInspector]
     private Material glowEffect;
 
     [SerializeField]
+    [HideInInspector]
     private ClickManager manager;
 
     [Inject]

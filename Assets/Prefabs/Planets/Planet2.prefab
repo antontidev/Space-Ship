@@ -27,11 +27,12 @@ Transform:
   m_GameObject: {fileID: 71276477441399801}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.3579493, y: -3.9489136, z: -7.147422}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
   m_Children:
   - {fileID: 7767368273876471597}
   - {fileID: 5873570143934449966}
   - {fileID: 8102490569833850397}
+  - {fileID: 8821989356539080320}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8460283e171e064abe4a337b3c3ec93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRocketPostition: {fileID: 8102490569833850397}
+  spawnRocketPostition: {fileID: 8821989356539080320}
 --- !u!114 &3432929271959243236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,6 +65,36 @@ MonoBehaviour:
   gravity: 5
   temperature: -50
   atmosphere: 0
+--- !u!1 &2642104270036994260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8821989356539080320}
+  m_Layer: 0
+  m_Name: RocketSpawnPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8821989356539080320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2642104270036994260}
+  m_LocalRotation: {x: -0.516157, y: -0.48330325, z: -0.48330343, w: 0.51615673}
+  m_LocalPosition: {x: -0.03255135, y: 2.311, z: 0.9321124}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 844118409121366339}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5300423443447651393
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +288,7 @@ GameObject:
   - component: {fileID: 2452953646114988358}
   - component: {fileID: 1601156545118510248}
   - component: {fileID: 8034183303265985416}
-  - component: {fileID: 8529058676969223874}
+  - component: {fileID: 4959689239690522073}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Planet
@@ -342,10 +373,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grav: -5
+  playerGrav: -5
   temperature: -50
   oxygen: 0
---- !u!135 &8529058676969223874
-SphereCollider:
+--- !u!64 &4959689239690522073
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -354,6 +386,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.009836578
-  m_Center: {x: 0.000038845465, y: -0.00026405926, z: 0.00020148695}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 573524838593487302, guid: 9c98d7d6699b0014f845642602852a5c, type: 3}

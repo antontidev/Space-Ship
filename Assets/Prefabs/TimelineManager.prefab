@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 567526744768207956}
   - component: {fileID: 690987111304140646}
+  - component: {fileID: 799451949069824015}
+  - component: {fileID: 3865377811572257113}
   m_Layer: 0
   m_Name: TimelineManager
   m_TagString: Untagged
@@ -24,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7343084923379130911}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0097568035, y: -0.49827033, z: 0.89204764}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -40,7 +42,7 @@ PlayableDirector:
   m_GameObject: {fileID: 7343084923379130911}
   m_Enabled: 1
   serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
+  m_PlayableAsset: {fileID: 11400000, guid: eebe3145252b3184a85bbb5cc2d4943b, type: 2}
   m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
@@ -52,15 +54,109 @@ PlayableDirector:
     value: {fileID: 919132149155446097, guid: 756787cdb04b6d543935e87c42d78c3b, type: 3}
   - key: {fileID: 5979445509087154004, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
     value: {fileID: 0}
-  - key: {fileID: 3326864643208405733, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
+  - key: {fileID: 299149226620634779, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
     value: {fileID: 0}
-  - key: {fileID: -3103033178137761808, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
+  - key: {fileID: -3220056540703317954, guid: 412502d0124c39544bfdd35bb0be1ad7, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 8878786157265232644, guid: b68d516030a8c904db25ad02690002e6, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -3635956425957230833, guid: b68d516030a8c904db25ad02690002e6, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8433085044303455612, guid: eebe3145252b3184a85bbb5cc2d4943b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -8577411590482949818, guid: eebe3145252b3184a85bbb5cc2d4943b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2804463768106291564, guid: eebe3145252b3184a85bbb5cc2d4943b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 1347989139527105196, guid: eebe3145252b3184a85bbb5cc2d4943b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -4674304656349732294, guid: eebe3145252b3184a85bbb5cc2d4943b, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 7718056977739676946, guid: eebe3145252b3184a85bbb5cc2d4943b, type: 2}
+    value: {fileID: 7343084923379130911}
   m_ExposedReferences:
     m_References:
-    - 08070ff81709eb84cb38fe4837de089a: {fileID: 0}
-    - 00cf4635a952dfb4fa3eccbbef8be738: {fileID: 0}
-    - 6d67e416ef0167849aff52496954b136: {fileID: 0}
-    - 3ab9362b7b94c34459c7dece2b900ed9: {fileID: 0}
-    - 449e58ed3c91fee46aa61d1db9275702: {fileID: 0}
-    - 2e6cbf2dffc408e40b5bd6c8012fec1f: {fileID: 0}
+    - 08070ff81709eb84cb38fe4837de089a: {fileID: 2557890688271485431, guid: 04eda9e28a0bb43478d3d1ef734e2342,
+        type: 3}
+    - b69673432644d6e47916886e7b394647: {fileID: 0}
+    - 3d3a40651ab91e24f87b1d8c0d29ea6d: {fileID: 0}
+    - 00cf4635a952dfb4fa3eccbbef8be738: {fileID: 3050072895544882626, guid: 04eda9e28a0bb43478d3d1ef734e2342,
+        type: 3}
+    - 6d67e416ef0167849aff52496954b136: {fileID: 2557890688271485431, guid: 04eda9e28a0bb43478d3d1ef734e2342,
+        type: 3}
+    - 3ab9362b7b94c34459c7dece2b900ed9: {fileID: 6034804989732156595, guid: 04eda9e28a0bb43478d3d1ef734e2342,
+        type: 3}
+    - 449e58ed3c91fee46aa61d1db9275702: {fileID: 4292764253326247794, guid: 04eda9e28a0bb43478d3d1ef734e2342,
+        type: 3}
+    - 2bc7dd87e6041624ca21775033b7949f: {fileID: 0}
+    - 2e6cbf2dffc408e40b5bd6c8012fec1f: {fileID: 5165051331339013307, guid: 04eda9e28a0bb43478d3d1ef734e2342,
+        type: 3}
+    - b443e9cd31b22c14a8eec8f708dfe6fd: {fileID: 0}
+--- !u!114 &799451949069824015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343084923379130911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: be5aea63c49471848bdac114d14ca866, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3865377811572257113}
+          m_TargetAssemblyTypeName: TimelineSignalDirector, Assembly-CSharp
+          m_MethodName: OnWinCutsceneRocketHolderMove
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &3865377811572257113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343084923379130911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a4df7f6d9949df4fa4e3739955f7f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rocketDeltaYMove: 20
+  rocketHolder: {fileID: 0}
+  easeOfRocketMoving:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 5
+      value: 1
+      inSlope: 0.489473
+      outSlope: 0.489473
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.07549457
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

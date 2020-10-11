@@ -20,6 +20,9 @@ public class ModuleInstaller : MonoInstaller
         Container.Bind<RocketInventory>().AsCached().NonLazy();
         Container.Bind<GlobalInventory>().AsCached().NonLazy();
         Container.Bind<AstronautInventory>().AsCached().NonLazy();
+        Container.Bind<KillableObjects>().AsCached().NonLazy();
+        Container.Bind<ThatCanPick>().AsCached().NonLazy();
+        Container.Bind<PlayerTransform>().AsCached().NonLazy();
         Container.Bind<RaycastManager>().FromInstance(raycastManager).AsCached().NonLazy();
         Container.Bind<Gravity>().FromInstance(gravity).AsCached().NonLazy();
     }

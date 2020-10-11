@@ -5,20 +5,29 @@ using Zenject;
 [RequireComponent(typeof(ZenAutoInjecter))]
 public class PhysObj : MonoBehaviour
 {
+    public bool Active;
+
     [Inject]
     private Gravity planet;
 
-    private void Awake()
+    private Rigidbody rb;
+
+    private void Start()
     {
-        var rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
 
         rb.useGravity = false;
 
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        Active = true;
     }
 
     void FixedUpdate()
     {
-        planet.Attract(transform);
+        if (Active)
+        {
+            planet.Attract(transform, rb);
+        }
     }
 }

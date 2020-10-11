@@ -10,6 +10,11 @@ public class Rocket : MonoBehaviour
     [SerializeField]
     public List<Transform> positions;
 
+    /// <summary>
+    /// Temporary for 3 part rocket
+    /// </summary>
+    private Dictionary<string, Vector3> PartsPositions;
+
     [Inject]
     public void Construct(RocketInventory rocketInventory)
     {
@@ -18,8 +23,24 @@ public class Rocket : MonoBehaviour
 
     private void Start()
     {
+        PartsPositions = new Dictionary<string, Vector3>();
+        
+        PopulatePosition();
+
         rocketInventory.ItemAdded += RocketInventory_ItemAdded;
         rocketInventory.ItemChanged += RocketInventory_ItemChanged;
+    }
+
+    private void PopulatePosition()
+    {
+        foreach (var partPosition in positions)
+        {
+            var tag = partPosition.tag;
+
+            var position = partPosition.position;
+
+            PartsPositions.Add(tag, position);
+        }
     }
 
     private void OnDisable()
@@ -41,9 +62,7 @@ public class Rocket : MonoBehaviour
     {
         var module = e.Item;
 
-        module.transform.parent = transform;
-
-        module.SetActive(false);
+        PlaceOnRocket(module);
     }
 
     /// <summary>
@@ -60,9 +79,26 @@ public class Rocket : MonoBehaviour
     {
         var module = e.Item;
 
+        PlaceOnRocket(module);
+    }
+
+    private void PlaceOnRocket(GameObject module)
+    {
+        var shipPart = module.GetComponent<ShipPart>();
+
+        shipPart.stateController.state.Value = ModuleState.Rocket;
+
+        var newModuleTag = module.tag;
+
         module.transform.parent = transform;
 
-        module.SetActive(false);
+        var position = PartsPositions[newModuleTag];
+
+        var newModuleTransform = module.transform;
+
+        newModuleTransform.rotation = Quaternion.identity;
+
+        newModuleTransform.position = position;
     }
 
     #region Obsolete    

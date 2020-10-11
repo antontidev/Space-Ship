@@ -16,12 +16,6 @@ public class PerkBreak : Perks
 /// <summary>
 /// Class for trash and it's price, perks and so
 /// </summary>
-public class BreakPart : ItemPart
+public class BreakPart : ItemPart<PerkBreak>
 {
-    public PerkBreak perkBreak;
-
-    public override float GetPrice()
-    {
-        return perkBreak.GetPrice();
-    }
 }

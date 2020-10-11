@@ -44,7 +44,7 @@ public abstract class PlayerMove
 
     public virtual Vector3 CalculateSpeed(Vector2 frameMovement)
     {
-        var speedMovement = lastForward = frameMovement * Time.fixedDeltaTime * moveSpeed;
+        var speedMovement = lastForward = frameMovement * Time.deltaTime * moveSpeed;
 
         return new Vector3(speedMovement.x, 0.0f, speedMovement.y);
     }

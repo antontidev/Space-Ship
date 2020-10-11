@@ -14,11 +14,11 @@ public class Gravity : MonoBehaviour
     [SerializeField]
     public float oxygen;
 
-    public void Attract(Transform body)
+    public void Attract(Transform body, Rigidbody rb)
     {
         Vector3 centerDir = (body.position - transform.position).normalized;
         Vector3 bodyUpDir = body.up;
         body.rotation = Quaternion.FromToRotation(bodyUpDir, centerDir) * body.rotation;
-        body.GetComponent<Rigidbody>().AddForce(centerDir * grav);
+        rb.AddForce(centerDir * grav);
     }
 }

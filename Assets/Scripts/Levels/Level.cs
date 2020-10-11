@@ -14,4 +14,6 @@ public class Level : ScriptableObject
     public float levelTime;
     [SerializeField]
     public int astronautCount;
+    [SerializeField]
+    public int onRocketParts;
 }

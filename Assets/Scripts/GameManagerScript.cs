@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using System;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -38,6 +39,9 @@ public class GameManagerScript : IGameManager
     [Inject]
     private LevelLoader levelLoader;
 
+    [Inject]
+    private RocketInventory rocketInventory;
+
     [Scene]
     public string nextScene;
 
@@ -65,8 +69,8 @@ public class GameManagerScript : IGameManager
         levelManager.NextLevelLoaded -= timer.LevelLoaded;
         levelManager.NextLevelLoaded -= activePartManager.LevelLoaded;
         timer.Up -= MakeDecision;
-        timelineManager.stopped -= OnCutsceneEnded;
         spawner.RocketSpawned -= SubmitRocket;
+        //timelineManager.stopped -= OnCutsceneEnded;
         // Obsolete call planet already exist
         //spawner.planetSpawned -= freeLookCamera.SetTargetObject;
     }
@@ -75,7 +79,7 @@ public class GameManagerScript : IGameManager
     {
         activePartManager.IsReady.Where(x => x == true).Subscribe(x =>
         {
-            MakeDecision();
+            //MakeDecision();
         });
     }
 
@@ -89,11 +93,13 @@ public class GameManagerScript : IGameManager
 
     private void PlayCutscene()
     {
-        timelineManager.stopped += OnCutsceneEnded;
-        var isReady = activePartManager.IsReady.Value;
-        if (isReady)
+        var canNext = rocketInventory.Full;
+
+        if (canNext)
         {
             timelineManager.Play(winCutscene);
+
+            ChangeLevel();
         }
         else
         {
@@ -105,6 +111,7 @@ public class GameManagerScript : IGameManager
     /// Invokes when playableDirector ends playing the cutscene
     /// </summary>
     /// <param name="timelineManager"></param>
+    [Obsolete("No longer needed")]
     private void OnCutsceneEnded(PlayableDirector timelineManager)
     {
         ChangeLevel();
